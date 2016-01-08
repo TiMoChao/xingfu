@@ -1,0 +1,49 @@
+<div class="ccc2">
+	<ul>
+		<li>
+			<span class="right"><input type="button" onClick="javascript:history.back();" value="返回标识列表" class="gray mini"></span>
+			当前位置：标识编辑
+			
+	 </li>
+	</ul>
+</div>
+<form name="form" id="form" method="post" action="category.php?action=update">
+<div id="biweb">
+<table class="biweb" align="center" cellspacing="0">
+	<tr>
+		<th colspan="2">编辑标识</td> 
+	</tr>	
+	<tr>
+		<td width="21%">标识名称：</td>
+		<td><input type="text" name="type_title" value="<?{$arrType.type_title}?>"/></td>
+	</tr>
+	<tr>
+		<td width="21%">英文标识名称：</td>
+		<td><input type="text" name="type_title_english" value="<?{$arrType.type_title_english}?>"/></td>
+	</tr>
+	<tr style="display:none">
+		<td width="21%">所属标识</td>
+		<td><select name="type_roue_id"> 
+			<option value=":0:">根标识</option>	
+			<?{foreach key=key item=arrData from=$arrInfo}?>
+			<option value="<?{$arrData.type_roue_id}?>"><?{$arrData.type_title}?></option>			
+			<?{/foreach}?>	
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td width="21%">是否公布：</td>
+		<td><select name="type_pass">
+			<option value="1" <?{if $arrType.type_pass == 1}?>selected='selected' class='selected'<?{/if}?>>公布</option>
+			<option value="0" <?{if $arrType.type_pass == 2}?>selected='selected' class='selected'<?{/if}?>>隐藏</option>			
+			</select></td>
+	</tr>
+	<tr>
+		<td width="21%">&nbsp;</td>
+		<input type="hidden" name="type_id" value="<?{$type_id}?>" />
+		<td><input type="submit" value="提 交" /></td>
+	</tr>
+	
+</table>
+</div>
+</form>

@@ -1,0 +1,66 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <div class="main">
+        <!--主体左侧开始-->
+		<div class="main_left"> 
+			<?{include file="news/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束--> 
+		
+        <!--主体右侧开始-->
+        <div class="main_right">
+            <div class="common_bt"><span class="title">新闻中心</span><span class="path">当前位置：<a href="<?{url url='/'}?>">首页</a> >> <a href='<?{url url="/news/"}?>'>新闻中心</a> >> 新闻信息</span></div>
+            <div class="common_content">
+                <div class="news_title"><?{$arrData.title}?></div>
+                <div class="news_info"><?{if !empty($arrData.author)}?>作 者：<?{$arrData.author}?><?{/if}?>&nbsp;  发表时间：<?{$arrData.submit_date}?> &nbsp; 浏览次数：<script language='javascript' src='../../plug-in/click/getclick.php?module_id=<?{$arrGWeb.module_id}?>&id=<?{$arrData.id}?>'></script>【<a href="javascript:window.print();">打印</a> <a href='<?{url url = "/`$arrGWeb.module_id`/detail.php?id=`$arrData.id`" cache = "3"}?>'>DOC</a>】<div class="bshare-custom">分 享 到：<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a><a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a><a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script></div>
+                <div class="news_content">
+				<?{if !empty($arrData.photo)}?>
+				<?{foreach from=$arrData.photo key=key item=photo}?>
+				<?{if $photo.photo != ""}?><br><center><img src="<?{$FileCallPath|imgurl:'news'}?>b/<?{$photo.photo}?>" align="center" border="0" alt="<?{$photo.photo_narrate}?>" /><br><?{if $photo.photo_narrate}?><?{$photo.photo_narrate}?><?{/if}?></center><br><?{/if}?>
+				<?{/foreach}?>
+				<?{/if}?>
+				<?{if !empty($arrData.video)}?>
+				<?{foreach from=$arrData.video key=key item=video name=video}?>
+				<?{if $smarty.foreach.video.first}?>
+				<script type='text/javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/swfobject.js'></script>
+				<?{/if}?><center>
+				<?{if $video.video != ''}?>
+				<div id='vpreview<?{$smarty.foreach.video.index}?>'>The player will show in this paragraph</div>
+				<script type='text/javascript'>
+					var s1 = new SWFObject('<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/flvplayer.swf','player','400','300','9');
+					s1.addParam('allowfullscreen','true');
+					s1.addParam('allowscriptaccess','true');
+					s1.addParam('flashvars','file=<?{$FileCallPath|imgurl:'news'}?><?{$video.video}?>&image=<?{$FileCallPath|imgurl:'news'}?>b/<?{$video.videopic}?>');
+					s1.write('vpreview<?{$smarty.foreach.video.index}?>');
+				</script>
+				<?{elseif $video.video_link !=''}?>
+				<embed src="<?{$video.video_link}?>" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed><br>
+				<?{/if}?></center><br>
+				<?{/foreach}?>
+				<?{/if}?>
+					<br><div id="detail_p"><?{$arrData.intro}?></div>
+					<!--相关-->	
+					<div class="related_x">
+						<div class="related_x_t">前期新闻</div>
+						<ul>
+							<?{if !empty($arrInfoListNext)}?>
+							<?{foreach from=$arrInfoListNext item=arrRelated}?>
+							<li><a href="<?{if $arrRelated.linkurl!=''}?><?{$arrRelated.linkurl}?><?{else}?><?{url url="/news/detail.php?id=`$arrRelated.id`"}?><?{/if}?>"><?{$arrRelated.title|bedeck:$arrRelated.bedeck}?></a></li>
+							<?{/foreach}?>
+							<?{else}?>
+							<li>抱歉！暂无相关新闻</li>
+							<?{/if}?>
+						</ul>
+					</div>
+					<!--/相关-->
+					<div class="goback"><a href="javascript:history.go(-1)">返回上一页</a></div>
+                </div>
+            </div>
+        </div>
+        <!--主体右侧结束-->
+		
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>

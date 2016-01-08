@@ -1,0 +1,13 @@
+<head><title><?{$arrData.title}?></title></head>
+<center><h2><?{$arrData.title}?></h2></center>
+<div align="right">发布时间：<?{$arrData.submit_date}?> 来源：<a href="http://<?{$smarty.server.HTTP_HOST}?><?{url url = "/`$arrGWeb.module_id`/detail.php?id=`$arrData.id`"  cache = "`$arrGWeb.file_static`"}?>"><?{$arrGWeb.name}?></a></div><br />
+<div>
+	<?{if $arrData.photo != ""}?><center><img src="http://<?{$smarty.server.HTTP_HOST}?>/<?{$FileCallPath}?>b/<?{$arrData.photo}?>" align="center" border="0" alt="<?{$arrData.photo_narrate}?>"  onload='resizepic(this,600)' /><br><?{$arrData.photo_narrate}?></center><br><?{/if}?>
+	<?{$arrData.intro|replace:'<div id="page">分页:<strong title="当前页">1</strong> 2  下一页':""}?>
+</div>
+<?{if $arrData.contact != ''}?>
+<div>所在城市：<?{$arrData.province}?> - <?{$arrData.city}?><br><?{$arrData.contact|nl2br}?></div>
+<?{/if}?>
+<br/>
+<br/>
+<div align="center"><?{$arrGWeb.Powered}?><br/><?{$arrGWeb.Copyright}?></div>

@@ -1,0 +1,122 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle"> 本功能仅在服务器系统环境发生变化时操作，如有操作错误会导致网站无法正常使用，但不会造成数据丢失！
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2">网站系统设置</td>
+    </tr>
+    <tr>
+      <td width="15%">数据库主机：</td>
+      <td><input name="db_host" value="<?{$arrGWeb.db_host}?>" maxlength="100" size="55"> 数据库连接主机</td>
+    </tr>
+    <tr>
+      <td>数据库端口：</td>
+      <td><input name="db_port" value="<?{$arrGWeb.db_port}?>" maxlength="100" size="55"> 数据库链接端口</td>
+    </tr>
+		<tr>
+      <td>数据库用户名：</td>
+      <td><input name="db_user" value="<?{$arrGWeb.db_user}?>" maxlength="100" size="55"> 数据库连接用户名</td>
+    </tr>
+		<tr>
+      <td>数据库密码：</td>
+      <td><input name="db_password" value="<?{$arrGWeb.db_password}?>" type="password" maxlength="100" size="57"> 数据库连接密码</td>
+    </tr>
+		<tr>
+      <td>数据库名：</td>
+      <td><input name="db_name" value="<?{$arrGWeb.db_name}?>" maxlength="100" size="55"> 数据库名称</td>
+    </tr>
+		<tr>
+      <td>数据库表前缀：</td>
+      <td><input name="db_tablepre" value="<?{$arrGWeb.db_tablepre}?>" maxlength="100" size="55"> 数据库表名前缀</td>
+    </tr>
+	<tr>
+      <td>网站访问前缀：</td>
+      <td><input name="WEB_ROOT_pre" value="<?{$arrGWeb.WEB_ROOT_pre}?>" maxlength="100" size="55"> 网站放置在子目录下才需填写，放在根目录为空</td>
+    </tr>
+	<tr>
+      <td>网站调试：</td>
+      <td><select name="PDO_DEBUG">	
+				<option value="1" <?{if $arrGWeb.PDO_DEBUG == 1}?>selected=selected class="selected"<?{/if}?>>开启</option>
+				<option value="0" <?{if $arrGWeb.PDO_DEBUG == 0}?>selected=selected class="selected"<?{/if}?>>关闭</option>
+			</select>
+			 网站调试会在页面上输出SQL语句，正式上线请关闭</td>
+    </tr>
+	<tr>
+      <td>操作日志：</td>
+      <td><select name="PDO_LOGS">	
+				<option value="1" <?{if $arrGWeb.PDO_LOGS == 1}?>selected=selected class="selected"<?{/if}?>>开启</option>
+				<option value="0" <?{if $arrGWeb.PDO_LOGS == 0}?>selected=selected class="selected"<?{/if}?>>关闭</option>
+			</select>
+			 记录新增、修改、删除和执行的操作日志</td>
+    </tr>
+	<tr>
+	  <td>缩放模式：</td>
+	  <td><select name="zoomMode">	
+			<option value="1001" <?{if $arrGWeb.zoomMode == '1001'}?>selected=selected class="selected"<?{/if}?>>等比缩放</option>
+			<option value="1002" <?{if $arrGWeb.zoomMode == '1002'}?>selected=selected class="selected"<?{/if}?>>拉伸缩放</option>
+			<option value="1003" <?{if $arrGWeb.zoomMode == '1003'}?>selected=selected class="selected"<?{/if}?>>适应缩放</option>
+			</select> 缩略图缩放模式
+	  </td>
+	</tr>
+
+  <tr class="firstr">
+    <td colspan="2">地图密钥设置</td>
+  </tr>
+	<tr>
+      <td>google地图密钥：</td>
+      <td><input name="google_code" value="<?{$arrGWeb.google_code}?>" maxlength="100" size="55"> google地图密钥</td>
+    </tr>
+
+	<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+    </tr>
+</table>
+</div>
+</form>
+<script language="javascript">
+	var qqCount3=<?{$smarty.foreach.qqser.total+1}?>
+	function addSerQQ(){
+	  var oTb = document.getElementById("tb3");
+	  var oTr = oTb.insertRow(-1);
+	  oTr.insertCell(0).innerHTML = '客服QQ'+qqCount3+'：';
+	  oTr.insertCell(1).innerHTML = '<input name="serqq[]" value="" maxlength="100" size="55">';
+	  qqCount3++;
+	}
+	var qqCount4=<?{$smarty.foreach.msnser.total+1}?>
+	function addSerMSN(){
+	  var oTb = document.getElementById("tb4");
+	  var oTr = oTb.insertRow(-1);
+	  oTr.insertCell(0).innerHTML = '客服MSN'+qqCount4+'：';
+	  oTr.insertCell(1).innerHTML = '<input name="sermsn[]" value="" maxlength="100" size="55">';
+	  qqCount4++;
+	}
+
+	var qqCount1=<?{$smarty.foreach.qqunuser.total+1}?>
+	function addUserQQ(){
+	  var oTb = document.getElementById("tb1");
+	  var oTr = oTb.insertRow(-1);
+	  oTr.insertCell(0).innerHTML = '普通会员QQ群'+qqCount1+'：';
+	  oTr.insertCell(1).innerHTML = '<input name="userqqun[]" value="" maxlength="100" size="55">';
+	  qqCount1++;
+	}
+	
+	var qqCount2=<?{$smarty.foreach.qqunseller.total+1}?>
+	function addSellerQQ(){
+	  var oTb = document.getElementById("tb2");
+	  var oTr = oTb.insertRow(-1);
+	  oTr.insertCell(0).innerHTML = '商家QQ群'+qqCount2+'：';
+	  oTr.insertCell(1).innerHTML = '<input name="sellerqqun[]" value="" maxlength="100" size="55">';
+	  qqCount2++;
+	}
+	function delQQ(tableid,id){
+		var oTb = document.getElementById(tableid);
+		var tmp= document.getElementById(id);
+		oTb.childNodes[0].removeChild(tmp);
+	}
+</script>

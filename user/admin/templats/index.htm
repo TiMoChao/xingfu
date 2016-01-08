@@ -1,0 +1,69 @@
+<div class="ccc2">
+	<ul>
+		<li>
+		<form action="?" method="get">
+			<span class="right"><input type="button" onClick="location.href='addinfo.php?page=<?{$smarty.get.page}?>'" value="新增员资料" class="gray mini"></span>
+
+			<input type="hidden" name="action" value='search'>
+			关键字：<input class="text" type="input" name='title' value='<?{$smarty.get.title}?>'>
+			会员类别：
+			<select name="user_type">
+				<option value='' <?{if $smarty.get.user_type === ''}?>selected="selected" class="selected"<?{/if}?>>全部</option>
+				<option value="0" <?{if $smarty.get.user_type == '0'}?>selected="selected" class="selected"<?{/if}?>>普通用户</option>
+				<option value="1" <?{if $smarty.get.user_type == '1'}?>selected="selected" class="selected"<?{/if}?>>验证用户</option>
+			</select>
+			
+			是否审核：<select name='pass' size=1>
+			<option value='' <?{if $smarty.get.pass === ''}?>selected="selected" class="selected"<?{/if}?>>全部</option>
+			<option value='1' <?{if $smarty.get.pass == '1'}?>selected="selected" class="selected"<?{/if}?>>已审核</option>
+			<option value='0' <?{if $smarty.get.pass === '0'}?>selected="selected" class="selected"<?{/if}?>>未审核</option>
+			</select> 
+			
+			<input type="submit" value='查 询' class="gray mini">
+			/id号可精确查询
+	 </form>
+	 </li>
+	</ul>
+</div>
+<div id="biweb">
+<table width="96%" align="center" cellpadding="0" cellspacing="0" class="biweb"> 
+	<tr class="firstr">
+		<th width='5%'>ID</th>
+		<th width='10%'>登陆名称</th>
+		<th width='10%'>真实姓名</th>
+		<th width='13%'>注册时间</th>
+		<th width='7%'>会员类型</th>
+		<th width='7%'>会员积分</th>
+		<th width='14%'>最后登录</th>
+		<th width='10%'>用户IP</th>
+		<th width='8%'>审核</th>
+		<th width='7%'>信用审核</th>
+		<th width='10%'>&nbsp;</th>
+	</tr>
+	<?{foreach key=key item=arrdata from=$arrData}?>
+	<tr align=center>
+		<td align=center>&nbsp;<a href='modify.php?action=edit&id=<?{$arrdata.user_id}?>&page=<?{$get.page}?>'><?{$arrdata.user_id}?></a></td>
+		<td align=center>&nbsp;<a href='modify.php?action=edit&id=<?{$arrdata.user_id}?>&page=<?{$get.page}?>'><?{$arrdata.user_name}?></a></td>
+		<td align=center>&nbsp;<?{$arrdata.real_name}?></td>
+	
+		<td align=center>&nbsp;<?{$arrdata.submit_date}?></td>
+		<td>&nbsp;
+			<?{if $arrdata.pay == 1}?><font color=red>付费会员</font><?{/if}?>
+			<?{if $arrdata.pay == 0}?>普通会员<?{/if}?>
+		</td>
+		<td align=center>&nbsp;<?{$arrdata.user_bonus}?></td>
+		<td align=center>&nbsp;<?{$arrdata.lastlog}?></td>
+		<td align=center>&nbsp;<?{$arrdata.user_ip}?></td>
+		<td>&nbsp;
+			<?{if $arrdata.pass == 1}?>√<?{/if}?>
+			<?{if $arrdata.pass != 1}?><font color=red>&nbsp;×&nbsp;</font><?{/if}?>
+		</td>
+		<td align=center>&nbsp;<?{if $arrdata.is_check == '1'}?><font color=red>需要审核</font><?{/if}?></td>
+		<td><a href='modify.php?action=edit&id=<?{$arrdata.user_id}?>'>编辑</a> | <a href='modify.php?action=del&id=<?{$arrdata.user_id}?>' onclick="return confirm('确认删除');">删除</a></td> 		
+	</tr>	
+	<?{/foreach}?> 
+	<tr>
+		<td align="left" colspan="11"><?{$strPage}?></td>	
+	</tr>
+</table>
+</div>

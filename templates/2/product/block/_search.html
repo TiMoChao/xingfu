@@ -1,0 +1,25 @@
+<form method="post" action="<?{$arrGWeb.WEB_ROOT_pre}?>/product/search.php" onsubmit="return check_kw();">
+    <div class="tel indpro" style="font-size:14px;">
+		<ul>
+			<li id="indpro_submit"><input type="submit" value="搜索" name="Submit" class="f12" /></li>
+			<li id="indpro_input"><input type="text" id="search" size="28" name="product_name"  
+			onblur="if(value==''){value='请输入产品名称，品牌或型号'}" 
+                  onfocus="if(value=='请输入产品名称，品牌或型号'){value=''}" 
+                  value="请输入产品名称，品牌或型号"
+			></li>
+			<li id="indpro_text">产品搜索： </li>
+		</ul>
+	</div>
+</form>
+<script language=javascript>
+	function check_kw()
+	{
+		sValue = document.getElementById('search').value;
+		if (sValue.trim() == "请输入产品名称，品牌或型号")
+		{
+			alert("错误：关键字不能为空");
+			return false;
+		}
+		return true;
+	}
+</script>

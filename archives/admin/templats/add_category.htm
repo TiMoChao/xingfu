@@ -1,0 +1,49 @@
+<div class="ccc2">
+	<ul>
+		<li>
+			<span class="right"><input type="button" onClick="javascript:history.back();" value="返回分类列表" class="gray mini"></span>
+			当前位置：标识
+			
+	 </li>
+	</ul>
+</div>
+<form name="form" id="form" method="post" action="category.php?action=insert">
+<div id="biweb">
+<table class="biweb" align="center" cellspacing="0">
+	<tr>
+		<th colspan="2">新增标识</td> 
+	</tr>	
+	<tr>
+		<td width="21%">标识名称：</td>
+		<td><input type="text" name="type_title" /></td>
+	</tr>
+	<tr style="display:none">
+		<td width="21%">所属标识</td>
+		<td><select name="type_roue_id"> 
+			<option value=":0:">根标识</option>	
+			<?{foreach key=key item=arrData from=$arrInfo}?>
+			<option value="<?{$arrData.type_roue_id}?>"><?{$arrData.type_title}?></option>			
+			<?{/foreach}?>	
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td width="21%">英文标识</td>
+		<td><input type="text" name="type_title_english">&nbsp;<font color="red">*</font>用于和程序匹配，此英文分类不在页面显示</td>
+	</tr>
+	<tr>
+		<td width="21%">是否公布：</td>
+		<td><select name="type_pass">
+			<option value="1">公布</option>
+			<option value="0">隐藏</option>			
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td width="21%">&nbsp;</td>
+		<td><input type="submit" value="提 交" /></td>
+	</tr>
+	
+</table>
+</div>
+</form>

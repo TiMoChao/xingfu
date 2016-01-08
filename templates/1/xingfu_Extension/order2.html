@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>order.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="css/style.css" type="text/css"></link>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tbZhmxa0Werk7IZ7Zbg7TBML"></script>
+  </head>
+  
+  <body>
+  <div class="home-box1 clb">
+	  <div class="header-box clb"></div><!-- nav -->
+	  <div class="order-top-img">
+	  	<img src="images/top-7.jpg" />
+	  	<div class="order-top-btn"><a href="javascript:;">立即预约</a></div>
+	  </div>
+	  <div class="or-wsjx">
+	  	<div class="or-wsjx-box">
+	  		<div class="title-left"><span>武术教学欣赏</span></div>
+		  	<div class="or-video clb">
+		  		<ul>
+		  			<li class="liMarginRight"><a href="javascript:;"><img src="images/news/1.jpg"></img></a><div class="playBox"><i></i><p>视频欣赏</p></div></li>
+		  			<li class="liMarginRight"><a href="javascript:;"><img src="images/news/1.jpg"></img></a><div class="playBox"><i></i><p>视频欣赏</p></div></li>
+		  			<li><a href="javascript:;"><img src="images/news/1.jpg"></img></a><div class="playBox"><i></i><p>视频欣赏</p></div></li>
+		  		</ul>
+		  	</div>
+	  	</div>
+	  </div>
+	  <div class="gd-video-box">
+		<ul class="clb">
+			<li class="marleft1"><div class="title-left"><span>学院风采</span></div><p class="title-vi-text">2 0 0 5 年 香 港 国 际 比 赛 兴 甫 武 校 小 队 成 员 与 著 名 演 员 刘 家 辉 合 影</p></li>
+			<li class="marleft1 vi-li-2"><img src="images/news/1.jpg" /></li>
+			<li class="vi-li-3"><img src="images/news/1.jpg" /><p>学 院 领 奖 精 彩 瞬 间 </p></li>
+		</ul>
+		<ul class="clb">
+			<li class="marleft1 vi-li-2"><img src="images/news/1.jpg" /></li>
+			<li class="marleft1 vi-li-3"><img src="images/news/1.jpg" /><p>澳 门 国 际 武 术 比 赛 武 术 太 张 三 鼓 励 兴 甫 队 员 并 合 影</p></li>
+			<li class="vi-li-2"><img src="images/news/1.jpg" /></li>
+		</ul>
+	  </div>
+	  <div class="yuyuei">
+	  	<div><img src="images/yuyue.png" /></div>
+	  </div>
+	  <div class="baiduMap clb">
+	  	<div class="baiduMap-nei">
+		  	<div class="yy-bm">
+		  		<div class="title-left"><span>学院风采</span></div>
+		  		<ul class="baoming-info">
+		  			<li><input type="text" value="姓名" /></li>
+		  			<li><input type="text" value="年龄" /></li>
+		  			<li><select>
+			  			<option value="1">性别</option>
+			  			<option value="2">男</option>
+			  			<option value="3">女</option>
+		  			</select></li>
+		  			<li><select>
+			  			<option value="1">报名类型</option>
+			  			<option value="3">5-12岁</option>
+			  			<option value="4">12岁以上</option>
+		  			</select></li>
+		  			<li><input type="text" value="家庭住址" /></li>
+		  			<li><input type="text" value="联系电话" /></li>
+		  			<li class="clb"><button>立即预约</button></li>
+		  		</ul>
+		  	</div>
+	  	</div>
+	  	<div id="l-map"></div>
+		<div id="r-result"></div>
+		<div class="gjc-b"></div>
+	  </div>
+  	  <div class="footer"></div>
+  </div>
+	<script type="text/javascript">
+		// 百度地图API功能
+		var map = new BMap.Map("l-map");            // 创建Map实例
+		map.centerAndZoom(new BMap.Point(106.729821,26.585491), 11);
+		var local = new BMap.LocalSearch(map, {
+			renderOptions: {map: map, panel: "r-result"}
+		});
+		local.search("兴甫");
+	</script>
+  <script>
+  
+  	$(".header-box").load("header.html");
+  	$(".footer").load("footer.html");
+  </script>
+  </body>
+</html>

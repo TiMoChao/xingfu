@@ -1,0 +1,104 @@
+<!--头部开始-->
+<div class="header">
+    <div class="top">
+        <div class="logo">
+			<a href="<?{url url='/'}?>">
+				<?{if !empty($arrGWeb.logo)}?><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/uploadfile/<?{$arrGWeb.logo}?>" /><?{else}?><img src="<?{$arrGWeb.templats_root}?>/images/logo.gif" /><?{/if}?>
+			</a>
+		</div>
+        <div class="top_right">
+            <div class="quick_links">
+				<a href="<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/langset/langset.php">转换<?{if $smarty.session.langset == 'zh_tw'}?>简体<?{else}?>繁体<?{/if}?></a> | 
+				<a href="<?{url url = '/archives/detail.php?name=contact'}?>">联系我们</a> | 
+				<a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://<?{$arrGWeb.host}?>');"  rel="sidebar" href="#">设为首页</a> | 
+				<a href='#' onClick="javascript:window.external.AddFavorite('http://<?{$arrGWeb.host}?>','<?{$arrGWeb.name}?>');" rel="sidebar">加入收藏</a><br />
+				<?{insert name="getSession" strHtml=#strHtml#}?>
+			</div>
+			<?{include file="product/block/_search.html"}?>
+        </div>
+    </div>
+    <div class="menu">
+        <ul> 		
+		<?{foreach from=$arrGWeb.navigate key=key item=navi name=navigation}?>
+			<li <?{if $arrGWeb.module_id == 'archives'}?><?{if strpos($navi.navLink,$smarty.get.name)}?>class='currentnav'<?{/if}?><?{elseif $arrGWeb['module_id'] eq $navi.module_id}?>class='currentnav'<?{/if}?>>
+			<a target='<?{$navi.target}?>' href="<?{url url=$navi.navLink}?>" title="<?{$navi.navTip}?>"><?{$navi.navName}?></a></li>
+		<?{/foreach}?>
+        </ul>
+    </div>
+	
+	<div id="banner_box">
+		<div id="banner">
+			<ul id="banner_t">
+			<?{$arrAy = $arr|api:'ads':'getInfoList':"where pass=1 and position='`$arrGWeb.module_id`'^^^^*^^0"}?>
+			<?{foreach from=$arrAy item=arrAds}?>
+				<li><a href="<?{$arrAds.webhost}?>" target="_blank">
+					<img src="<?{$FileCallPath|imgurl:"ads"}?><?{$arrAds.UploadFile}?>" width="<?{$arrAds.width}?>" height="<?{$arrAds.height}?>" alt="<?{$arrAds.summary}?>" /></a>
+				</li>
+				<?{foreachelse}?>
+				<li><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/temp/banner1.jpg" width="985" height="200" alt="banner1" /></li>
+				<li><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/temp/banner2.jpg" width="985" height="200" alt="banner2" /></li>
+			<?{/foreach}?>
+			
+			</ul>
+			<ul id="banner_t_num">			
+				<?{foreach from=$arrAy item=arrAds name="ads"}?>
+					<li <?{if $smarty.foreach.ads.first==1}?>class="active"<?{/if}?>></li>
+					<?{foreachelse}?>
+					<li class="active"></li>
+					<li></li>
+				<?{/foreach}?>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript">		
+	$(function(){
+		//图片左右滚动
+		var i=0;	//第一张图片索引
+		var li = $("#banner_t li");//li对象
+		var li1 = $("#banner_t_num li");//li对象
+		var n=li.length-1;	//最后一张图片索引
+		var speed = 100;	//动画执行时间
+		<?{if count($arrBanner)!=1}?>
+			var movetime=5000;
+		<?{else}?>
+			var movetime=1000000;
+		<?{/if}?>
+		li.not(":first").css({left:"985px"});	//除第一张图片外全都放到相框外面
+		li1.click(function(){
+				i = li1.index(this);
+				if(i==0) i=n;
+				else i = i-1;
+				scroll();
+			});
+		function scroll(){//按钮，下一张图片
+			if (!li.is(":animated")) {	//没有动画执行时，才执行下面的代码
+				if (i>=n){
+					i=0;
+					li.eq(i).animate({left:"0px"},speed);
+				}else{
+					//首先，第一张往左推，第二张进来
+					i++;
+					li.eq(i).animate({left:"0px"},speed);
+				};
+				//除当前那张外，其它全都在相框外边
+				li.not("eq(i)").css({left:"985px"});
+				//文本加1
+				li1.not("eq(i)").attr("class","");
+				li1.eq(i).attr("class","active");
+			}else{};
+		}
+		//滑入停止动画，滑出开始动画
+			$("#banner").hover(function(){
+				if(myTime){
+				   clearInterval(myTime);
+				}				
+			},function(){
+				myTime = setInterval(function(){scroll();},movetime);
+			});
+			//自动开始
+			var myTime =setInterval(function(){scroll();},movetime);
+	})
+</script>

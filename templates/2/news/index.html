@@ -1,0 +1,43 @@
+ <!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    
+    <div class="main">
+        <!--主体左侧开始-->
+		<div class="main_left"> 
+			<?{include file="news/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束--> 
+		
+        <!--主体右侧开始-->
+        <div class="main_right">
+            <div class="common_bt">
+				<span class="title">新闻中心</span>
+				<span class="path">当前位置：<a href="<?{url url = '/'}?>">首页</a> >> <a href='<?{url url="/news/"}?>'>新闻中心</a><?{if !empty($strTypeTitle)}?> >> <?{$strTypeTitle}?><?{/if}?></span>
+			</div>
+            <div class="common_content">
+                <div class="news_list">
+                    <ul>
+						<?{foreach from=$arrInfoList item=arrNews}?>
+						<li>
+							<span>
+								<?{$arrNews.submit_date|date_format:"%Y-%m-%d"}?>
+							</span>
+							<a href="<?{if $arrData.linkurl!=''}?>
+							<?{$arrData.linkurl}?><?{else}?><?{url url="/news/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">
+								<?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?>
+							</a>
+						</li>
+						<?{/foreach}?>
+                    </ul>
+                </div>                
+            </div>
+			<div class="showpage"><?{$strPage}?></div>
+        </div>
+        <!--主体右侧结束-->
+		
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束--> 

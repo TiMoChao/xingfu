@@ -1,0 +1,78 @@
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    
+  <tr class="firstr">
+    <td colspan="6">网站导航设置	&nbsp;<a href='javascript:addSerNav();' >添加</a></td>
+    </tr>
+
+    <tr>
+      <td colspan="6" style="padding:0px;border:0px;">
+      	<table id="nav_tb" width="100%" border=0 cellspacing=0 cellpadding=3>
+      		<tr>
+      			<th width="5%">排序</th>
+      			<th width="20%">导航名称</th>
+      			<th>连接地址</th>
+      			<th width="25%">连接提示</th>
+      			<th width="10%">打开方式</th>
+      			<th width="5%">操作</th>
+      	  </tr>
+      		<?{foreach from=$arrGWeb.navigate key=key item=navi name=navigation}?>
+					<tr id="nav<?{$key}?>">
+						<td ><input name='sort[]' type='text' value='<?{$navi.sort}?>' size="2"></td>
+						<td><input  name='navName[]' value="<?{$navi.navName}?>" maxlength="30" size="25"></td>
+      			<td><input name='navLink[]' type='text' value='<?{$navi.navLink}?>' size="60"></td>
+      			<td><input name='navTip[]' type='text' value='<?{$navi.navTip}?>' size="40"></td>
+      			<td>
+      				<select name="target[]">
+								<option value="_self" <?{if $navi.target == "_self"}?>selected=selected <?{/if}?>>当前窗口</option>
+								<option value="_blank" <?{if $navi.target == "_blank"}?>selected=selected <?{/if}?>>新建窗口</option>
+							</select>
+      			</td>
+      			<td><a href='javascript:delNav("<?{$key}?>");' >删除</a></td>
+					</tr>
+					<?{/foreach}?>
+    		</table>
+   </td>
+  </tr>
+ 
+  
+  
+	<tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td colspan="2"><input type="submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+</table>
+</div>
+</form>
+<script language="javascript">
+	var navCount=<?{$smarty.foreach.navigation.total+1}?>;
+	function addSerNav(){
+	  var oTb = document.getElementById("nav_tb");
+	  var oTr = oTb.insertRow(-1);
+	  oTr.id='nav'+navCount;
+	  oTr.insertCell(0).innerHTML = "<input name='sort[]' type='text' value='"+navCount+"' size='2'>";
+	  oTr.insertCell(1).innerHTML = "<input  name='navName[]' value='' maxlength='30' size='25'>";
+	  oTr.insertCell(2).innerHTML = "<input  name='navLink[]' value='' maxlength='30' size='60'>";
+	  oTr.insertCell(3).innerHTML = "<input  name='navTip[]' value='' maxlength='30' size='40'>";
+	  oTr.insertCell(4).innerHTML = "<select name='target[]'>"+
+																			"<option value='_self' selected>当前窗口</option>"+
+																			"<option value='_blank'>新建窗口</option>"+
+																		"</select>";
+	  oTr.insertCell(5).innerHTML = "<a href='javascript:delNav("+navCount+");' >删除</a>";
+	  navCount++;
+	  
+	}
+	
+	
+	function delNav(id){
+		var tmp= document.getElementById('nav'+id);
+		if (tmp != null) 
+		{
+			tmp.parentNode.removeChild(tmp); 
+		}
+	}
+</script>

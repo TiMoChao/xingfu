@@ -1,0 +1,5 @@
+<span style="color:#335CA5;font-weight:bold;float:left;">+友情链接：</span>
+<a href="<?{url url='/links/'}?>"><span style="float:right;cursor:pointer;">更多>>&nbsp;&nbsp;</span></a>
+<?{foreach from=$arrLinkText item=arrTxt}?>
+    <a href="<?{$arrTxt.webhost}?>" title="<?{$arrTxt.summary}?>" target="_blank"><?{$arrTxt.webname}?></a>
+<?{/foreach}?>&nbsp;&nbsp;&nbsp;

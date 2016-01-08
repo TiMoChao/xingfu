@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>新闻资讯</title>
+    <link href="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/css/weixin_main.css" rel="stylesheet" />
+</head>
+<body style="background: #fff;">
+<div class="header">
+    <span style="width: 17%;"></span>
+    <span style="width: 60%;">欢迎访问贵阳兴甫武校</span>
+    <span class="glyphicon glyphicon-menu-hamburger" style="width: 10%; font-size: 15px;"></span>
+    <ul class="menu">
+        <li><a href="<?{url url = '/weixin_index/?type=1/'}?>">主页</a></li>
+        <li><a href="<?{url url = '/weixin_news/?type=1/'}?>">新闻资讯</a></li>
+        <li><a href="<?{url url = '/weixin_teachers/?type=1/'}?>">教练风采</a></li>
+        <li><a href="<?{url url = '/weixin_xingfufengcai/?type=1/'}?>">兴甫风采</a></li>
+        <li><a href="<?{url url = '/weixin_baoming/?type=1/'}?>">在线报名</a></li>
+    </ul>
+</div>
+<div class="banner">
+    <div class="flex">
+        <ul class="slides">
+            <li>
+                <img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/img/2.jpg" />
+                <span class="title">游亚洲第一的新加坡动物园</span>
+            </li>
+            <li>
+                <img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/img/2.jpg" />
+                <span class="title">游亚洲第一的新加坡动物园</span>
+            </li>
+            <li>
+                <img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/img/2.jpg" />
+                <span class="title">游亚洲第一的新加坡动物园</span>
+            </li>
+            <li>
+                <img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/img/2.jpg" />
+                <span class="title">游亚洲第一的新加坡动物园</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="body-4">
+    <div class="title">
+        新闻资讯
+        <span>News ></span>
+    </div>
+    <ul class="list">
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+        <li><a href="#"><span>></span>武术，中国武术、中国传统武术，通过武化流传，以“制止侵袭”为技术导向、引领修习者进入认识人与自然、社会客观规律的传统教化（武化）方式，是人类物质文明的导向和保障。</a></li>
+    </ul>
+</div>
+<div class="footer2"></div>
+<div class="footer">
+    <a href="#" style="background-color: #FFAD01;">
+        <span class="glyphicon glyphicon-comment"></span>
+        <span>微信关注</span>
+    </a>
+    <a href="#" style="background-color: #F44333;">
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <span>联系地址</span>
+    </a>
+</div>
+<script src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/weixingresource/js/jflex.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //轮播图初始化
+        $('.flex').jFlex({
+            titles: 'bottom'
+        });
+        //菜单初始化
+        $('.glyphicon-menu-hamburger').click(function () {
+            $('.header').find('.menu').slideToggle();
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+ <!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    
+    <div class="main">
+        <!--主体左侧开始-->
+		<div class="main_left"> 
+			<?{include file="cases/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束--> 
+		
+        <!--主体右侧开始-->
+        <div class="main_right">
+            <div class="common_bt">
+				<span class="title">成功案例</span>
+				<span class="path">当前位置：<a href="<?{url url='/'}?>">首页</a> >> <a href="<?{url url='/cases/'}?>">成功案例</a> <?{if !empty($strTypeTitle)}?> >> <?{$strTypeTitle}?><?{/if}?></span>
+			</div>
+			<div class="common_content">
+				<div class="case_list">
+                <ul>
+					<?{foreach from=$arrInfoList item=arrData}?>
+                    <li>
+                        <div class="img_show vpic">
+							<a hidefocus="true" href="<?{url url="/cases/detail.php?id=`$arrData.id`"}?>">
+								<img class="img" src="<?{if empty($arrData.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'cases'}?>/s/<?{$arrData.thumbnail}?><?{/if}?>" title="<?{$arrData.title|htmlspecialchars}?>" />
+							</a>
+						</div>
+                        <div class="img_txt">
+							<a href="<?{url url="/cases/detail.php?id=`$arrData.id`"}?>" title="<?{$arrData.title|htmlspecialchars}?>"><?{$arrData.title|csubstr:0:9|bedeck:$arrData.bedeck}?></a>
+						</div>
+                    </li>
+					<?{/foreach}?>
+                </ul>
+				</div>						
+			</div>
+            <div class="clr"></div>
+            <div class="showpage">
+				<?{$strPage}?>
+			</div>
+        </div>
+        <!--主体右侧结束-->
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束--> 

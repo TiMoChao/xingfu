@@ -1,0 +1,85 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle">
+		<font color="#ff6600">申请短信通道开通，请查看<a href='http://www.biweb.cn/archives/detail.php/name-sms.html' color="#ff6600" target="_blank"> BIWEB短信营销服务介绍</a></font>
+		</li>
+	</ul>
+</div>
+<div id="biweb">
+<form name="form1" id="form1" action="" method="post">
+<input type=hidden name=act value="xx">
+<input type=hidden name=page value="<?{$smarty.post.page}?>">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2">消息帐号_<?{$strNav|default:"`$arrGWeb.module_name`管理"}?></td>
+    </tr>
+    <tr>
+      <td>用户名：</td>
+      <td>
+			<input name="username" size="70" value="<?{$arrMBizParam.username}?>">
+			</td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td>
+			<input name="password" type="password" size="72" value="<?{$arrMBizParam.password}?>">
+			</td>
+			
+    </tr>
+    <tr>
+      <td>短信发送接口地址：</td>
+      <td>
+			<input name="wsdlURL_send"  size="70" value="<?{$arrMBizParam.wsdlURL_send}?>">
+			</td>
+    </tr>
+	<tr>
+      <td>余额查询接口地址：</td>
+      <td>
+			<input name="wsdlURL_query"  size="70" value="<?{$arrMBizParam.wsdlURL_query}?>">
+			</td>
+    </tr>
+		<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" id="Submit" value="修 改" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+</table>
+</form>
+<form name="form2" id="form2" action="" method="post">
+<input type=hidden name=act value="yx">
+<input type=hidden name=page value="<?{$smarty.post.page}?>">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2">营销帐号_<?{$strNav|default:"`$arrGWeb.module_name`管理"}?></td>
+    </tr>
+    <tr>
+      <td>用户名：</td>
+      <td>
+			<input name="username" size="70" value="<?{$yx_arrMBizParam.username}?>">
+			</td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td>
+			<input name="password" type="password" size="72" value="<?{$yx_arrMBizParam.password}?>">
+			</td>
+			
+    </tr>
+    <tr>
+      <td>短信发送接口地址：</td>
+      <td>
+			<input name="wsdlURL_send"  size="70" value="<?{$yx_arrMBizParam.wsdlURL_send}?>">
+			</td>
+    </tr>
+	<tr>
+      <td>余额查询接口地址：</td>
+      <td>
+			<input name="wsdlURL_query"  size="70" value="<?{$yx_arrMBizParam.wsdlURL_query}?>">
+			</td>
+    </tr>
+		<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit"  value="修 改" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+</table>
+</form>
+</div>

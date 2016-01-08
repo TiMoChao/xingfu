@@ -1,0 +1,34 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle"> 中文繁简设置
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2"><?{$strNav|default:"`$arrGWeb.module_name`管理"}?></td>
+    </tr>
+    <tr>
+      <td width="15%">繁简二级域名：</td>
+      <td>
+			<select name="isSubUrl">	
+				<option value="1" <?{if $arrGWeb.isSubUrl == 1}?>selected=selected class="selected"<?{/if}?>>开启</option>
+				<option value="0" <?{if $arrGWeb.isSubUrl == 0}?>selected=selected class="selected"<?{/if}?>>关闭</option>
+			</select>
+			<span style="color:#999;">当启用二级域名时，便于搜索引擎的收录，一套站，相当于两套站的收录</span>
+	  </td>
+    </tr>
+    <tr>
+      <td>二级域名前缀：</td>
+      <td><input value="<?{$arrGWeb.subPre}?>" name="subPre"><span style="color:red;">如：big5. 注意必须有后面的那个'<font color=red>.</font>'</span></td>
+    </tr>
+
+	<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+    </tr>
+</table>
+</div>
+</form>

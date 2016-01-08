@@ -1,0 +1,181 @@
+<script language="javascript" src="../../plug-in/PopCalender/popcalendar.js"></script> 
+<script Language="JavaScript">dateformat='yyyy-mm-dd'</script>
+<script language="javascript" src="../../plug-in/area/myjsframe.js"></script>
+<script language="javascript" src="../../plug-in/area/area.js"></script>
+<div class="ccc2">
+	<ul>
+		<li>
+			<span class="right"><input type="button" onClick="javascript:history.back();" value="返回资料列表" class="gray mini"></span>
+			当前位置：编辑用户资料
+	 </li>
+	</ul>
+</div>
+
+
+
+<form name="form1" id="form1" onsubmit="return checkform()" action="?page=<?{$get.page}?>" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table class="biweb" align="center" cellspacing="0">
+	<tr class="firstr">		
+		<td colspan="3">编辑用户：</td> 
+	</tr>	
+	<tr>
+		<td width="15%">用户名称：</td>	
+		<td width="40%">
+			<input type="text" size=30 name="user_name" value="<?{$arrData.user_name}?>" />
+			<input type="hidden" name="olduser_name" size=30 value="<?{$arrData.user_name}?>" />
+		</td>
+		<td class="gray">用户的注册名称</td>
+	</tr>
+	<tr>
+		<td width="10%">用户密码：</td>	
+		<td width="40%">
+		<input type="text" name="password"  size=30 value="<?{$arrData.password}?>" />
+		<input type="hidden" name="oldpassword" size=30 value="<?{$arrData.password}?>" />
+			</td>
+		<td class="gray">用户的注册密码</td>
+	</tr>	
+	<tr>
+		<td width="10%">真实姓名：</td>	
+		<td width="40%">
+			<input type="text" name="real_name" size=30 value="<?{$arrData.real_name}?>" />
+		</td>		
+		<td class="gray">用户的真实姓名</td>
+	</tr>
+	<tr>
+		<td width="10%">用户呢称：</td>	
+		<td width="40%">
+			<input type="text" name="nick_name" size=30 value="<?{$arrData.nick_name}?>" />
+		</td>		
+		<td class="gray">用户呢称</td>
+	</tr>
+	<tr>
+		<td width="10%">性别：</td>	
+		<td width="40%">
+			<select size="1" name="sex">
+			<?{foreach from=$arrMType.sex item=arrMSex key=key}?>				
+				<option value="<?{$key}?>" <?{if $arrData.sex == $key}?>selected=selected<?{/if}?>><?{$arrMSex}?></option>
+			<?{/foreach}?>
+			</select>
+		</td>		
+		<td class="gray">性别</td>
+	</tr>
+	<tr>
+		<td width="10%">生日：</td>	
+		<td width="40%">
+			<select size="1" name="year">
+				<?{foreach from=$arrMType.year key=key item=value}?>
+				<option value=<?{$value}?> <?{if $value == $arrData.year}?>selected=selected<?{/if}?>><?{$value}?></option>
+				<?{/foreach}?>
+			</select>
+			<select size="1" name="month">
+				<?{foreach from=$arrMType.month key=key item=value}?>
+				<option value=<?{$value}?> <?{if $value == $arrData.month}?>selected=selected<?{/if}?>><?{$value}?></option>
+				<?{/foreach}?>
+			</select>
+			<select size="1" name="day">
+				<?{foreach from=$arrMType.day key=key item=value}?>
+				<option value=<?{$value}?> <?{if $value == $arrData.day}?>selected=selected<?{/if}?>><?{$value}?></option>
+				<?{/foreach}?>
+			</select>
+		</td>		
+		<td class="gray">生日</td>
+	</tr>
+	<tr>
+		<td width="10%">用户头像：</td>	
+		<td width="40%">
+			<div id="preview">
+				<?{if !empty($arrData.thumbnail)}?>
+					<img src="<?{$FileCallPath|imgurl:'mcenter'}?>b/<?{$arrData.thumbnail}?>" boder="1" onload="resizepic(this,45,60)" />					
+				<?{else}?>
+					无头像
+				<?{/if}?>
+			</div>
+		</td>		
+		<td class="gray">用户头像</td>
+	</tr>
+	<!-- 用户上传的信用，图片 -->
+	<?{foreach from=$arrData.crephoto item=crephoto key=key}?>
+	<?{if $crephoto.cre_state != 2}?>
+	<tr id='photo<?{$key}?>'>
+		<td><?{$arrMType.cre_type[$key]}?>：<?{$crephoto.cre_num}?></td>
+		<td colspan=2>
+			<a href="<?{$FileCallPath|imgurl}?>b/<?{$crephoto.photo}?>" target='_blank'>
+			<img src="<?{$FileCallPath|imgurl}?>b/<?{$crephoto.photo}?>" boder="1" onload="resizepic(this,170,85)"></a>
+			<label><input type=checkbox name=crecheck[<?{$key}?>] <?{if $crephoto.cre_state == 1}?>checked<?{/if}?>>
+			<font color='<?{if $crephoto.cre_state == 1}?>green<?{else}?>red<?{/if}?>'>审核通过</font><?{if $crephoto.cre_state == '0'}?>&nbsp&nbsp;<font color='red'><input type=button onclick='return deloldFj(this,<?{$key}?>)' value='审核不通过'></font>&nbsp;&nbsp;当审核时，觉得当前证件不符合要求，可以点击 '审核不通过'<?{/if}?></label>
+		</td>
+	</tr>
+	<?{/if}?>
+	<?{/foreach}?>
+	<!-- 信用图片结束 -->
+	<tr>
+		<td>注册时间：</td>
+		<td>
+			<input type="text" name="submit_date" value="<?{$arrData.submit_date}?>">
+			<input TYPE="button" value="" onclick='popUpCalendar(this, form1.submit_date, dateformat,-1,-1,true)' style="background-image:url(../../plug-in/PopCalender/img/Button.gif);width:25px;height:17px;border:0px;padding:0px;">
+		</td>
+		<td><span class=gray>修改用户注册时间</span></td>
+	</tr>
+		
+	<tr>
+		<td>状态：</td>	
+		<td>
+			<select name="status">
+			<option value="1" <?{if $arrData.status == 1}?>selected=selected class="selected"<?{/if}?>>通过</option>
+			<option value="0" <?{if $arrData.status == 0}?>selected=selected class="selected"<?{/if}?>>未通过</option>	
+			</select>
+		</td>		
+		<td class="gray">是否通过审核</td>
+	</tr>
+	<tr> 
+		<td>&nbsp;<table id="delphoto" border=0 cellspacing=0 cellpadding=0 ></table></td>
+	<td colspan="2">
+		<input type="hidden" name="user_id" value="<?{$arrData.user_id}?>" />
+		<input  type="submit" value="提 交"  class="mini" />
+	</td>
+	</tr>
+</table>
+</div>
+</form>
+
+<script language="javascript">
+	function deloldFj(obj,No){
+		var oTb = document.getElementById("delphoto");
+		var oTr = oTb.insertRow(-1);
+		oTr.insertCell(0).innerHTML = "<input type=hidden name=delphoto[] value="+No+">";
+		var oDel = document.getElementById("photo"+No);
+		oDel.style.display='none';
+		return false;
+	}
+	function popedomCheckboxClick(obj){
+		if(obj.checked){//如果选中
+			var checkboxW = document.getElementById(obj.id+"_w");
+			checkboxW.style.display='block';
+			checkboxW.childNodes[0].checked=true;
+			var checkboxD = document.getElementById(obj.id+"_d");
+			checkboxD.style.display='block';
+			checkboxD.childNodes[0].checked=true;
+			var checkboxX = document.getElementById(obj.id+"_x");
+			checkboxX.style.display='block';
+			checkboxX.childNodes[0].checked=true;
+		}else{//如果没有选中
+			var checkboxW = document.getElementById(obj.id+"_w");
+			checkboxW.style.display='none';
+			checkboxW.childNodes[0].checked=false;
+			var checkboxD = document.getElementById(obj.id+"_d");
+			checkboxD.style.display='none';
+			checkboxD.childNodes[0].checked=false;
+			var checkboxX = document.getElementById(obj.id+"_x");
+			checkboxX.style.display='none';
+			checkboxX.childNodes[0].checked=false;
+		}
+	}
+	function userGroupChange(obj){
+		if(obj.value==2){
+			document.getElementById("user_group_tr").style.display='';
+		}else{
+			document.getElementById("user_group_tr").style.display='none';
+		}
+	}
+</script>

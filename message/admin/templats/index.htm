@@ -1,0 +1,91 @@
+<div class="ccc2">
+	<ul>
+		<li>
+		<form action="?" method="get">
+		<input type=hidden name="action" value='search'>
+		标题：<input type=text size=15 name='title' value='<?{$smarty.get.title}?>'> 
+		<?{$arrGWeb.module_name}?>类别：
+		<!--
+		<select size=1 name='type_id'>
+		<option value="0">所有类别</option>
+		<?{foreach from=$arrType key=key item=type}?>
+		<?{if is_array($type) && array_key_exists('type_title',$type)}?>
+		<option value="<?{$type.type_id}?>" <?{if !empty($type.type_link)}?>disabled='disabled'<?{/if}?> <?{if $type.type_id == $smarty.get.type_id}?>selected=selected<?{/if}?>><?{$type.type_title}?></option>
+		<?{else}?>
+		<option value="<?{$key}?>" <?{if $key == $arrData.type_id}?>selected=selected<?{/if}?>><?{$type}?></option>    	
+		<?{/if}?>
+		<?{/foreach}?>
+    	</select>
+		-->
+		<select size=1 name='state'>
+			<option value="">全部</option>
+			<option value="1" <?{if $smarty.get.state=='1'}?>selected=selected<?{/if}?>>未处理</option>
+			<option value="2" <?{if $smarty.get.state=='2'}?>selected=selected<?{/if}?>>处理中</option>
+			<option value="3" <?{if $smarty.get.state=='3'}?>selected=selected<?{/if}?>>无效客户反馈</option>
+			<option value="4" <?{if $smarty.get.state=='4'}?>selected=selected<?{/if}?>>处理完成</option>
+    	</select>		
+		是否审核：<select name='pass' size=1>
+		<option value=''>全部</option>
+		<option value="1" <?{if $smarty.get.pass == '1'}?>selected=selected<?{/if}?>>已审核</option>
+		<option value="0" <?{if $smarty.get.pass == '0'}?>selected=selected<?{/if}?>>未审核</option>
+		</select> 
+		排序：<select name='sort' size=1>
+		<option value=''>按时间</option>
+		<option value="3" <?{if $smarty.get.sort == '3'}?>selected=selected<?{/if}?>>按ID倒序</option>
+		<option value="4" <?{if $smarty.get.sort == '4'}?>selected=selected<?{/if}?>>按ID正序</option>
+		</select>
+		<input type=submit value='查 询' class='gray min'>
+		 /id号可精确查询
+	 </form>
+	 </li>
+	</ul>
+</div>
+<div id="biweb">
+<table border="0" cellspacing="0" align="center" class="biweb">
+<form action='?<?{$smarty.server.QUERY_STRING}?>&action=' method="post" name="delform">
+	<tr class="firstr">
+		<th width='6%'>ID</th>
+		<th>留言标题</th>
+		<th width='16%'>处理进度</th>
+		<th width='6%'>审核</th>
+		<th width='16%'>发布时间</th>
+		<th width='4%' align=center><input type='checkbox' name='chkselectAll' onclick="doCheckAll(this)"></th>
+	</tr>
+	<?{foreach key=key item=arrData from=$arrInfo}?>
+	<tr align=center>
+		<td><a href='modifyinfo.php?<?{$smarty.server.QUERY_STRING}?>&id=<?{$arrData.id}?>'><?{$arrData.id}?></a></td>
+		<td align="left">
+		<a href='modifyinfo.php?<?{$smarty.server.QUERY_STRING}?>&id=<?{$arrData.id}?>'><?{$arrData.title}?></a>
+		</td>
+		<td>
+		<?{foreach from=$arrGState key=key item=state}?>
+		<?{if $key==$arrData.state}?><?{$state}?><?{/if}?>
+		<?{/foreach}?>
+		</td>
+		<td>
+			<?{if $arrData.pass == 1}?>√<?{/if}?>
+			<?{if $arrData.pass != 1}?><font color=red>&nbsp;×&nbsp;</font><?{/if}?>
+		</td>
+		<td align=center><?{$arrData.submit_date}?></td>
+		<td align=center><input type=checkbox name=select[] value="<?{$arrData.id}?>"></td>
+	</tr>
+	<?{/foreach}?>
+	<tr>
+		<td colspan='6'>
+		<span  class="actionform">
+		<form name='actionform' method="post">
+		操作：<select name="selection">
+		<option value='moveup'>提前</option>
+		<option value='del'>删除</option>
+		<option value='check'>通过审核</option>
+		<option value='uncheck'>取消通过</option>
+		</select> 
+		<input type="button" class="gray mini" value='执行' onclick=javascript:index=document.getElementsByName('selection')[0].selectedIndex;checkAction(document.getElementsByName('selection')[0].options[index].value);>
+		</form>
+		</span>
+		<?{$strPage}?>
+		</td>
+	</tr>
+</form>
+</table>
+</div>

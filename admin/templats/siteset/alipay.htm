@@ -1,0 +1,54 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle"> 本功能仅为支付宝在线支付接口设定，目前仅支持即时到账接口！<br />
+		提示：如何获取安全校验码和合作身份者ID<br />
+1.访问支付宝首页(www.alipay.com)，然后用您的签约支付宝账号登陆.<br />
+2.点击导航栏中的“商家服务”，即可查看
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2">支付宝设置</td>
+    </tr>
+    <tr>
+      <td width="15%">合作身份者ID：</td>
+      <td><input name="partner" value="<?{$arrGAlipay.partner}?>" maxlength="100" size="55"> 不是支付宝帐号</td>
+    </tr>
+    <tr>
+      <td>安全检验码：</td>
+      <td><input name="key" value="<?{$arrGAlipay.key}?>" maxlength="100" size="55"> 安全检验码</td>
+    </tr>
+		<tr>
+      <td>签约支付宝账号：</td>
+      <td><input name="seller_email" value="<?{$arrGAlipay.seller_email}?>" maxlength="100" size="55"> 签约支付宝账号</td>
+    </tr>
+		<tr>
+      <td>访问模式：</td>
+      <td><select name="transport">	
+				<option value="http" <?{if $arrGAlipay.transport == 'http'}?>selected=selected class="selected"<?{/if}?>>http 普通访问</option>
+				<option value="https" <?{if $arrGAlipay.transport == 'https'}?>selected=selected class="selected"<?{/if}?>>https加密访问</option>
+			</select> 服务器是否支持ssl加密访问，若支持请选择https；若不支持请选择http</td>
+    </tr>
+		<tr>
+      <td>过程中通知页面：</td>
+      <td><input name="notify_url" value="<?{$arrGAlipay.notify_url|default:"http://`$arrGWeb.host`/payment/alipay_j/notify_url.php"}?>" maxlength="100" size="55"> 交易过程中服务器通知的页面，无特殊需求请不要修改</td>
+    </tr>
+		<tr>
+      <td>付款后跳转页面：</td>
+      <td><input name="return_url" value="<?{$arrGAlipay.return_url|default:"http://`$arrGWeb.host`/payment/alipay_j/return_url.php"}?>" maxlength="100" size="55"> 付完款后跳转的页面</td>
+    </tr>
+	</tr>
+		<tr>
+      <td>收款方网址：</td>
+      <td><input name="show_url" value="<?{$arrGAlipay.show_url|default:$arrGWeb.host}?>" maxlength="100" size="55">商品展示地址，要用 http://格式的完整路径，不允许加?id=123这类自定义参数</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+    </tr>
+</table>
+</div>
+</form>

@@ -1,0 +1,57 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle"> 本功能仅为快钱在线支付接口设定，目前仅支持即时到账接口！<br />
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2">快钱设置</td>
+    </tr>
+    <tr>
+      <td width="15%">人民币网关账户号：</td>
+      <td><input name="merchantAcctId" value="<?{$arrGQuickMoneyParam.merchantAcctId}?>" maxlength="100" size="55"> 快钱商户帐号</td>
+    </tr>
+		<tr>
+      <td>人民币网关密钥：</td>
+      <td><input name="key" value="<?{$arrGQuickMoneyParam.key}?>" maxlength="100" size="55"> 商户密钥</td>
+    </tr>
+	<tr>
+      <td>网关版本：</td>
+      <td><select name="version">	
+				<option value="v2.0" >v2.0</option>
+			</select> 网关版本</td>
+    </tr>
+    <tr>
+		<td>支付方式：</td>
+		<td><select name="payType">	
+				<option value="00" <?{if $arrGQuickMoneyParam.payType == '00'}?>selected=selected class="selected"<?{/if}?>>组合支付</option>
+				<option value="10" <?{if $arrGQuickMoneyParam.payType == '10'}?>selected=selected class="selected"<?{/if}?>>银行卡支付</option>
+				<option value="11" <?{if $arrGQuickMoneyParam.payType == '11'}?>selected=selected class="selected"<?{/if}?>>电话银行支付</option>
+				<option value="12" <?{if $arrGQuickMoneyParam.payType == '12'}?>selected=selected class="selected"<?{/if}?>>快钱账户支付</option>
+				<option value="13" <?{if $arrGQuickMoneyParam.payType == '13'}?>selected=selected class="selected"<?{/if}?>>线下支付</option>
+				<option value="14" <?{if $arrGQuickMoneyParam.payType == '14'}?>selected=selected class="selected"<?{/if}?>>B2B支付</option>
+			</select> 推荐使用组合支付（网关支付页面显示快钱支持的各种支付方式)
+		</td>
+    </tr>
+	<tr>
+      <td>快钱的提交地址：</td>
+      <td><input name="quickMoneyURL" value="<?{$arrGQuickMoneyParam.quickMoneyURL|default:"https://www.99bill.com/gateway/recvMerchantInfoAction.htm"}?>" maxlength="100" size="55"> 快钱的提交地址</td>
+    </tr>
+    <tr>
+      <td>付款后跳转页面：</td>
+      <td><input name="pageUrl" value="<?{$arrGQuickMoneyParam.pageUrl|default:"http://`$arrGWeb.host`/payment/99bill/99bill_receive.php"}?>" maxlength="100" size="55"> 付完款后跳转的页面</td>
+    </tr>
+    <tr>
+      <td>合作伙伴帐号：</td>
+      <td><input name="pid" value="<?{$arrGQuickMoneyParam.pid}?>" maxlength="100" size="55"> 如未和快钱签订代理合作协议，不需要填写本参数</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+    </tr>
+</table>
+</div>
+</form>

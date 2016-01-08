@@ -1,0 +1,13 @@
+<?{if !empty($arrData.u_user_id)}?>
+<div class="pbox">
+	<div class="boxt w223">作者U客</div>
+	<div class="boxc center pdt5">
+		<div class="head_p"><a href="<?{url url="/user/u_friend_detail.php?uid=`$arrData.u_user_id`"}?>"><?{if !empty($arrData.u_thumbnail)}?><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/uploadfile/user/b/<?{$arrData.u_thumbnail}?>" width="110" height="135" /><?{else}?><img src="<?{$arrGWeb.templats_root}?>/images/head<?{$arrData.u_sex}?>.gif" width="110" height="135" /><?{/if}?></a></div>
+		<div class="pic_info center pd5"> 
+			<span class="orange"><?{$arrData.u_nick_name}?></span> <?{if $arrData.u_sex == 1}?> ♂ <?{elseif $arrData.u_sex == 2}?> ♀ <?{/if}?> <?{$arrData.u_age|noempty:'岁'}?><br/>
+			所在地区：<?{$arrMArea[$arrData.u_city]|default:'尚未填写'}?><br/>                        
+		</div>
+	</div>
+</div>
+<div class="clr"></div>
+<?{/if}?>

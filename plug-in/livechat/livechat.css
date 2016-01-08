@@ -1,0 +1,14 @@
+/*左侧在线客服*/
+.cleft_b{position:fixed;top:30%;left:-128px;}
+.cleft_b1{position:fixed;top:30%;}
+.cleft_box{margin: 0px;padding: 0px;overflow: hidden;width:166px;}
+.cleft_box_content {margin:0px;padding:0px;width: 128px;overflow: hidden;float:left;background:none;}
+.cleft_box_content .serverlist ul li {padding-top:5px;line-height:180%;margin:0px auto;}
+.cleft_box .cright{width: 36px;height: 74px;color: #fff;font-size: 14px;font-weight: bold;text-align: center;margin-top:15px;padding-top: 35px;cursor: pointer;float: right;background:url(images/rtitleico.png) left top no-repeat;}
+.cfooter a {display:block;width:128px;height:22px;}
+.cfooter {width:128px;height:22px;background:url(images/leftbt.png) left top no-repeat;}
+.cleft_box_content .serverlist {text-align:center;width:128px;background: url(images/leftcontentbg.png) repeat-y;}
+.cleft_box_content .serverlist ul {width:118px;background:url(images/celive_bg.gif) left top repeat-x;list-style: none;margin:0px 5px;padding:5px 0px 10px 0px;}
+.cleft_box_content .cheader {margin:0 auto;padding-left:40px;height:30px;background: url(images/leftbg.png) left top no-repeat;overflow:hidden;width: 128px;}
+.cheader .ctitle{height:31px;line-height:31px;width:65px; float:left;}
+.cheader .win_close{ width:20px; float:left; height:31px; cursor:pointer;}

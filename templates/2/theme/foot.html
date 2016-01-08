@@ -1,0 +1,60 @@
+<!-- footer -->
+<div class="footer">
+    <p><a href="<?{url url = '/archives/detail.php?name=company'}?>">公司介绍</a> -  <a href="<?{url url = '/archives/detail.php?name=contact'}?>">联系我们</a> -  <a href="<?{url url='/rss/'}?>">RSS订阅</a> -  <a href="<?{url url='/wap/'}?>">WAP手机浏览</a> -  <a href="<?{url url='/guest/'}?>">访客动态</a> -  <a href="<?{url url='/links/'}?>">友情链接</a> -  <a href="javascript:;" onclick="window.scrollTo(0,0);" title="返回顶部">TOP</a></p>
+    <p><?{$arrGWeb.Powered}?> <?{$arrGWeb.Copyright}?><br />
+		<?{if !empty($arrGWeb.tel)}?>联系电话：<?{$arrGWeb.tel}?>&nbsp;&nbsp;<?{/if}?>
+		<?{if !empty($arrGWeb.fax)}?>传真:<?{$arrGWeb.fax}?>&nbsp;&nbsp; <?{/if}?>		
+		<?{$arrGWeb.cert}?>
+		<?{if $arrGWeb.tel || $arrGWeb.fax || $arrGWeb.cert}?><br /><?{/if}?>
+		<?{if $arrGWeb.address != null}?>
+		地 址：<?{$arrGWeb.address}?>&nbsp;&nbsp;
+		<?{/if}?>
+		<?{if $arrGWeb.postcode != null}?>
+		邮编：<?{$arrGWeb.postcode}?> 
+		<?{/if}?>
+	</p>
+</div>
+<script type='javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/logshare/logshare.php?title=<?{$Title|escape:url}?>'></script>
+
+<?{if $arrGWeb.service_swh==1}?>
+<div onmouseout="toSmall()" onmouseover="toBig()" class="cleft_b" id="cleft_box" style="top: 1018px; left: 0px; position: absolute;">
+  <div class="cleft_box">
+	<div class="cleft_box_content"> 		
+		<div class="cheader">
+			<div class="ctitle"></div>
+			<div class="win_close" onclick='$("#cleft_box").hide()'></div>
+		</div> 
+		<div class="serverlist"> 
+			<ul>								
+				<?{foreach from=$arrGWeb.service.qq item=server}?>
+					<li>
+						<a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin=<?{$server}?>&Exe=QQ&Site=im.qq.com&Menu=No">
+						<img border="0" SRC="http://wpa.qq.com/pa?p=1:<?{$server}?>:1" alt="点击这里给我发消息">
+						</a>
+					</li>
+				<?{/foreach}?>
+				<?{foreach from=$arrGWeb.service.msn item=server}?>
+					<li>
+						<a href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=<?{$server}?>&mkt=zh-cn" target="_blank">
+						<img src="<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/livechat/images/msn.gif" width="75" style="border-style: none;">
+						</a>
+					</li>
+				<?{/foreach}?>
+				<?{foreach from=$arrGWeb.service.wang item=ali}?>
+					<li><a target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid=<?{$ali}?>&s=1" ><img border="0" src="http://amos1.taobao.com/online.ww?v=2&uid=<?{$ali}?>&s=1" width="75" alt="点击这里给我发消息" /></a></li>
+				<?{/foreach}?>				
+				<!--[if IE 6]>
+				<style type="text/css">
+					.cleft_b {position:absolute;}
+					.cleft_b1 {position:absolute;}
+				</style>
+				<![endif]-->    
+			</ul> 
+		</div> 
+		<div class="cfooter"><a onclick="ctop()" id="toTop" title="返回顶部" href="javascript:"></a></div>
+	</div>
+  </div> 
+</div>
+<link rel="stylesheet" type="text/css" href="<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/livechat/livechat.css">
+<script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/livechat/livechat.js"></script>
+<?{/if}?>

@@ -1,0 +1,162 @@
+<!--主体部分开始
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <div class="main">
+		<div class="main_left">
+        </div>
+
+        <div class="main_right">
+            <div class="common_bt"><span class="title">新闻中心</span><span class="path">当前位置：<a href="<?{url url='/'}?>">首页</a> >> <a href='<?{url url="/news/"}?>'>新闻中心</a> >> 新闻信息</span></div>
+            <div class="common_content">
+                <div class="news_title"><?{$arrData.title}?></div>
+                <div class="news_info"><?{if !empty($arrData.author)}?>作 者：<?{$arrData.author}?><?{/if}?>&nbsp;  发表时间：<?{$arrData.submit_date}?> &nbsp; 浏览次数：<script language='javascript' src='../../plug-in/click/getclick.php?module_id=<?{$arrGWeb.module_id}?>&id=<?{$arrData.id}?>'></script>【<a href="javascript:window.print();">打印</a> <a href='<?{url url = "/`$arrGWeb.module_id`/detail.php?id=`$arrData.id`" cache = "3"}?>'>DOC</a>】<div class="bshare-custom">分 享 到：<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a><a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a><a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script></div>
+                <div class="news_content">
+				<?{if !empty($arrData.photo)}?>
+				<?{foreach from=$arrData.photo key=key item=photo}?>
+				<?{if $photo.photo != ""}?><br><center><img src="<?{$FileCallPath|imgurl:'xingfu_news'}?>b/<?{$photo.photo}?>" align="center" border="0" alt="<?{$photo.photo_narrate}?>" /><br><?{if $photo.photo_narrate}?><?{$photo.photo_narrate}?><?{/if}?></center><br><?{/if}?>
+				<?{/foreach}?>
+				<?{/if}?>
+				<?{if !empty($arrData.video)}?>
+				<?{foreach from=$arrData.video key=key item=video name=video}?>
+				<?{if $smarty.foreach.video.first}?>
+				<script type='text/javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/swfobject.js'></script>
+				<?{/if}?><center>
+				<?{if $video.video != ''}?>
+				<div id='vpreview<?{$smarty.foreach.video.index}?>'>The player will show in this paragraph</div>
+				<script type='text/javascript'>
+					var s1 = new SWFObject('<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/flvplayer.swf','player','400','300','9');
+					s1.addParam('allowfullscreen','true');
+					s1.addParam('allowscriptaccess','true');
+					s1.addParam('flashvars','file=<?{$FileCallPath|imgurl:'news'}?><?{$video.video}?>&image=<?{$FileCallPath|imgurl:'news'}?>b/<?{$video.videopic}?>');
+					s1.write('vpreview<?{$smarty.foreach.video.index}?>');
+				</script>
+				<?{elseif $video.video_link !=''}?>
+				<embed src="<?{$video.video_link}?>" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed><br>
+				<?{/if}?></center><br>
+				<?{/foreach}?>
+				<?{/if}?>
+					<br><div id="detail_p"><?{$arrData.intro}?></div>
+					<!--相关
+					<div class="related_x">
+						<div class="related_x_t">前期新闻</div>
+						<ul>
+							<?{if !empty($arrInfoListNext)}?>
+							<?{foreach from=$arrInfoListNext item=arrRelated}?>
+							<li><a href="<?{if $arrRelated.linkurl!=''}?><?{$arrRelated.linkurl}?><?{else}?><?{url url="/news/detail.php?id=`$arrRelated.id`"}?><?{/if}?>"><?{$arrRelated.title|bedeck:$arrRelated.bedeck}?></a></li>
+							<?{/foreach}?>
+							<?{else}?>
+							<li>抱歉！暂无相关新闻</li>
+							<?{/if}?>
+						</ul>
+					</div>
+					<!--/相关
+					<div class="goback"><a href="javascript:history.go(-1)">返回上一页</a></div>
+                </div>
+            </div>
+        </div>
+        <!--主体右侧结束
+
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+
+-->
+
+<!--<?{if !empty($arrData.video)}?>
+<?{foreach from=$arrData.video key=key item=video name=video}?>
+<?{if $smarty.foreach.video.first}?>
+<script type='text/javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/swfobject.js'></script>
+<?{/if}?><center>
+    <?{if $video.video != ''}?>
+    <div id='vpreview<?{$smarty.foreach.video.index}?>'>The player will show in this paragraph</div>
+    <script type='text/javascript'>
+        var s1 = new SWFObject('<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/flvplayer.swf','player','400','300','9');
+        s1.addParam('allowfullscreen','true');
+        s1.addParam('allowscriptaccess','true');
+        s1.addParam('flashvars','file=<?{$FileCallPath|imgurl:'xingfu_news'}?><?{$video.video}?>&image=<?{$FileCallPath|imgurl:'xingfu_news'}?>b/<?{$video.videopic}?>');
+        s1.write('vpreview<?{$smarty.foreach.video.index}?>');
+    </script>
+    <?{elseif $video.video_link !=''}?>
+    <embed src="<?{$video.video_link}?>" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed><br>
+    <?{/if}?></center><br>
+<?{/foreach}?>
+<?{/if}?>
+-->
+
+<link rel="stylesheet" href="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/css/style.css"/>
+
+<div class="n-back">
+    <div class="content_box clb">
+        <div><img style="width:100%;" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/news-img.jpg" /></div>
+        <div class="n-c-b clb">
+            <div class="n-c-lb">
+                <span class="n-c-ts"></span>
+                <ul class="n-c-cul">
+<li class="culli"><a href="<?{url url = '/xingfu_school_news/'}?>">
+                        <p>School News<br/>园所新闻</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_class/'}?>">
+                        <p>Class Info<br/>班级信息</p>
+                    </a></li>
+                    <li class="down-back culli"><a href="<?{url url = '/xingfu_school_Basic_courses/'}?>">
+                        <p>Basic_courses<br/>园本课程</p>
+                    </a>
+                    </li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_Notice/'}?>">
+                        <p>School Notice<br/>通知公告</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_show/'}?>">
+                        <p>School Notice<br/>园所展区</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_moment/'}?>">
+                        <p>Moment<br/>精彩瞬间</p>
+                    </a>
+                    </li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_teacher/'}?>">
+                        <p>Teacher<br/>园丁风采</p>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="n-c-rb">
+                <div style="width:100%; background:#FF5953; height:30px;"></div>
+                <div class="n-c-rt"><span class="n-c-rtib"><p class="rtib-po">兴甫幼儿园</p></span><span class="n-c-rtwzb">您现在所在的位置： <a href="<?{url url='/'}?>">首页</a> > <a href='<?{url url="/xingfu_school_Basic_courses/"}?>'>园本课程</a> > <a href='#'><?{$arrData.title}?></a></span></div>
+                <div class="n-c-rib">
+                    <div class="n-c-riul" style="display:block;">
+                        <p class="f_center" style="padding: 0px; margin-top: 26px; margin-bottom: 26px; font-size: 14px; text-align: center; color: rgb(37, 37, 37); font-family: 宋体, sans-serif; line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255);">
+                            <?{if !empty($arrData.photo)}?>
+                            <?{foreach from=$arrData.photo key=key item=photo}?>
+                            <?{if $photo.photo != ""}?><br><center><img src="<?{$FileCallPath|imgurl:'xingfu_school_Basic_courses'}?>b/<?{$photo.photo}?>" style="vertical-align: top; border: 0px;"alt="<?{$photo.photo_narrate}?>"/><br><?{if $photo.photo_narrate}?><?{$photo.photo_narrate}?><?{/if}?></center><br><?{/if}?>
+                        <?{/foreach}?>
+                        <?{/if}?>
+                        </p>
+                        <p style="padding: 0px; margin-top: 26px; margin-bottom: 26px; font-size: 14px; text-indent: 2em; color: rgb(37, 37, 37); font-family: 宋体, sans-serif; line-height: 24px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255);">
+                            <?{$arrData.intro}?>
+                        </p>
+
+                        <div class="turnPage clb">
+                            <?{if !empty($arrInfoListNext)}?>
+                            <?{foreach from=$arrInfoListNext item=arrRelated}?>
+                            <a class="turnPage1" href="<?{if $arrRelated.linkurl!=''}?><?{$arrRelated.linkurl}?><?{else}?><?{url url="/xingfu_school_Basic_courses/detail.php?id=`$arrRelated.id`"}?><?{/if}?>">查看上一篇：<?{$arrRelated.title}?></a>
+                            <?{/foreach}?>
+                            <?{else}?>
+                            <a class="turnPage1" href="javascript:;">抱歉！暂无相关新闻</a>
+                            <?{/if}?>
+
+                            <?{if !empty($arrInfoListLast)}?>
+                            <?{foreach from=$arrInfoListLast item=arrRelated}?>
+                            <a class="turnPage2" href="<?{if $arrRelated.linkurl!=''}?><?{$arrRelated.linkurl}?><?{else}?><?{url url="/xingfu_school_Basic_courses/detail.php?id=`$arrRelated.id`"}?><?{/if}?>">查看下一篇：<?{$arrRelated.title}?></a>
+                            <?{/foreach}?>
+                            <?{else}?>
+                            <a class="turnPage2" href="javascript:;">抱歉！暂无相关新闻</a>
+                            <?{/if}?>
+                            <!-- <a class="turnPage1" href="javascript:;">查看上一篇：中国好生硬</a>
+                             <a class="turnPage2" href="javascript:;">查看下一篇：中国坏生硬</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

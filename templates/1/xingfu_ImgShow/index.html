@@ -1,0 +1,76 @@
+ <div id="hb">
+     <div class="xf-is-box clb">
+         <div class="xf-is-lbox">
+             <div>
+             </div>
+         </div>
+         <div class="xf-is-rbox clb">
+             <ul id="hhh" style="display:block; opacity:1;">
+
+                 <?{foreach from=$arrInfoList item=arrNews}?>
+                 <?{if $arrNews.type_id == 1}?>
+                 <li><a href="javascript:;">
+                     <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_ImgShow'}?>/b/<?{$arrNews.thumbnail}?><?{/if}?>"/>
+                    </a><div class="is-jx-box"><p><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></p></div><div class="is-xx-box">
+                     <p><?{$arrNews.summary|htmlspecialchars}?></p></div></li>
+                 <?{/if}?>
+                 <?{/foreach}?>
+
+             </ul>
+             <ul id="hhh">
+                 <?{foreach from=$arrInfoList item=arrNews}?>
+                 <?{if $arrNews.type_id == 2}?>
+                 <li><a href="javascript:;">
+                     <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_ImgShow'}?>/b/<?{$arrNews.thumbnail}?><?{/if}?>" width="450" height="282"/></a><div class="is-jx-box"><p><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></p></div><div class="is-xx-box">
+                     <p><?{$arrNews.summary|htmlspecialchars}?></p></div></li>
+                 <?{/if}?>
+                 <?{/foreach}?>
+             </ul>
+             <ul id="hhh">
+                 <?{foreach from=$arrInfoList item=arrNews}?>
+                 <?{if $arrNews.type_id == 3}?>
+                 <li><a href="javascript:;">
+                     <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_ImgShow'}?>/b/<?{$arrNews.thumbnail}?><?{/if}?>" width="450" height="282"/></a><div class="is-jx-box"><p><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></p></div><div class="is-xx-box">
+                     <p><?{$arrNews.summary|htmlspecialchars}?></p></div></li>
+                 <?{/if}?>
+                 <?{/foreach}?>
+             </ul>
+         </div>
+     </div>
+     <div class="is-qh-box">
+         <div class="is-qh-topbtnb"><a href="javascript:;"></a></div>
+         <div class="is-qh-hideb">
+             <ul class="is-qh-ysul">
+                 <li><a class="is-qh-ysa ahb" href="javascript:;">1</a></li>
+                 <li><a class="is-qh-ysa" href="javascript:;">2</a></li>
+                 <li><a class="is-qh-ysa" href="javascript:;">3</a></li>
+             </ul>
+             <div class="is-qh-gdic"></div>
+         </div>
+         <div class="is-qh-btobtnb"><a href="javascript:;"></a></div>
+     </div>
+ </div>
+ <script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/jquery-1.8.3.js"></script>
+ <script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/main.js"></script>
+ <script>
+     /* $(".xf-is-rbox ul li").hover(function(event){
+      });
+      $(".xf-is-rbox ul li").mouseout(function(event){
+      $(this).find(".is-xx-box").stop().animate({bottom:'-100%'},300,function(){$(this).parent().find(".is-jx-box").stop().animate({bottom:'0'},300);});
+      }); */
+
+     //$(".xf-is-rbox ul li").each(function() {
+     $(".xf-is-rbox ul li").hover(function() {
+                 $(this).find(".is-jx-box").stop().animate({bottom:'-30px'},300);
+                 $(this).find(".is-xx-box").stop().animate({bottom:'0%'},400);
+             },
+             function() {
+                 $(this).find(".is-xx-box").stop().animate({bottom:'-100%'},300);
+                 $(this).find(".is-jx-box").stop().animate({bottom:'0'},400);
+
+             });
+     //});
+
+     $("#hb").height($(window).height());
+ </script>
+

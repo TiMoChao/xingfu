@@ -1,0 +1,21 @@
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2">网站logo设置</td>
+    </tr>
+    <tr>
+      <td width="15%">网站logo：</td>
+      <td>
+		<input type="file" name="logo" value="<?{$arrGWeb.logo}?>" maxlength="100" size="55"> &nbsp;&nbsp;(只能上传后缀为 <font color=red>.jpg .gif .png</font> 格式的图片)
+		<br>
+		<?{if !empty($arrGWeb.logo)}?><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/uploadfile/<?{$arrGWeb.logo}?>" /><?{else}?><img src="<?{$arrGWeb.templats_root}?>/images/logo.gif" /><?{/if}?>
+		</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+    </tr>
+</table>
+</div>
+</form>

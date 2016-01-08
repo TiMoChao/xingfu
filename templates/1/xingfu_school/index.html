@@ -1,0 +1,265 @@
+
+<div class="yey-home-box">
+
+    <div class="yey-home-nbox"><!-- nei box -->
+        <div class="xf-yey-topbox"><!-- top box -->
+            <div class="xf-yey-topnbox clb">
+                <div class="xf-yey-tti">
+                    <div class="xf-yey-tle clb">
+                        <i class="yey-top-imgo"></i>
+                        <div class="yey-top-i2b"><i class="yey-top-imgt"></i></div>
+                    </div>
+                    <div class="yey-top-top-boxt clb">
+                        <div class="yey-top-lunbob">
+                            <div class="yey-top-lunbo1">
+                                <a href="javascript:;" class="xf-pr1"></a>
+                                <a href="javascript:;" class="xf-ne1"></a>
+                                <ul class="yey-top-ulo clb">
+                                    <?{foreach from=$arrInfoList item=arrNews}?>
+                                    <li><img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school'}?>/b/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" /></li>
+                                    <?{/foreach}?>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="yey-top-rightbox">
+                            <div class="yey-top-ribj clb">
+                                <ul>
+                                    <?{foreach from=$arr|api:'xingfu_school_class':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^9^id,title,summary,thumbnail,bedeck^^0" item=arrdata name=arrdata}?>
+                                    <!--<li>小一班</li>-->
+                                    <?{if $smarty.foreach.arrdata.index == 0}?>
+
+                                     <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">
+                                    <li> <?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>
+
+                                    <?{elseif $smarty.foreach.arrdata.index == 3}?>
+
+                                     <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">
+                                    <li><?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>
+
+                                    <?{elseif $smarty.foreach.arrdata.index == 6}?>
+
+                                     <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">
+                                    <li> <?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>
+
+
+                                    <?{else}?>
+                                     <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">
+                                    <li class="ribj-left"><?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>
+                                    <?{/if}?>
+
+                                    <?{/foreach}?>
+                                </ul>
+                            </div>
+                            <div class="yey-top-ricb">
+                                <p class="yey-top-riti">通知公告</p>
+                                <ul>
+
+                                    <?{foreach from=$arr|api:'xingfu_school_Notice':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^8^id,title,summary,thumbnail,bedeck^^0" item=arrdata}?>
+                                    <li> <a href="<?{if $arrdata.linkurl!=''}?>
+                    <?{$arrdata.linkurl}?><?{else}?><?{url url="/xingfu_school_Notice/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">
+                                        <?{$arrdata.title|csubstr:0:24|bedeck:$arrdata.bedeck}?></li>
+                                    <?{/foreach}?>
+
+
+                                    <!--<?{foreach from=$arrInfoList item=arrNews}?>-->
+                                    <!--<?{if $arrNews.type_id == 2}?>-->
+                                    <!--<li> <a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">-->
+                                        <!--<?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></li>-->
+                                    <!--<?{/if}?>-->
+                                    <!--<?{/foreach}?>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yey-top-yszq">
+            <div class="yey-top-ysnb clb">
+                <div class="yey-yszq-lbox clb">
+                    <div class="yey-yszq-tb">
+                        <i></i>
+                    </div>
+                    <div class="yey-yszq-bb">
+                        <ul>
+
+                            <?{foreach from=$arr|api:'xingfu_school_show':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^3^id,title,thumbnail,summary,bedeck^^0" item=arrdata}?>
+                            <li>
+                                <div class="yszq-timgb"><a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_show/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>"></a><img src="<?{if empty($arrdata.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school_show'}?>/s/<?{$arrdata.thumbnail}?><?{/if}?>" title="<?{$arrdata.title|htmlspecialchars}?>" width="226" height="149"/></a></div>
+                                <div class="yszq-pti"><p><a href="<?{url url="/xingfu_school_show/detail.php?id=`$arrdata.id`"}?>"><?{$arrdata.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a></p></div>
+                                <div class="yszq-contb"><p><?{$arrdata.summary|htmlspecialchars}?></p></div>
+                                <div class="yszq-btnb"><a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_show/"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">
+                                    MORE</a></div>
+                            </li>
+                            <?{/foreach}?>
+
+
+                            <!--<?{foreach from=$arrInfoList item=arrNews}?>-->
+                            <!--<?{if $arrNews.type_id == 3}?>-->
+                            <!--<li>-->
+
+                                <!--<div class="yszq-timgb"><a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>"></a><img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="226" height="149"/></a></div>-->
+                                <!--<div class="yszq-pti"><p><a href="javascript:;"><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a></p></div>-->
+                                <!--<div class="yszq-contb"><p><?{$arrNews.summary|htmlspecialchars}?></p></div>-->
+                                <!--<div class="yszq-btnb"><a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">-->
+                                    <!--MORE</a></div>-->
+                            <!--</li>-->
+                            <!--<?{/if}?>-->
+                            <!--<?{/foreach}?>-->
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="yey-yszq-rbox clb">
+
+
+                    <?{foreach from=$arr|api:'xingfu_school_Basic_courses':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^1^id,title,summary,thumbnail,bedeck^^0" item=arrNews}?>
+                    <div class="yszq-rti"><p>园本课程</p></div>
+                    <div class="yszq-tcti">
+                        <div><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></div>
+                        <div><?{$arrNews.summary|htmlspecialchars}?></div>
+                    </div>
+                    <div class="yszq-rimgb">
+                        <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school_Basic_courses'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="178" height="102"/>
+                    </div>
+                    <div class="yszq-ribtnb">
+                        <a href="<?{url url="/xingfu_school_Basic_courses/"}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">
+                        MORE</a>
+                    </div>
+                    <?{/foreach}?>
+
+
+
+                    <!--<?{foreach from=$arrInfoList item=arrNews}?>-->
+                    <!--<?{if $arrNews.type_id == 4}?>-->
+                    <!--<div class="yszq-rti"><p>园本课程</p></div>-->
+                    <!--<div class="yszq-tcti">-->
+                        <!--<div><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></div>-->
+                        <!--<div><?{$arrNews.summary|htmlspecialchars}?></div>-->
+                    <!--</div>-->
+                    <!--<div class="yszq-rimgb">-->
+                        <!--<img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="178" height="102"/>-->
+                    <!--</div>-->
+                    <!--<div class="yszq-ribtnb">-->
+                        <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">-->
+                        <!--MORE</a>-->
+                    <!--</div>-->
+                    <!--<?{/if}?>-->
+                    <!--<?{/foreach}?>-->
+
+                </div>
+            </div>
+        </div>
+        <div class="yey-jcsj-box">
+            <div class="yey-top-ysnb clb">
+                <div class="yey-jcsj-lbox clb">
+                    <div class="yey-jcsj-tb">
+                        <i></i>
+                    </div>
+                    <div class="jcsj-lbinb clb">
+                        <div class="jcsj-limgib">
+
+
+                            <?{foreach from=$arr|api:'xingfu_school_moment':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^1^id,title,thumbnail,summary,bedeck^^0" item=arrNews}?>
+                            <div class="jcsj-limgb">
+                                <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school_moment'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="191" height="191"/>
+                            </div>
+                            <div class="jcsj-lab">
+                                <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_moment/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">
+                                <?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a>
+                            </div>
+                            <?{/foreach}?>
+
+
+                            <!--<?{foreach from=$arrInfoList item=arrNews}?>-->
+                            <!--<?{if $arrNews.type_id == 5}?>-->
+
+                            <!--<div class="jcsj-limgb">-->
+                                <!--<img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="191" height="191"/>-->
+                            <!--</div>-->
+                            <!--<div class="jcsj-lab">-->
+                                <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">-->
+                                <!--<?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a>-->
+                            <!--</div>-->
+                            <!--<?{/if}?>-->
+                            <!--<?{/foreach}?>-->
+
+                        </div>
+                        <div class="jcsj-lrinb">
+                            <div class="jcsj-lrtib">
+                                <p>园所新闻</p>
+                            </div>
+                            <div class="jcsj-lrlistb">
+                                <ul>
+
+                                    <?{foreach from=$arr|api:'xingfu_school_news':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^8^id,title,submit_date,thumbnail,bedeck^^0" item=arrNews}?>
+
+                                    <li> <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_news/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">
+                                        <?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a><span><?{$arrNews.submit_date|date_format:"%Y/%m/%d"}?></span></li>
+                                    <?{/foreach}?>
+
+
+                                    <!--<?{foreach from=$arrInfoList item=arrNews}?>-->
+                                    <!--<?{if $arrNews.type_id == 6}?>-->
+
+                                    <!--<li> <a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">-->
+                                        <!--<?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a><span><?{$arrNews.submit_date|date_format:"%Y/%m/%d"}?></span></li>-->
+                                    <!--<?{/if}?>-->
+                                    <!--<?{/foreach}?>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yey-jcsj-rbox">
+                    <div class="jcsj-lrtib">
+                        <p>园丁风采</p>
+                    </div>
+
+                    <?{foreach from=$arr|api:'xingfu_school_teacher':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^1^id,title,thumbnail,summary,bedeck^^0" item=arrNews}?>
+
+                    <div class="jcsj-rcimgb">
+                        <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school_teacher'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="195" height="129"/>
+                    </div>
+                    <div class="yszq-ribtnb">
+                        <a href="<?{if $arrData.linkurl!=''}?>
+                    <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_teacher/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">
+                        <?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a>
+                    </div>
+                    <?{/foreach}?>
+
+                    <!--<?{foreach from=$arrInfoList item=arrNews}?>-->
+                    <!--<?{if $arrNews.type_id == 4}?>-->
+                    <!--<div class="jcsj-rcimgb">-->
+                        <!--<img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_school'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="195" height="129"/>-->
+                    <!--</div>-->
+                    <!--<div class="yszq-ribtnb">-->
+                        <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                    <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>">-->
+                        <!--<?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a>-->
+                    <!--</div>-->
+                    <!--<?{/if}?>-->
+                    <!--<?{/foreach}?>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/main.js"></script>

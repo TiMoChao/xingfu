@@ -1,0 +1,30 @@
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div class="ccc2">
+	<ul>
+		<li>
+			<font color="#ff6600">静态页面未更新成功的才需要执行此功能，此功能自动更新静态页面及缓存，客户端缓存过了缓存时间也会自动更新！<br />1.用404生成，系统开销小，但是需要进行404配置才能使用。<br />2.马上重新生成，系统开销大，耗时长，建议避开网站访问高峰使用。</font>
+		</li>
+	</ul>
+</div>
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="3"><?{$strNav|default:"`$arrGWeb.module_name`管理"}?>&nbsp;&nbsp;(生成静态文件状态：<font color=green><?{if $arrGWeb.file_static ==1}?>开启<?{else}?><font color=red>关闭<?{/if}?></font>)</td>
+    </tr>
+	<tr>
+      <td width="15%">全部栏目(ALL)：</td>
+      <td><font color=green>全部支持纯静态页面</font>
+			</td>
+    <td><a href="?id=all&ac=del" onclick="return confirm('如没配置404，可能导致纯静态页面无法访问，确认执行吗？');">1.删除全部栏目原有静态页面，用404重新生成</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="?id=all&ac=rebuild" onclick="return confirm('此操作耗时较长，请不要关闭窗口，确认执行吗？');">2.删除全部栏目原有静态页面，马上重新生成</a></td>
+    </tr>
+		<?{foreach key=key  item=arrData from=$arrModuleDirs}?>
+    <tr>
+      <td width="15%"><?{$arrData.name}?>(<?{$arrData.id}?>)：</td>
+      <td><?{if $arrData.cache == 1}?><font color="green">支持纯静态页面</font><?{else}?><font color="red">不支持纯静态页面</font><?{/if}?>
+			</td>
+    <td><a href="?id=<?{$arrData.id}?>&ac=del" onclick="return confirm('如没配置404，可能导致纯静态页面无法访问，确认执行吗？');">1.删除本栏目原有静态页面，用404重新生成</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?id=<?{$arrData.id}?>&ac=rebuild" onclick="return confirm('此操作耗时较长，请不要关闭窗口，确认执行吗？');">2.删除本栏目原有静态页面，马上重新生成</a></td>
+    </tr>
+		<?{/foreach}?>
+</table>
+</div>
+</form>

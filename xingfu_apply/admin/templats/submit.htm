@@ -1,0 +1,89 @@
+<script src="../../plug-in/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="../../plug-in/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script> KindEditor.ready(function(K) { K.create('textarea[name="intro"]'); }); </script>
+
+<div class="ccc2">
+	<ul>
+		<li>
+			<span class="right"><input type="button" onClick="javascript:history.back();" value="返回留言列表" class="gray mini"></span>
+			当前位置：预约查看管理
+	 </li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkform()" action="?<?{$smarty.server.QUERY_STRING}?>" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table class="biweb" align="center" cellspacing="0">
+	<tr class="firstr">
+		<td colspan="3">编辑预约查看：</td>
+	</tr>	
+  	<!--<td>留言标题：</td>-->
+    <!--<td>-->
+	<!--<input maxLength=210 size=55 id=title name=title value="<?{$arrData.title}?>" onblur="dodivde();"></td>-->
+    <!--<td><span class=gray>标题，最大70个中文</span></td></tr>-->
+  <tr>
+    <td>姓名：</td>
+    <td><input maxLength='50' size='50' name='name' value="<?{$arrData.name}?>"></td>
+    <td><span class=gray>姓名</span></td>
+  </tr>
+    <tr>
+        <td>性别：</td>
+        <td><input maxLength='50' size='50' name='sex' value="<?{$arrData.sex}?>"></td>
+        <td><span class=gray>性别</span></td>
+    </tr>
+    <tr>
+        <td>年龄：</td>
+        <td><input maxLength='50' size='50' name='age' value="<?{$arrData.age}?>"></td>
+        <td><span class=gray>年龄</span></td>
+    </tr>
+    <tr>
+        <td>民族：</td>
+        <td><input maxLength='50' size='50' name='ethnic' value="<?{$arrData.ethnic}?>"></td>
+        <td><span class=gray>民族</span></td>
+    </tr>
+    <tr>
+        <td>家庭住址：</td>
+        <td><input maxLength='50' size='50' name='address' value="<?{$arrData.address}?>"></td>
+        <td><span class=gray>家庭住址</span></td>
+    </tr>
+    <tr>
+        <td>联系电话：</td>
+        <td><input maxLength='50' size='50' name='iphone' value="<?{$arrData.iphone}?>"></td>
+        <td><span class=gray>联系电话</span></td>
+    </tr>
+    <tr>
+        <td>文化班级：</td>
+        <td><input maxLength='50' size='50' name='class_type' value="<?{$arrData.class_type}?>"></td>
+        <td><span class=gray>文化班级</span></td>
+    </tr>
+    <tr>
+        <td>所报班级：</td>
+        <td><input maxLength='50' size='50' name='class' value="<?{$arrData.class}?>"></td>
+        <td><span class=gray>所报班级</span></td>
+    </tr>
+    <tr>
+        <td>家长微信号：</td>
+        <td><input maxLength='50' size='50' name='weichat' value="<?{$arrData.weichat}?>"></td>
+        <td><span class=gray>家长微信号</span></td>
+    </tr>
+
+  <tr>
+    <td>是否处理：</td>
+    <td>
+		<select name='state' size='1'>
+			<option value="1" <?{if $arrData.state == 1}?>selected<?{/if}?>><?{$arrGState[1]}?></option>
+			<option value="2" <?{if $arrData.state == 2}?>selected<?{/if}?>><?{$arrGState[2]}?></option>
+			<option value="3" <?{if $arrData.state == 3}?>selected<?{/if}?>><?{$arrGState[3]}?></option>
+			<option value="4" <?{if $arrData.state == 4}?>selected<?{/if}?>><?{$arrGState[4]}?></option>
+		</select>	
+	</td>
+    <td><span class=gray>预约信息处理</span></td>
+  </tr>    
+	<tr>
+      <td>&nbsp;</td>
+      <td align=middle colspan=3><input type=submit id="okgo" name="okgo" value=确　定> <input type=reset value="重 置"></td>
+    </tr>
+	<input type=hidden name=savephoto value="<?{$arrData.photo}?>">
+    <input type=hidden name=id value="<?{$arrData.id}?>">
+</table>
+</div>
+</form>

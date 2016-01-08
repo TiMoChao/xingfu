@@ -1,0 +1,67 @@
+<script>
+	function $id(id){
+		return document.getElementById(id);
+	}
+	function chkLength(){
+        var s=$id('intro_2').value.length+1;
+        if(s>300) $id('intro_2').value=$id('intro_2').value.substr(0,70-1);
+        else $id('num_span').innerHTML=70-(s-1);
+  }
+  
+</script>
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle"> 
+		<font color="#ff6600">一次最多可发送100个手机号
+	</font>
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return check()" action="" method="post">
+<input type=hidden name=page value="<?{$smarty.post.page}?>">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="3"><?{$strNav|default:"`$arrGWeb.module_name`管理"}?></td>
+    </tr>
+    
+		<tr>
+      <td>间隔符：</td>
+      <td>
+			<input name="spacemark" size="5" value=",">
+			</td>
+			
+    </tr>
+    <tr>
+      <td>手机号码：</td>
+      <td>
+			<textarea name="mobiles" rows="8" cols="65"></textarea>
+			</td>
+			
+    </tr>
+		<tr>
+      <td>短信内容：</td>
+      <td>
+      	<span class="m_blog_txt">您还可以输入 <span id="num_span">70</span> 个字</span><br/>
+			<textarea id="intro_2" name="content" rows="8" cols="65" onkeyup='chkLength()'></textarea>
+			</td>
+			
+    </tr>
+	
+		
+		<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" id="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+      <td>&nbsp;</td>
+    </tr>
+</table>
+</div>
+</form>
+<script language="javascript">
+	function check(){
+	 this.form1.Submit.disabled=true;
+	 return true;
+	}
+</script>
+
+

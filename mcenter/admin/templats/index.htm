@@ -1,0 +1,53 @@
+<div class="ccc2">
+	<ul>
+		<li>
+		<form action="?<?{$smarty.server.QUERY_STRING}?>&action=" method="get">
+			<span class="right"><input type="button" onClick="location.href='<?{$arrGWeb.WEB_ROOT_pre}?>/user/admin/addinfo.php'" value="新增会员资料" class="gray mini"></span>
+
+			<input type="hidden" name="action" value='search'>
+			关键字：<input class="text" type="input" name='title' value='<?{$smarty.get.title}?>'>			
+			状态：<select name='status' size=1>
+			<option value='' <?{if $smarty.get.status === ''}?>selected="selected" class="selected"<?{/if}?>>全部</option>
+			<option value='1' <?{if $smarty.get.status == '1'}?>selected="selected" class="selected"<?{/if}?>>已通过</option>
+			<option value='0' <?{if $smarty.get.status === '0'}?>selected="selected" class="selected"<?{/if}?>>未通过</option>
+			</select> 
+
+			排序：<select name='sort' size=1>
+			<option value=''>按时间</option>
+			<option value="2" <?{if $smarty.get.sort == '1'}?>selected=selected<?{/if}?>>按ID倒序</option>
+			<option value="3" <?{if $smarty.get.sort == '2'}?>selected=selected<?{/if}?>>按ID正序</option>
+			</select>
+			
+			<input type="submit" value='查 询' class="gray mini">
+			/id号可精确查询
+	 </form>
+	 </li>
+	</ul>
+</div>
+<div id="biweb">
+<table width="96%" align="center" cellpadding="0" cellspacing="0" class="biweb"> 
+	<tr class="firstr">
+		<th width='5%'>ID</th>
+		<th>登陆名称</th>
+		<th width='10%'>真实姓名</th>
+		<th width='13%'>注册时间</th>
+		<th width='14%'>最后登录</th>
+		<th width='10%'>用户IP</th>
+		<th width='15%'>&nbsp;</th>
+	</tr>
+	<?{foreach key=key from=$arrInfo item=arrData}?>
+	<tr align=center>
+		<td align=center>&nbsp;<a href='modifyinfo.php?<?{$smarty.server.QUERY_STRING}?>&action=edit&id=<?{$arrData.user_id}?>'><?{$arrData.user_id}?></a></td>
+		<td align=center>&nbsp;<a href='modifyinfo.php?<?{$smarty.server.QUERY_STRING}?>&action=edit&id=<?{$arrData.user_id}?>'><?{$arrData.user_name}?></a></td>
+		<td align=center>&nbsp;<?{$arrData.real_name}?></td>
+		<td align=center>&nbsp;<?{$arrData.submit_date}?></td>
+		<td align=center>&nbsp;<?{$arrData.lastlog}?></td>
+		<td align=center>&nbsp;<?{$arrData.user_ip}?></td>
+		<td><a href='modifyinfo.php?action=edit&id=<?{$arrData.user_id}?>'>会员资料编辑</a> | <a href='../../user/admin/modifyinfo.php?action=edit&id=<?{$arrData.user_id}?>'>会员权限编辑</a></td>	
+	</tr>	
+	<?{/foreach}?> 
+	<tr>
+		<td align="left" colspan="11"><?{$strPage}?></td>	
+	</tr>
+</table>
+</div>

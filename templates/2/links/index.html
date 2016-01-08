@@ -1,0 +1,95 @@
+<style type="text/css">
+<!--
+.clear {
+	clear:both;
+	height:5px;
+	line-height:5px;
+	font-size:0px;
+}
+.RSS h3{font-size:14px;margin:0;}
+.RSS {
+	padding:0px;
+	width:100%;;
+	margin:10px auto;
+	color:#000;
+}
+.RSS fieldset {
+	padding:5px;
+	-moz-border-radius:5px;
+	-moz-border-top-colors: #eee #fff;
+	-moz-border-left-colors: #eee #fff;
+	-moz-border-right-colors:#eee #fff;
+	-moz-border-bottom-colors:#eee #fff;
+}
+.RSS legend { color:#0000CC; }
+/*文字类*/
+.RSS .links2 ul, .RSS .links1 ul {
+	list-style:none;
+	padding:0px;
+	margin:0px;
+}
+.RSS .links2 ul li {
+	width:110px;
+	line-height:22px;
+	background:none;
+	border-bottom:none;
+	float:left;
+	margin:5px;
+}
+.RSS .links1 li {
+	float: left;
+	padding: 15px;
+}
+.RSS .links1 li img {
+	border: 1px solid #ddd;
+}
+-->
+</style>
+<div class="clear"></div>
+<div style="margin:0 auto;width:984px;">
+	<div class="RSS">
+		<!--文字类开始-->
+		<h3>友情链接：</h3>
+<?{if !empty($arrLinkPic)}?>
+		<!--图片链接开始-->
+		<fieldset>
+		<legend><b>图片链接</b></legend>
+		<div class="links1">
+			<ul>
+			<?{foreach from=$arrLinkPic item=arrImg}?>
+				<li>
+					<a href="<?{$arrImg.webhost}?>"  target="_blank">
+						<?{if $arrImg.UploadFile != ''}?>
+							<img src="<?{$FileCallPath|imgurl:'links'}?><?{$arrImg.UploadFile}?>" width="88" height="31" alt="<?{$arrImg.summary}?>" />
+						<?{/if}?>
+					</a>
+				</li>
+			<?{/foreach}?>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		</fieldset>
+		<!--图片链接结束-->
+<?{/if}?>
+
+<?{if !empty($arrLinkText)}?>
+		<!--文字链接开始-->
+		<fieldset>
+		<legend><b>文字链接</b></legend>
+		<div class="links2">
+			<ul>
+			<?{foreach from=$arrLinkText item=arrTxt}?>
+				<?{if $arrTxt.webname != ''}?>
+				<li><a href="<?{$arrTxt.webhost}?>" title="<?{$arrTxt.summary}?>" target="_blank"><?{$arrTxt.webname}?></a></li>
+				<?{/if}?>
+			<?{/foreach}?>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		</fieldset>
+		<!--文字链接结束-->
+<?{/if}?>
+		<div class="clear"></div>
+		<!--文字类结束-->
+	</div>
+</div>

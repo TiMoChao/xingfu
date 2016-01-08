@@ -1,0 +1,78 @@
+<div class="ccc2">
+	<ul>
+		<li>
+		<form action="?" method="get">
+			<span class="right"><input type="button" onClick="location.href='addinfo.php?page=<?{$smarty.get.page}?>'" value="新增<?{$arrGWeb.module_name}?>" class="gray mini"></span>
+			<input type=hidden name="action" value='search'>
+			标题：<input type=text size=15 name='title' value='<?{$smarty.get.title}?>'> 
+			<?{$arrGWeb.module_name}?>类别：
+			<select size=1 name='type_id'>
+			<option value="0">所有类别</option>
+			<?{foreach from=$arrType key=key item=type}?>
+			<?{if is_array($type) && array_key_exists('type_title',$type)}?>
+			<option value="<?{$type.type_id}?>" <?{if !empty($type.type_link)}?>disabled='disabled'<?{/if}?> <?{if $type.type_id == $smarty.get.type_id}?>selected=selected<?{/if}?>><?{$type.type_title}?></option>
+			<?{else}?>
+			<option value="<?{$key}?>" <?{if $key == $arrData.type_id}?>selected=selected<?{/if}?>><?{$type}?></option>    	
+			<?{/if}?>
+			<?{/foreach}?>
+			</select>
+			订阅状态：<select name='pass' size=1>
+			<option value=''>全部</option>
+			<option value="1" <?{if $smarty.get.pass == '1'}?>selected=selected<?{/if}?>>已订阅</option>
+			<option value="0" <?{if $smarty.get.pass == '0'}?>selected=selected<?{/if}?>>退订</option>
+			</select> 
+			<!--订阅产品：
+			<select name="product">
+			<option value="">------</option>
+			<option value="product_a" <?{if $smarty.get.product eq 'product_a'}?>selected="selected"<?{/if}?>>产品A</option>
+			<option value="product_b" <?{if $smarty.get.product eq 'product_b'}?>selected="selected"<?{/if}?>>产品B</option>
+			<option value="product_c" <?{if $smarty.get.product eq 'product_c'}?>selected="selected"<?{/if}?>>产品C</option>
+			<option value="product_d" <?{if $smarty.get.product eq 'product_d'}?>selected="selected"<?{/if}?>>产品D</option>
+			<option value="product_e" <?{if $smarty.get.product eq 'product_e'}?>selected="selected"<?{/if}?>>产品E</option>
+			<option value="product_f" <?{if $smarty.get.product eq 'product_f'}?>selected="selected"<?{/if}?>>产品F</option>
+			</select>-->
+		<input type=submit value='查 询' class='gray mini'>
+	 </form>
+	 </li>
+	</ul>
+</div>
+<div id="biweb">
+<table border="0" cellspacing="0" align="center" class="biweb">
+<form action='?type_id=<?{$arrData.type_id}?>&page=<?{$smarty.get.page}?>&title=<?{$smarty.get.title}?>&action=' method="post" name="delform">
+	<tr class="firstr">
+		<th width='13%'>ID</th>
+		<th >名称</th>
+		<th width='20%'>状态</th>
+		<th width='33%'>订阅/退订时间</th>
+		<th width='4%' align=center><input type='checkbox' name='chkselectAll' onclick="doCheckAll(this)"></th>
+	</tr>
+	<?{foreach key=key  item=arrData from=$arrInfo}?>
+	<tr align=center>
+		<td>&nbsp;<a href='modifyinfo.php?<?{$smarty.server.QUERY_STRING}?>&id=<?{$arrData.id}?>'><?{$arrData.id}?></a></td>
+		<td>&nbsp;<a href='modifyinfo.php?<?{$smarty.server.QUERY_STRING}?>&id=<?{$arrData.id}?>'><?{$arrData.title}?></a>
+		</td>
+		<td align=center>&nbsp;<?{if $arrData.pass==0}?><font color=red><?{$arrPhoneType[$arrData.pass]}?></font><?{/if}?><?{if $arrData.pass==1}?><font color=green><?{$arrPhoneType[$arrData.pass]}?></font><?{/if}?></td>		
+		<td align=center>&nbsp;<?{$arrData.submit_date}?></td>
+		<td align=center>&nbsp;<input type=checkbox name=select[] value="<?{$arrData.id}?>"></td>
+	</tr>
+	<?{/foreach}?>
+	</tr>
+	<tr>
+		<td colspan='4'>
+		<span  class="actionform">
+		<form name='actionform' method="post">
+		操作：<select name="selection">
+		<option value='moveup'>提前</option>
+		<option value='del'>删除</option>
+		<option value='check'>通过审核</option>
+		<option value='uncheck'>取消通过</option>
+		</select> 
+		<input type="button" class="gray mini" value='执行' onclick=javascript:index=document.getElementsByName('selection')[0].selectedIndex;checkAction(document.getElementsByName('selection')[0].options[index].value);>
+		</form>
+		</span>
+		<?{$strPage}?>
+		</td>
+	</tr>
+</form>
+</table>
+</div>

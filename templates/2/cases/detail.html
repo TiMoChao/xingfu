@@ -1,0 +1,34 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <div class="main">
+        <!--主体左侧开始-->
+		<div class="main_left"> 
+			<?{include file="cases/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束--> 
+		
+        <!--主体右侧开始-->
+        <div class="main_right">
+            <div class="common_bt"><span class="title">成功案例</span><span class="path">当前位置：<a href="<?{$arrGWeb.WEB_ROOT_pre}?>/">首页</a> >> <a href="<?{url url='/cases/'}?>">成功案例</a> >> 案例信息</span></div>
+            <div class="common_content">
+                <div class="news_title"><?{$arrData.title}?><?{$arrGWeb.module_id}?></div>
+                <div class="news_info"><?{if !empty($arrData.author)}?>作 者：<?{$arrData.author}?><?{/if}?> &nbsp; 发表时间：<?{$arrData.submit_date}?>  &nbsp;浏览次数：
+				<script language='javascript' src='../../plug-in/click/getclick.php?module_id=<?{$arrGWeb.module_id}?>&id=<?{$arrData.id}?>'></script>【<a href="javascript:window.print();">打印</a> <a href='<?{url url = "/`$arrGWeb.module_id`/detail.php?id=`$arrData.id`" cache = "3"}?>'>DOC</a>】<div class="bshare-custom">分 享 到：<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a><a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a><a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script></div>
+                <div class="news_content">
+					<?{if !empty($arrData.photo)}?>
+						<?{foreach from=$arrData.photo key=key item=photo}?>
+						<?{if $photo.photo != ""}?><br><center style="font-size:12px;"><img src="<?{$FileCallPath|imgurl:'cases'}?>b/<?{$photo.photo}?>" align="center" border="0" alt="<?{$photo.photo_narrate}?>"  /><br><?{if $photo.photo_narrate}?><?{$photo.photo_narrate}?><?{/if}?></center><br><?{/if}?>
+						<?{/foreach}?>
+					<?{/if}?>
+					<br><div id="detail_p"><?{$arrData.intro}?></div>
+					<div class="goback"><a href="javascript:history.go(-1)">返回上一页</a></div>
+                </div>
+            </div>
+        </div>
+        <!--主体右侧结束-->
+		
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>

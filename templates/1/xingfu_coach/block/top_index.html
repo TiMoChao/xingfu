@@ -1,0 +1,18 @@
+<div class="common_bt"> 
+	<span class="title">公司新闻</span> 	
+	<span class="more">
+		<a href="<?{url url='/news/'}?>"></a>
+	</span> 
+</div>
+<div class="type_style_n_list" id="news_index_top">
+	<ul>
+		<?{foreach from=$arr|api:'news':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^5^id,title,submit_date,bedeck,summary^^0" item=arrNewsList}?>
+		<ol>
+			<a href="<?{if $arrNewsList.linkurl!=''}?><?{$arrNewsList.linkurl}?><?{else}?><?{url url = "/news/detail.php?id=`$arrNewsList.id`"}?><?{/if}?>" title="<?{$arrNewsList.summary|htmlspecialchars}?>">
+				<?{$arrNewsList.title|csubstr:0:12:'...'|bedeck:$arrNewsList.bedeck}?>			
+			</a>
+		</ol>
+		<?{/foreach}?>
+	</ul>
+	<div class="clr"></div>
+</div>

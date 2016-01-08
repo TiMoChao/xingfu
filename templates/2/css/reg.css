@@ -1,0 +1,61 @@
+﻿/*注册样式*/
+#regtext{margin: 5px 0 0;}
+.clr{
+	clear:both
+}
+.r3 {
+	border-radius: 3px 3px 3px 3px;
+}
+#register_form {
+	float: left;
+	width: 360px;
+	margin-left:180px;
+	display:inline;
+}
+.ipt_info {
+	line-height: 30px;
+	margin-left: 20px;
+	overflow: hidden;
+}
+.userreg_t h2{
+	 font-weight:bold; font-size:22px; line-height:45px;
+}
+#register_form span {
+	color: #333333;
+	float: left;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: middle;
+}
+#register_form .text {
+	border: 1px solid #CFCFCF;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+	width: 254px;
+}
+.pt20{
+	padding-top:20px;
+}
+#register_form .ipt_info .authCode{
+	width:114px;
+}
+.ipt_sub {
+    padding-left: 92px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+/*
+.ipt_sub .sub{
+    background: url(../images/login_reg_icon.png) no-repeat scroll 0 0 transparent;
+}
+*/
+.ipt_sub .sub {
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    height: 38px;
+    width: 131px;
+}
+

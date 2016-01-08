@@ -1,0 +1,96 @@
+ <script type='text/javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/swfobject.js'></script>
+ <div>
+
+
+     <div class="cent-box clb">
+         <div class="xf-left-box clb">
+             <div class="v-lb-tb">
+                 <div class="v-lb-ttib"><p>新闻中心</p><div class="link-b"><span></span></div></div>
+                 <div class="v-lb-tconb">
+                     <ul>
+                         <?{foreach from=$arr|api:'xingfu_news':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^8^id,title,thumbnail,bedeck^^0" item=arrdata}?>
+
+                         <li class="clb"><i class="v-lb-rj"></i><a class="v-lb-ra" href="<?{url url = "/xingfu_news/detail.php?id=`$arrdata.id`" cache="`$arrGWeb.URL_static`"}?>" " >
+                             <?{$arrdata.title|csubstr:0:20|bedeck:$arrdata.bedeck}?>
+                             </a></li>
+                         <?{/foreach}?>
+                     </ul>
+                 </div>
+             </div>
+             <div class="v-lb-cb">
+                 <div class="v-lb-ttib"><p>热门活动</p><div class="link-b"><span></span></div></div>
+                 <div class="v-lb-cconb">
+                     <div class="v-lb-cctb clb">
+                         <div class="v-lb-cib"><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/by/fc-17.jpg" /></div>
+                         <div class="v-lb-crib">
+                             <p>我校参加黔港武术交流表演</p>
+                             <div class="v-lb-cbb"><a href="javascript:;">我要报名</a></div>
+                         </div>
+                     </div>
+                     <div class="v-lb-cctb clb">
+                         <div class="v-lb-cib"><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/by/fc-17.jpg" /></div>
+                         <div class="v-lb-crib">
+                             <p>我校参加黔港武术交流表演</p>
+                             <div class="v-lb-cbb"><a href="javascript:;">我要报名</a></div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="v-lb-lxb">
+                 <div class="v-lb-ttib"><p>联系我们</p><div class="link-b"><span></span></div></div>
+                 <div class="v-lb-lxib">
+                     <p>微信关注我们  查看更多讯息</p>
+                     <p>联系电话：0851-30640969</p>
+                     <div>
+                         <img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/xfewm.jpg" />
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="xf-right-box clb">
+             <div class="xf-right-nbox">
+                 <div class="v-lb-ttib"><p>教学视频</p><div class="link-b"><span></span></div></div>
+
+
+                 <?{foreach from=$arrInfoList item=arrNews name = arrNews}?>
+                 <div class="xf-right-contb">
+                     <div class="r-con-video">
+                         <?{if !empty($arrNews.video)}?>
+
+                         <?{foreach from=$arrNews.video  item=video key=key name=video}?>
+                             <?{if $video.video != ''}?>
+                             <!--<div id='vpreview<?{$smarty.foreach.video.index}?>'>The player will show in this paragraph</div>-->
+                         <div id='vpreview<?{$smarty.foreach.arrNews.index}?>'>The player will show in this paragraph</div>
+                             <script type='text/javascript'>
+                                 var s1 = new SWFObject('<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/flvplayer/flvplayer.swf','player','546','327','9');
+                                 s1.addParam('allowfullscreen','true');
+                                 s1.addParam('allowscriptaccess','true');
+                                 s1.addParam('flashvars','file=<?{$FileCallPath|imgurl:'xingfu_teaching'}?><?{$video.video}?>&image=<?{$FileCallPath|imgurl:'xingfu_teaching'}?>b/<?{$video.videopic}?>');
+                                 s1.write('vpreview<?{$smarty.foreach.arrNews.index}?>');
+                             </script>
+                             <?{elseif $video.video_link !=''}?>
+                             <embed src="<?{$video.video_link}?>" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed><br>
+                             <?{/if}?></center><br>
+                         <?{/foreach}?>
+                         <?{/if}?>
+                     </div>
+                     <div class="r-con-itb">
+                         <p class="r-con-po">Video Introduction</p>
+                         <p class="r-con-pt">视频介绍</p>
+                         <!--<span class="r-con-cb"> <?{$arrNews.intro|csubstr:0:150|bedeck:$arrdata.bedeck}?>...<a href="<?{url url = "/xingfu_teaching/detail.php?id=`$arrNews.id`" cache="`$arrGWeb.URL_static`"}?>" ">双击查看全文</a></span>-->
+                         <span class="r-con-cb"> <?{$arrNews.intro}?></a></span>
+                     </div>
+                 </div>
+                 <?{/foreach}?>
+                 <div class="fy-btnb clb">
+                     <?{$strPage}?>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+ </div>
+
+ <script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/jquery-1.8.3.js"></script>
+ <script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/main.js"></script>
+

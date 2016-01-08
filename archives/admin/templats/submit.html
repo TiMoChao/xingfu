@@ -1,0 +1,139 @@
+<link rel="StyleSheet" href="<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/dtree/dtree.css" type="text/css" />
+<script language='javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/dtree/dtree.js'></script>
+<script language="javascript" src="../../plug-in/PopCalender/popcalendar.js"></script> 
+<script Language="JavaScript">dateformat='yyyy-mm-dd'</script>
+<script src="../../plug-in/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="../../plug-in/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script> KindEditor.ready(function(K) { K.create('textarea[name="intro"]'); }); </script>
+
+
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div class="ccc2">
+	<ul>
+		<li>
+		<span class="right"><input type="button" onClick="location.href='index.php'" value="返回列表" class="gray mini"/></span>
+		</li>
+	</ul>
+</div>
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="3">当前位置：<?{$archives_title}?>内容管理</td>
+    </tr>
+	<tr>
+		<td>单页信息</td>
+		<td colspan="2">
+			单页名称：<input maxlength="100" size="30" type="text" name="module_name" value="<?{$arrData.module_name}?>" />
+			英文标识名称：<input maxlength="100" size="30" type="text" name="type_title_english" value="<?{$arrData.type_title_english}?>" />
+		</td>
+	</tr>
+
+	<tr style="display:<?{if !$arrData.userurl}?>none<?{/if}?>">
+      <td width="15%">调用地址：</td>
+      <td><input maxlength="100" size="68" name="userurl" value="<?{$arrData.userurl}?>" readOnly="true"></td><td>地址的模板调用方法，用于模板href调用</td>
+    </tr>
+    <tr>
+      <td width="15%">页面标题：</td>
+      <td><input maxlength="100" size="68" name="meta_Title" value="<?{$arrData.meta_Title}?>"></td><td> 用于搜索引擎优化，不填系统会自动生成 </td>
+    </tr> 
+    <tr>
+      <td width="15%">页面摘要：</td>
+      <td><textarea name="meta_Description" rows="3" cols="50"><?{$arrData.meta_Description}?></textarea></td><td> 用于搜索引擎优化，不填系统会自动生成</td>
+    </tr> 	
+    <tr>
+      <td width="15%">页面关键字：</td>
+      <td><textarea name="meta_Keywords" rows="3" cols="50"><?{$arrData.meta_Keywords}?></textarea> </td><td>用于搜索引擎优化，不填系统会自动生成</td>
+    </tr>
+	<!--<tr><td id="test" name="test" value='abcdefge'></td></tr>-->
+	<tr>
+	  <td>模板文件目录：</td>
+	  <td><script type="text/javascript">
+		<!--
+			dTree_2 = dTree;
+			
+			dTree.prototype.node = function(node, nodeId) {
+			var str = '<div class="dTreeNode">' + this.indent(node, nodeId);
+			if (this.config.useIcons) {
+				if (!node.icon) node.icon = (this.root.id == node.pid) ? this.icon.root : ((node._hc) ? this.icon.folder : this.icon.node);
+				if (!node.iconOpen) node.iconOpen = (node._hc) ? this.icon.folderOpen : this.icon.node;
+				if (this.root.id == node.pid) {
+					node.icon = this.icon.root;
+					node.iconOpen = this.icon.root;
+				}
+				str += '<img id="i' + this.obj + nodeId + '" src="' + ((node._io) ? node.iconOpen : node.icon) + '" alt="" />';
+			}
+			if (node.url) {
+				str += '<a id="s' + this.obj + nodeId + '" class="' + ((this.config.useSelection) ? ((node._is ? 'nodeSel' : 'node')) : 'node') + '" href="' + node.url + '"';
+				if (node.title) str += ' title="' + node.title + '"';
+				if (this.config.useStatusText) str += ' onmouseover="window.status=\'' + node.name + '\';return true;" onmouseout="window.status=\'\';return true;" ';
+				if (this.config.useSelection && ((node._hc && this.config.folderLinks) || !node._hc))
+					str += ' onclick="javascript: ' + this.obj + '.abc(' + nodeId + '); return false;"';
+				str += '>';
+			}
+			else if ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
+				str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');" class="node">';
+			str += node.name;
+			if (node.url || ((!this.config.folderLinks || !node.url) && node._hc)) str += '</a>';
+			str += '</div>';
+			if (node._hc) {
+				str += '<div id="d' + this.obj + nodeId + '" class="clip" style="display:' + ((this.root.id == node.pid || node._io) ? 'block' : 'none') + ';">';
+				str += this.addNode(node);
+				str += '</div>';
+			}
+			this.aIndent.pop();
+			return str;
+
+		};
+
+			dTree.prototype.abc = function(id){
+				document.getElementById('source').value = document.getElementById('sd'+id).href.substr(document.getElementById('sd'+id).href.indexOf('?path')+6);	
+				$("#source").blur();
+			}
+
+			d = new dTree_2('d','<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/dtree/');
+			d.add(0,-1,'模版目录');
+
+			<?{foreach item=arrDataJs key=k from=$arrDataJsSmt}?>
+				d.add(<?{$arrDataJs.key}?>,<?{$arrDataJs.fId}?>,'<?{$arrDataJs.file}?>','<?{if ($arrDataJs.link != '')}?>modifyinfo.php?path=<?{$arrDataJs.link}?><?{/if}?>','','t_main');
+			<?{/foreach}?>
+
+			document.write(d);
+			-->
+		</script></td>
+		<td>路径从模板根目录写，例如（archives/_tools1.html），下面文章内容将失效，使用模板修改功能才能修改模板内容</td>
+	</tr>
+	<tr id="source_tr">
+      <td width="15%">模板文件路径：</td>
+      <td><input size=50 name=source id=source value="<?{$arrData.source}?>" readOnly="true"> <input name="source_del" id="source_del" type="button" value="删除"  /><br />路径从模板根目录写，例如（archives/_tools1.html），下面文章内容将失效，使用模板修改功能才能修改模板内容</td>
+	  <td>&nbsp;</td>
+    </tr>
+    <tr id="tome">
+      <td width="15%">文章内容：</td>
+      <td colspan="2"><textarea id="intro" name="intro" cols="100" rows="8" style="width:680px; height:300px;"><?{$arrData.intro}?></textarea></td>
+    </tr>
+	<tr>
+       <td align="middle" colSpan="3"><input type="submit" id="okgo" name="okgo" value="确　定"> <input type="reset" value="重 置"></td></tr>
+    </tr>
+</table>
+</div>
+<input type="hidden" name="id" value="<?{$arrData.id}?>" />
+</form>
+<script>
+$(function(){
+	$("#source").blur(function(){
+		var value = $(this).val();
+		if(value ==''){
+			$("#tome").show();
+			$("#source_tr").hide();
+		}else{
+			$("#tome").hide();
+			$("#source_tr").show();
+		}
+	});
+	$("#source_del").click(function(){
+		$("#source").val('');
+		$("#source").blur();
+	});
+	$("#source").blur();
+});
+</script>

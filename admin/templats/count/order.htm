@@ -1,0 +1,101 @@
+<script language="javascript" src="../../plug-in/PopCalender/popcalendar.js"></script>
+<script type="text/javascript" src="../../plug-in/open-flash-chart/json.js"></script>
+<script type="text/javascript" src="../../plug-in/open-flash-chart/swfobject.js"></script>
+<script type="text/javascript">
+	function parseDate(str){
+		if(str==''){
+			alert('请选择时间段');
+			return;
+		}
+		var date=null;
+		var arr = str.split('-');
+		if(arr.length==3){
+			date= new Date(parseInt(arr[0],10),parseInt(arr[1],10),parseInt(arr[2],10));
+		}
+		return date;
+	}
+	function findSWF(movieName) {
+	  if (navigator.appName.indexOf("Microsoft")!= -1) {
+	    return window[movieName];
+	  } else {
+	    return document[movieName];
+	  }
+	}
+	function open_flash_chart_data(){		
+		var data='<?{$strChart}?>';
+		return data;
+	}
+	swfobject.embedSWF("../../plug-in/open-flash-chart/open-flash-chart.swf", "chart", "900", "400", "9.0.0");
+	jQuery(document).ready(function(){
+		var width=$('#dataTable').innerWidth()-180;		
+		$('#btn_count').click(function(){
+			var start = parseDate($('#intBeginTime').val());
+			var end = parseDate($('#intOverTime').val());
+			var distince=end.getTime()-start.getTime();
+			var intDays=distince/(24*60*60*1000);
+			if(intDays<=0){
+				alert("起始时间要早于截止时间");return;
+			}
+			intDays++;
+			window.location="order.php?intDays="+intDays+"&end="+$('#intOverTime').val();
+		});
+	});
+	function goLastWeek(){
+		
+		var d = new Date();
+		var day = d.getDay();
+		if(day==0){
+			day=7;
+		}
+		var time=d.getTime()-(day*24*60*60*1000);
+		var intOverTime = new Date();
+		intOverTime.setTime(time);
+		var str=intOverTime.getYear()+"-"+(intOverTime.getMonth()+1)+"-"+intOverTime.getDate();
+		window.location="order.php?intDays=7&end="+str;
+	}
+	function goLastMonth(){
+		var d = new Date();	
+		var intOverTime = new Date(d.getYear(),d.getMonth(),0);
+		var str=intOverTime.getYear()+"-"+(intOverTime.getMonth()+1)+"-"+intOverTime.getDate();
+		window.location="order.php?intDays="+intOverTime.getDate()+"&end="+str;
+	}
+	var dateformat='yyyy-mm-dd';
+</script>
+<div id="biweb">
+<table id="dataTable" border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    	<th >网站下单量</th>
+    	<th ><?{$intBeginTime|date_format:'%Y-%m-%d'}?>&nbsp;至&nbsp;<?{$intOverTime|date_format:'%Y-%m-%d'}?>&nbsp;下单量分析
+    		<span style="float:right">
+	    		<a href="javascript:void(0);" onclick="goLastWeek();">上周</a>&nbsp;&nbsp;&nbsp;
+	    		<a  href="javascript:void(0);" onclick="goLastMonth();">上个月</a>
+	    			从<input type="text"  size="10" id="intBeginTime" value="<?{$intBeginTime|date_format:'%Y-%m-%d'}?>">
+	    			<input type="button" value="" onclick='popUpCalendar(this, document.getElementById("intBeginTime"), "yyyy-mm-dd",0,-280,false)' style="background-image:url(../../plug-in/PopCalender/img/Button.gif);width:25px;height:17px;border:0px;padding:0px;">
+						至<input type="text"  size="10" id="intOverTime" value="<?{$intOverTime|date_format:'%Y-%m-%d'}?>">
+						<input type="button" value="" onclick='popUpCalendar(this, document.getElementById("intOverTime"), "yyyy-mm-dd",-1,-280,false)' style="background-image:url(../../plug-in/PopCalender/img/Button.gif);width:25px;height:17px;border:0px;padding:0px;">
+						<input type="button" id="btn_count" value="查询">
+				</span>
+    	</th>
+    </tr> 
+   	<tr>
+   		<td valign="top">
+   			<table border="0" cellspacing="0" cellpadding="0"  class="biweb">
+   				<tr>
+						<td width=90 align=center>日期</td>
+						<td width=90 align=center>下单量（单）</td>
+					</tr>
+					<?{foreach from=$arrData key=key item=data}?>
+						<tr>
+							<td align=center><?{$key}?></td>
+							<td align=center><?{$data}?></td>
+						</tr>
+					<?{/foreach}?>
+   			</table>
+   		</td>
+   		<td rowspan="<?{$intDays+1}?>" align="center" valign="top" >
+   			<div  id="chart"></div>
+   		</td>
+   	</tr>
+</table>
+</div>
+

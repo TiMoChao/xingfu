@@ -1,0 +1,47 @@
+
+<link rel="stylesheet" href="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/css/style.css"/>
+
+<div class="n-back">
+    <div class="content_box clb">
+        <div><img style="width:100%;" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/news-img.jpg" /></div>
+        <div class="n-c-b clb">
+            <div class="n-c-lb">
+                <span class="n-c-ts"></span>
+                <ul class="n-c-cul">
+                    <li class="culli"><a href="<?{url url = '/xingfu_news/'}?>">
+                        <p>Xing_Fu News<br/>兴甫新闻</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_Notice/'}?>">
+                        <p>Xin Fu Notice<br/>网站公告</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_admissions/'}?>">
+                        <p>Xin Fu Admissions<br/>招生简介</p>
+                    </a></li>
+                    <li class="down-back culli"><a href="<?{url url = '/xingfu_Introduction/'}?>">
+                        <p>Introduce<br/>兴甫简介</p>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="n-c-rb">
+                <div style="width:100%; background:#FF5953; height:30px;"></div>
+                <div class="n-c-rt"><span class="n-c-rtib"><p class="rtib-po">兴甫简介</p></span><span class="n-c-rtwzb">您现在所在的位置： <a href="<?{url url='/'}?>">首页</a> > <a href='<?{url url="/xingfu_news/"}?>'>新闻中心</a> > <a href='#'>兴甫简介</a></span></div>
+                <div class="n-c-rib">
+                    <div class="n-c-riul" style="display:block;">
+
+
+                        <?{foreach from=$arrInfoList item=arrNews}?>
+                        <p class="f_center" style="padding: 0px; margin-top: 26px; margin-bottom: 26px; font-size: 14px; text-align: center; color: rgb(37, 37, 37); font-family: 宋体, sans-serif; line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255);">
+                            <img src="<?{if empty($arrNews.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'xingfu_Introduction'}?>/s/<?{$arrNews.thumbnail}?><?{/if}?>" title="<?{$arrNews.title|htmlspecialchars}?>" width="191" height="191"/>
+                        </p>
+                        <p style="padding: 0px; margin-top: 26px; margin-bottom: 26px; font-size: 14px; text-indent: 2em; color: rgb(37, 37, 37); font-family: 宋体, sans-serif; line-height: 24px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255);">
+                            <?{$arrNews.intro}?>
+                        </p>
+                        <?{/foreach}?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

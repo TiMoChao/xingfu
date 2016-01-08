@@ -1,0 +1,66 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <!--主体左侧开始-->
+    <div class="main">
+        <div class="main_left"> 
+			<div class="common_bt"> 
+				<span class="title">公司介绍</span> 	
+				</div>
+			<div class="common_list f14">
+				<ul>
+					<li><a href="<?{url url = '/archives/detail.php?name=about'}?>">公司介绍</a></li>
+					<li><a href="<?{url url='archives/detail.php?name=job'}?>">人才招聘</a></li>
+					<li><a href="<?{url url = '/archives/detail.php?name=contact'}?>">联系我们</a></li>
+					<li><a href="<?{url url='/message/'}?>">留言反馈</a></li>
+				</ul>
+			</div>
+        </div>
+        <!--主体左侧结束--> 
+        <!--主体右侧开始-->
+        <div class="main_right"> 
+            <div class="common_bt">
+				<span class="title">
+					修改资料
+				</span>
+				<span class="path">当前位置：<a href="<?{url url = '/index.php' cache = '1'}?>">首页</a> >> 用户登录</span>
+			</div>
+
+			<div class="common_content plr20">			
+				<div id="regtext">	
+					<div id="register_form">
+					<form method="post" action="">
+						<div class="ipt_info">
+							<span>电子邮箱：</span><input class="text r3" type="text" value="<?{$smarty.session.email}?>" readonly=readonly name="email" maxlength="18">
+						</div>
+						<div class="ipt_info pt20">
+							<span>登陆账号：</span><input class="text r3" type="text" value="<?{$smarty.session.user_name}?>" readonly=readonly name="user_name" maxlength="36">
+						</div>	
+						<div class="ipt_info pt20">
+							<span>真实姓名：</span><input class="text r3" type="text" value="<?{$smarty.session.real_name}?>" name="real_name" maxlength="36">
+						</div>
+						<div class="ipt_info pt20">
+							<span>公司名称：</span><input class="text r3" type="text" value="<?{$smarty.session.corp_name}?>" name="corp_name" maxlength="36">
+						</div>
+						<div class="ipt_info pt20">
+							<span>联系电话：</span><input class="text r3" type="text" value="<?{$smarty.session.mobile}?>" name="mobile" maxlength="36">
+						</div>
+						<div class="ipt_info pt20">
+							<span>联系地址：</span><input class="text r3" type="text" value="<?{$smarty.session.contact_address}?>" name="contact_address" maxlength="36">
+						</div>
+						<div class="ipt_info pt20">
+							<span>联系邮编：</span><input class="text r3" type="text" value="<?{$smarty.session.postcode}?>" name="postcode" maxlength="36">
+						</div>			
+						<div class="ipt_sub"><input class="sub" type="submit" value="确认修改"></div>
+					</form>						
+					</div>
+					<div class="clr"></div>
+				</div>
+			</div>
+        </div>
+        <!--主体右侧结束-->
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束-->

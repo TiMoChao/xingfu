@@ -1,0 +1,46 @@
+<script language="javascript" src="../../plug-in/PopCalender/popcalendar.js"></script>
+<script type="text/javascript">var dateformat='yyyy-mm-dd';</script>
+<div id="biweb">
+<table id="dataTable" border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    	<th >广告渠道统计
+    	<th >
+		<form act="?" method="post">
+    		<span style="float:right">
+				开始时间:<input type="text" name="start"  size="10" id="intStartTime" value="<?{$start|date_format:'%Y-%m-%d'}?>">
+				<input type="button" value="" onclick='popUpCalendar(this, document.getElementById("intStartTime"), "yyyy-mm-dd",-1,-280,false)' style="background-image:url(../../plug-in/PopCalender/img/Button.gif);width:25px;height:17px;border:0px;padding:0px;">
+				结束时间:<input type="text" name="end"  size="10" id="intOverTime" value="<?{$end|date_format:'%Y-%m-%d'}?>">
+				<input type="button" value="" onclick='popUpCalendar(this, document.getElementById("intOverTime"), "yyyy-mm-dd",-1,-280,false)' style="background-image:url(../../plug-in/PopCalender/img/Button.gif);width:25px;height:17px;border:0px;padding:0px;">
+				<input type="submit" id="btn_count" value="查询">
+			</span>
+		</form>
+    	</th>
+    </tr> 
+   	<tr>
+   		<td valign="top">
+   			<table border="0" cellspacing="0" cellpadding="0"  class="biweb">
+   				<tr>
+						<td width=90 align=center>来访域名</td>
+						<td width=90 align=center>成交数量</td>
+					</tr>
+					<?{if !empty($arrData)}?>
+						<?{foreach from=$arrData key=key item=data}?>
+							<tr>
+								<td align=center><?{$data.host}?></td>
+								<td align=center><?{$data.sum}?></td>
+							</tr>
+						<?{/foreach}?>
+					<?{else}?>
+						<tr>
+							<td align=center colspan=2><font color="red">无记录......</font></td>
+						</tr>
+					<?{/if}?>
+   			</table>
+   		</td>
+   		<td rowspan="<?{$intDays+1}?>" align="center" valign="top" >
+   			
+   		</td>
+   	</tr>
+</table>
+</div>
+

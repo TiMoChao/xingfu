@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>预约报名</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="css/style.css" type="text/css"></link>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  
+  <body>
+  <div class="home-box1 clb">
+	  <div class="header-box clb"></div><!-- nav -->
+	  <div class="order-top-img">
+	  	<img src="images/top-7.jpg" />
+	  	<div class="order-top-btn"><a href="javascript:;">立即预约</a></div>
+	  </div>
+	  <div class="or-wsjx">
+	  	  <img src="images/yy-1.jpg" />
+	  </div>
+	  <div class="or-ws1">
+	    <div class="or-ws2">
+	      
+	    </div>
+	  </div>
+	  <div class="baiduMap clb">
+	    <div class="baiduMapnb clb">
+		  	<div class="baiduMap-nei">
+			  	<div class="yy-bm">
+			  		<div class="title-left"><span>学院风采</span></div>
+			  		<ul class="baoming-info">
+			  			<li><input type="text" value="姓名" /></li>
+			  			<li><input type="text" value="年龄" /></li>
+			  			<li><select>
+				  			<option value="1">性别</option>
+				  			<option value="2">男</option>
+				  			<option value="3">女</option>
+			  			</select></li>
+			  			<li><select>
+				  			<option value="1">报名类型</option>
+				  			<option value="3">5-12岁</option>
+				  			<option value="4">12岁以上</option>
+			  			</select></li>
+			  			<li><input type="text" value="家庭住址" /></li>
+			  			<li><input type="text" value="联系电话" /></li>
+			  			<li class="clb"><button>立即预约</button></li>
+			  		</ul>
+			  	</div>
+		  	</div>
+		  	<div id="l-map"></div>
+	  	</div>
+	  </div>
+  	  <div class="footer"></div>
+  </div>
+	<script type="text/javascript">
+		// 百度地图API功能
+		var map = new BMap.Map("l-map");            // 创建Map实例
+		map.centerAndZoom(new BMap.Point(106.729821,26.585491), 11);
+		var local = new BMap.LocalSearch(map, {
+			renderOptions: {map: map, panel: "r-result"}
+		});
+		local.search("兴甫");
+	</script>
+  <script>
+  
+  	$(".header-box").load("header.html");
+  	$(".footer").load("footer.html");
+  </script>
+  </body>
+</html>

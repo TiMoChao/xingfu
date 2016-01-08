@@ -1,0 +1,38 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <!--主体左侧开始-->
+    <div class="main">
+        <div class="main_left"> 
+			<?{include file="download/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束--> 
+        <!--主体右侧开始-->
+        <div class="main_right">
+            <div class="common_bt">
+				<span class="title">下载中心</span><span class="path">当前位置：<a href="<?{url url = '/'}?>">首页</a> >> <a href="<?{url url = '/download/'}?>">下载中心</a><?{if !empty($strTypeTitle)}?> >> <?{$strTypeTitle}?><?{/if}?></span>
+			</div>
+            <div class="common_content">
+                <div class="news_list">
+                    <ul>
+						<?{foreach from=$arrInfoList item=arrData}?>
+						<li>
+							<a href="<?{if $arrData.downurl!=''}?><?{$arrData.downurl}?><?{else}?><?{url url="/download/download.php?id=`$arrData.id`" cache='0'}?><?{/if}?>">
+								<span class="red">【点击下载】</span>
+							</a>
+							<a href="<?{url url="/download/detail.php?id=`$arrData.id`"}?>" title="<?{$arrData.summary|htmlspecialchars}?>">
+							<?{$arrData.title|csubstr:0:24|bedeck:$arrData.bedeck}?>
+							</a>
+						</li>
+						<?{/foreach}?>					
+                    </ul>
+                </div>
+            </div>
+            <div class="showpage"><?{$strPage}?></div>
+        </div>
+        <!--主体右侧结束-->
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束--> 

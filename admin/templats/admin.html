@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="zh" xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>BIWEB系统管理首页  - powered by BIWEB</title>
+<link href='<?{$arrGWeb.WEB_ROOT_pre}?><?{$smarty.const.__WEBADMIN_ROOT}?>/css/biweb.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?><?{$smarty.const.__WEBADMIN_ROOT}?>/js/jquery.min.js'></script>
+<script type='text/javascript' src='<?{$arrGWeb.WEB_ROOT_pre}?><?{$smarty.const.__WEBADMIN_ROOT}?>/js/biweb.js'></script>
+</head>
+<body ondblclick="Submit_onDoubleclick()">
+<div class='bodytitle' style="height:33px;">
+    <div class='bodytitleleft'></div>
+    <div class='bodytitletxt'><?{$strNav|default:"`$arrGWeb.module_name`管理"}?></div>
+    <div class='bodytitleright'></div>
+    <div class='iicon'>
+        <a href='javascript:window.location.reload();' class='img1'>　　 刷新</a>
+        <a href='javascript:history.back();' class='img2'>　　 后退</a>
+        <a href='javascript:history.go(1);' class='img3'>　　 前进</a>
+    </div>
+	<div class="clr"></div>
+</div>
+<?{include file = $MAIN}?>
+<div class="copyright"><?{$arrGWeb.Powered}?> <?{$arrGWeb.Copyright}?></div>
+</body>
+</html>

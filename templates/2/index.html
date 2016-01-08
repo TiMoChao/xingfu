@@ -1,0 +1,113 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <!--主体左侧开始-->
+    <div class="main">
+        <div class="main_left"> 
+            <!--新闻中心开始-->
+			<?{include file="news/block/top_index.html"}?> 
+            <!--新闻中心结束-->  
+			
+            <!--产品开始-->
+			<?{include file="product/block/_menu.html"}?>
+            <!--产品结束--> 
+            
+		<!--联系我们-->
+			<div class="common_bt"> 
+				<span class="title">联系我们</span> 		
+				<span class="more">
+					<a href="<?{url url = '/archives/detail.php?name=contact'}?>"></a>
+				</span> 
+			</div>
+            <div class="common_list">
+                <?{$arrGWeb.contact|nl2br}?>
+            </div>
+			<!--联系我们-->
+		</div>
+        <!--主体左侧结束--> 
+        <!--主体右侧开始-->
+        <div class="main_right"> 
+		<!--公司介绍-->
+			<div class="common_bt"> 
+				<span class="title">公司介绍</span> 
+				<span class="more">
+					<a href="<?{url url = '/archives/detail.php?name=company'}?>"></a>
+				</span>				
+			</div>
+            <div class="sys_list">
+				<div class="index_aboutw">
+					<img src="<?{$arrGWeb.templats_root}?>/images/img_commany.jpg">
+				</div>
+				<div class="index_about">
+					<?{foreach from=$arr|api:'archives':'getInfoList':"where type_title_english = 'company'^^0^1^*^^false" item=arrArchives}?>
+						<?{$arrArchives.intro|strip_tags|csubstr:0:168:"....."}?>
+					<?{/foreach}?>
+				</div>
+            </div>
+			<!--公司介绍-->
+
+			<div class="clr"></div>
+            <!--产品展示开始-->
+            <div class="common_bt"> 
+				<span class="title">产品展示</span> 
+				<span class="more">
+					<a href="<?{url url='/product/'}?>"></a>
+				</span> 
+			</div>
+			<div class="case_list">
+                <ul>
+					<?{foreach from=$arr|api:'product':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^8^id,title,thumbnail,bedeck^^0" item=arrdata}?>
+                    <li>
+                        <div class="img_show vpic">
+							<span>
+							<a hidefocus="true" href="<?{url url = "/product/detail.php?id=`$arrdata.id`" cache="`$arrGWeb.URL_static`"}?>">
+								<img class="img" src="<?{if empty($arrdata.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'product'}?>s/<?{$arrdata.thumbnail}?><?{/if}?>" title="<?{$arrdata.title|htmlspecialchars}?> <?{$arrdata.brand}?> <?{$arrdata.model}?>" /></span>
+							</a>
+						</div>
+                        <div class="img_txt">
+							<a href="<?{url url = "/product/detail.php?id=`$arrdata.id`" cache="`$arrGWeb.URL_static`"}?>"  title="<?{$arrdata.title|htmlspecialchars}?> <?{$arrdata.brand}?> <?{$arrdata.model}?>" >
+								<?{$arrdata.title|csubstr:0:9|bedeck:$arrdata.bedeck}?>
+							</a>
+						</div>
+                    </li>
+					<?{/foreach}?>
+                </ul>
+            </div>
+            <!--产品展示结束-->
+            <div class="clr"></div> 
+            <!--成功案例开始-->
+            <div class="common_bt"> 
+				<span class="title">成功案例</span> 
+				<span class="more">
+					<a href="<?{url url='/cases/'}?>"></a>
+				</span> 
+			</div>
+            <div class="case_list">
+                <ul>
+					<?{foreach from=$arr|api:'cases':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^8^id,title,thumbnail,bedeck^^0" item=arrdata}?>
+                    <li>
+                        <div class="img_show vpic">							
+							<span>
+							<a hidefocus="true" href="<?{url url = "/cases/detail.php?id=`$arrdata.id`" cache="`$arrGWeb.URL_static`"}?>" title="<?{$arrdata.summary}?>" class="lista">
+								<img class="img" src="<?{if empty($arrdata.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'cases'}?>s/<?{$arrdata.thumbnail}?><?{/if}?>" title="<?{$arrdata.title|htmlspecialchars}?>" />
+							</a></span>
+						</div>
+                        <div class="img_txt">
+							<a href="<?{url url = "/cases/detail.php?id=`$arrdata.id`" cache="`$arrGWeb.URL_static`"}?>"  title="<?{$arrdata.title|htmlspecialchars}?>" >
+								<?{$arrdata.title|csubstr:0:9|bedeck:$arrdata.bedeck}?>
+							</a>
+						</div>
+                    </li>
+					<?{/foreach}?>
+                </ul>
+            </div>
+            <div class="clr"></div>
+            <!--成功案例结束-->      
+        </div>
+        <!--主体右侧结束-->
+		
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束-->

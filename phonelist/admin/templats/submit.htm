@@ -1,0 +1,115 @@
+<script language='javascript' src='../../plug-in/splidword/prototype.js'></script>
+<script language="javascript" src="../../plug-in/splidword/splidword.js"></script>
+<script language="javascript" src="../../plug-in/PopCalender/popcalendar.js"></script> 
+<script Language="JavaScript">dateformat='yyyy-mm-dd'</script>
+<div class="ccc2">
+	<ul>
+		<li>
+			<span class="right"><input type="button" onClick="javascript:history.back();" value="返回手机管理列表" class="gray mini"></span>
+			当前位置：<?{$arrGWeb.module_name}?>
+	 </li>
+	</ul>
+</div>
+<form name="form1" id="form1" action="?page=<?{$smarty.get.page}?>" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table class="biweb" align="center" cellspacing="0">
+	<tr class="firstr">
+		<td colspan="3">编辑<?{$arrGWeb.module_name}?>：</td> 
+	</tr>	
+	<tr>
+    <td width="15%">所属分类：</td>
+    <td><select size="1" name="type_id">
+		<option value="0">请选择分类</option>
+		<?{foreach from=$arrMType key=key item=type}?>
+		<?{if is_array($type) && array_key_exists('type_title',$type)}?>
+		<option value="<?{$type.type_id}?>|<?{$type.type_roue_id}?>" <?{if !empty($type.type_link)}?>disabled='disabled'<?{/if}?> <?{if $type.type_id == $arrData.type_id}?>selected=selected<?{/if}?>><?{$type.type_title}?></option>
+		<?{else}?>
+		<option value="<?{$key}?>" <?{if $key == $arrData.type_id}?>selected=selected<?{/if}?>><?{$type}?></option>    	
+		<?{/if}?>
+		<?{/foreach}?>
+    	</select>
+		</td>
+    <td><font color="red">*</font><span class=gray>分类</span></td></tr>	
+	<tr>
+    <td>手机：</td>
+    <td><input maxLength=210 size=55 name=title value="<?{$arrData.title}?>"></td>
+    <td><span class=gray>用户手机</span></td></tr>
+	<!--<tr>
+    <td>域：</td>
+    <td><input maxLength=210 size=55 name=mailbox_host value="<?{$arrData.mailbox_host}?>"></td>
+    <td><span class=gray>手机域</span></td></tr>
+  <tr>
+    <td>标签：</td>
+    <td><input maxLength=50 size=50 id=tag name=tag value="<?{$arrData.tag}?>"></td>
+    <td><span class=gray>文章关键字，可为多个，用空格间隔，用于相关文章关联</span></td>
+  </tr>
+  <tr>
+    <td>产品A：</td>
+    <td>
+	<label><input type=radio name=product_a value="1" <?{if $arrData.product_a eq 1}?>checked<?{/if}?>>订阅</label>
+	<label><input type=radio name=product_a value="0" <?{if $arrData.product_a eq 0}?>checked<?{/if}?>>未订阅</label>
+	</td>
+    <td><span class=gray>成功减重秘诀（也瘦的最流行的减重方法、减重建议和小技巧等） </span></td>
+  </tr> 
+    <tr>
+    <td>产品B：</td>
+    <td>
+	<label><input type=radio name=product_b value="1" <?{if $arrData.product_b eq 1}?>checked<?{/if}?>>订阅</label>
+	<label><input type=radio name=product_b value="0" <?{if $arrData.product_b eq 0}?>checked<?{/if}?>>未订阅</label>
+	</td>
+    <td><span class=gray>最新的减重话题与减重牛人（也瘦会员的最新减重成果与最热门的减重话题）  </span></td>
+  </tr> 
+    <tr>
+    <td>产品C：</td>
+    <td>
+	<label><input type=radio name=product_c value="1" <?{if $arrData.product_c eq 1}?>checked<?{/if}?>>订阅</label>
+	<label><input type=radio name=product_c value="0" <?{if $arrData.product_c eq 0}?>checked<?{/if}?>>未订阅</label>
+	</td>
+    <td><span class=gray>季节促销信息（也瘦产品和服务的促销讯息） </span></td>
+  </tr> 
+  <tr>
+    <td>产品D：</td>
+    <td>
+	<label><input type=radio name=product_d value="1" <?{if $arrData.product_d eq 1}?>checked<?{/if}?>>订阅</label>
+	<label><input type=radio name=product_d value="0" <?{if $arrData.product_d eq 0}?>checked<?{/if}?>>未订阅</label>
+	</td>
+    <td><span class=gray>特别信息（关于也瘦产品、服务、活动和手机的定期更新消息） </span></td>
+  </tr>
+  <tr>
+    <td>产品E：</td>
+    <td>
+	<label><input type=radio name=product_e value="1" <?{if $arrData.product_e eq 1}?>checked<?{/if}?>>订阅</label>
+	<label><input type=radio name=product_e value="0" <?{if $arrData.product_e eq 0}?>checked<?{/if}?>>未订阅</label>
+	</td>
+    <td><span class=gray>产品E </span></td>
+  </tr>
+  <tr>
+    <td>产品F：</td>
+    <td>
+	<label><input type=radio name=product_f value="1" <?{if $arrData.product_f eq 1}?>checked<?{/if}?>>订阅</label>
+	<label><input type=radio name=product_f value="0" <?{if $arrData.product_f eq 0}?>checked<?{/if}?>>未订阅</label>
+	</td>
+    <td><span class=gray>产品F </span></td>
+  </tr>-->
+  <tr>
+    <td width="15%">手机状态：</td>
+    <td><select size="1" name="pass">
+		<?{foreach from=$arrPhoneType key=key item=type}?>
+		<?{if is_array($type) && array_key_exists('type_title',$type)}?>
+		<option value="<?{$type.type_id}?>|<?{$type.type_roue_id}?>" <?{if !empty($type.type_link)}?>disabled='disabled'<?{/if}?> <?{if $type.type_id == $arrData.type_id}?>selected=selected<?{/if}?>><?{$type.type_title}?></option>
+		<?{else}?>
+		<option value="<?{$key}?>" <?{if $key == $arrData.pass}?>selected=selected<?{/if}?>><?{$type}?></option>    	
+		<?{/if}?>
+		<?{/foreach}?>
+    	</select></td>
+    <td><font color="red"></font><span class=gray>手机状态</span></td></tr>	
+  </tr>
+	<tr>
+      <td>&nbsp;</td>
+      <td align=middle colspan=3><input type=submit id="okgo" name="okgo" value=确　定> <input type=reset value="重 置"></td>
+  </tr>
+  <input type=hidden name=id value="<?{$arrData.id}?>">
+  <input type=hidden name=user_id value="<?{$arrData.user_id}?>">
+</table>
+</div>
+</form>

@@ -1,0 +1,509 @@
+<div class="ccc2">
+	<ul>
+		<li><span class="right"><input type="button" onClick="location.href='javascript:history.back()'" value="返回采集器列表" class="gray mini"/></span>
+数据采集器功能可根据您设定进行他站信息采集，可快速填充本站数据；
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+
+    <tr>
+		<td width='15%'>采集器名称：</td>
+		<td align='left'>
+		<input value="<?{$smarty.get.id}?>" name="title" size="50"/>设置采集器名称
+		</td>
+	</tr>
+    <tr>
+		<td>采集目标列表页网址：</td>
+		<td align='left'>
+		<input value="<?{$arrData.list_url}?>" name="list_url" size="50"/> 目标列表页网址
+		</td>
+	</tr>
+	<tr>
+		<td>采集目标当前页码：</td>
+		<td align='left'>
+		<input value="<?{$arrData.list_pageid}?>" name="list_pageid" size="50"/> 目标列表页页码
+		</td>
+	</tr>
+	<tr>
+		<td>采集目标列表页编码：</td>
+		<td align='left'>
+		<input value="<?{$arrData.list_charset}?>" name="list_charset" size="50"/>页面编码不是utf-8时，必须填写，否则会有乱码
+		</td>
+	</tr>
+	<tr>
+		<td>列表页前部：</td>
+		<td align='left'>
+		<table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_lt key=key item=item name=delimiter_lt}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_lt.index+1}?>：</span><input size=50 type=text value="<?{$item|escape:'html'}?>" name="delimiter_lt[<?{$smarty.foreach.delimiter_lt.index}?>]" />  <input type=button onclick='return delLt(this,<?{$smarty.foreach.delimiter_lt.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_lt.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_lt[]" /> <input type=button onclick='return delLt(this,<?{$smarty.foreach.delimiter_lt.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addLt()">添加一个列表页前部截取位</a>&nbsp;&nbsp;(<font color=red>尽可能贴近采集内容，并具有特殊标识的。</font> )
+		<input type="hidden" name="ltCnt" value="<?{$smarty.foreach.delimiter_lt.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>列表页尾部：</td>
+		<td align='left'>
+		<table id="tb2" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_lb key=key item=item name=delimiter_lb}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_lb.index+1}?>：</span><input size=50 type=text value="<?{$item|escape:'html'}?>" name="delimiter_lb[<?{$smarty.foreach.delimiter_lb.index}?>]" />  <input type=button onclick='return delLt(this,<?{$smarty.foreach.delimiter_lb.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_lb.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_lb[]" /> <input type=button onclick='return delLb(this,<?{$smarty.foreach.delimiter_lb.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addLb()">添加一个列表页尾部截取位</a>&nbsp;&nbsp;(<font color=red>尽可能贴近采集内容，并具有特殊标识的。</font> )
+		<input type="hidden" name="lbCnt" value="<?{$smarty.foreach.delimiter_lb.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>列表页链接屏蔽：</td>
+		<td align='left'>
+		<table id="tb7" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_ls key=key item=item name=delimiter_ls}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>屏蔽码<?{$smarty.foreach.delimiter_ls.index+1}?>：</span><input size=50 type=text value="<?{$item|escape:'html'}?>" name="delimiter_ls[<?{$smarty.foreach.delimiter_ls.index}?>]" />  <input type=button onclick='return delLs(this,<?{$smarty.foreach.delimiter_ls.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>屏蔽码<?{$smarty.foreach.delimiter_ls.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_ls[]" /> <input type=button onclick='return delLs(this,<?{$smarty.foreach.delimiter_ls.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addLs()">列表页链接屏蔽码</a>&nbsp;&nbsp;(<font color=red>包含屏蔽码的链接将不采集，请找出需要屏蔽链接的特殊代码</font> )
+		<input type="hidden" name="lsCnt" value="<?{$smarty.foreach.delimiter_ls.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>链接拼接域名：</td>
+		<td align='left'>
+		<input type=text value="<?{$arrData.list_host}?>" name="list_host" size="50">链接拼接域名
+		</td>
+	</tr>
+	<tr>
+		<td>列表页链接是否拆分：</td>
+		<td align='left'>
+		<label><input id=wholelink onclick="ListUrl();"; type="checkbox" <?{if $arrData.wholelink}?>checked<?{/if}?> 
+      value=1 name=wholelink></label>列表页上的详细页链接不完整，需要拆分？
+		</td>
+	</tr>	
+	<tr id=list_url <?{if empty($arrData.wholelink)}?>style='display:none'<?{/if}?>>
+		<td>详细页链接：</td>
+		<td align='left'>
+		<table id="tb3" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_lm key=key item=item name=delimiter_lm}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>分隔符<?{$smarty.foreach.delimiter_lm.index+1}?>：</span><input size=50 type=text value="<?{$item.0|escape:'html'}?>" name="delimiter_lm[<?{$smarty.foreach.delimiter_lm.index}?>][0]" />  <input type=button onclick='return delLt(this,<?{$smarty.foreach.delimiter_lm.index}?>)' value='删除'><br />
+			<span>链接取第几位<?{$smarty.foreach.delimiter_lm.index+1}?>：</span><input size=20 type=text value="<?{$item.1}?>" name="delimiter_lm[<?{$smarty.foreach.delimiter_lm.index}?>][1]" /> 提醒数组是由0开始的<br />
+			<span>链接替换<?{$smarty.foreach.delimiter_lm.index+1}?>：</span>把<input size=50 type=text value="<?{$item.2|escape:'html'}?>" name="delimiter_lm[<?{$smarty.foreach.delimiter_lm.index}?>][2]" /> 换成<input size=50 type=text value="<?{$item.3|escape:'html'}?>" name="delimiter_lm[<?{$smarty.foreach.delimiter_lm.index}?>][3]" />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>分隔符<?{$smarty.foreach.delimiter_lm.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_lm[][0]" /> <input type=button onclick='return delLm(this,<?{$smarty.foreach.delimiter_lm.total+1}?>)' value='删除'><br/>
+			<span>链接取第几位<?{$smarty.foreach.delimiter_lm.total+1}?>：</span><input size=20 type=text value="" name="delimiter_lm[][1]" />提醒数组是由0开始的<br/>
+			<span>替换<?{$smarty.foreach.delimiter_lm.total+1}?>：</span>把<input size=50 type=text value="" name="delimiter_lm[][2]" /> 换成<input size=50 type=text value="" name="delimiter_lm[][3]" />
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addLm()">添加一个列表页尾部分隔符</a>&nbsp;&nbsp;(<font color=red>尽可能贴近采集内容，并具有特殊标识的。</font> )
+		<input type="hidden" name="lmCnt" value="<?{$smarty.foreach.delimiter_lm.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>详细页屏蔽：</td>
+		<td align='left'>
+		<table id="tb6" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_ds key=key item=item name=delimiter_ds}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>屏蔽码<?{$smarty.foreach.delimiter_ds.index+1}?>：</span><input size=50 type=text value="<?{$item|escape:'html'}?>" name="delimiter_ds[<?{$smarty.foreach.delimiter_ds.index}?>]" />  <input type=button onclick='return delDs(this,<?{$smarty.foreach.delimiter_ds.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>屏蔽码<?{$smarty.foreach.delimiter_ds.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_ds[]" /> <input type=button onclick='return delDs(this,<?{$smarty.foreach.delimiter_ds.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addDs()">添加一个详细页屏蔽码</a>&nbsp;&nbsp;(<font color=red>有屏蔽码的页面将不采集，请找出需要屏蔽页面的特殊代码</font> )
+		<input type="hidden" name="dsCnt" value="<?{$smarty.foreach.delimiter_ds.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>详细页前部：</td>
+		<td align='left'>
+		<table id="tb4" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_dt key=key item=item name=delimiter_dt}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_dt.index+1}?>：</span><input size=50 type=text value="<?{$item|escape:'html'}?>" name="delimiter_dt[<?{$smarty.foreach.delimiter_dt.index}?>]" />  <input type=button onclick='return delDt(this,<?{$smarty.foreach.delimiter_dt.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_dt.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_dt[]" /> <input type=button onclick='return delLt(this,<?{$smarty.foreach.delimiter_dt.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addDt()">添加一个详细页前部截取位</a>&nbsp;&nbsp;(<font color=red>将前部多余代码清除，有利于字段抓取。</font> )
+		<input type="hidden" name="dtCnt" value="<?{$smarty.foreach.delimiter_dt.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>详细页尾部：</td>
+		<td align='left'>
+		<table id="tb5" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_db key=key item=item name=delimiter_db}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_db.index+1}?>：</span><input size=50 type=text value="<?{$item|escape:'html'}?>" name="delimiter_db[<?{$smarty.foreach.delimiter_db.index}?>]" />  <input type=button onclick='return delDb(this,<?{$smarty.foreach.delimiter_db.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>截取位<?{$smarty.foreach.delimiter_db.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_db[]" /> <input type=button onclick='return delDb(this,<?{$smarty.foreach.delimiter_db.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addDb()">添加一个详细页尾部截取位</a>&nbsp;&nbsp;(<font color=red>将尾部多余代码清除，有利于字段抓取。</font> )
+		<input type="hidden" name="dbCnt" value="<?{$smarty.foreach.delimiter_db.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>详细页字段：</td>
+		<td align='left'>
+		<table id="tb8" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_dw key=key item=item name=delimiter_dw}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>入库字段名<?{$smarty.foreach.delimiter_dw.index+1}?>：</span><input size=50 type=text value="<?{$item.0|escape:'html'}?>" name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][0]" />  <input type=button onclick='return delDw(this,<?{$smarty.foreach.delimiter_dw.index}?>)' value='删除'><br />
+			<span>前部截取位<?{$smarty.foreach.delimiter_dw.index+1}?>：</span><input size=50 type=text value="<?{$item.1|escape:'html'}?>"  name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][1]" /><br />
+			<span>尾部截取位<?{$smarty.foreach.delimiter_dw.index+1}?>：</span><input size=50 type=text value="<?{$item.2|escape:'html'}?>"  name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][2]" /><br />
+			<span>内容替换<?{$smarty.foreach.delimiter_dw.index+1}?>：</span>把<input size=50 type=text value="<?{$item.3|escape:'html'}?>" name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][3]" /> 换成<input size=50 type=text value="<?{$item.4|escape:'html'}?>" name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][4]" /><br />
+			<label><input type="radio" <?{if $item.5==0}?>checked<?{/if}?> 
+      value=0 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][5]>原码（图远程）<?{$smarty.foreach.delimiter_dw.index+1}?></label> <label><input type="radio" <?{if $item.5==1}?>checked<?{/if}?> 
+      value=1 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][5]>纯文字(无格式）<?{$smarty.foreach.delimiter_dw.index+1}?></label> <label><input id=imglink1  type="radio" <?{if $item.5==2}?>checked<?{/if}?> 
+      value=2 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][5]>去图（留格式）<?{$smarty.foreach.delimiter_dw.index+1}?></label> <label><input type="radio" <?{if $item.5==3}?>checked<?{/if}?> 
+      value=3 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][5]>图片下载（留格式不入库）<?{$smarty.foreach.delimiter_dw.index+1}?></label>
+	  <label><input type="radio" <?{if $item.5==4}?>checked<?{/if}?> 
+      value=4 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.index}?>][5]>图片下载（无格式入库）<?{$smarty.foreach.delimiter_dw.index+1}?></label>
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>入库字段名<?{$smarty.foreach.delimiter_dw.total+1}?>：</span><input size=50 type=text value="" name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][0]" />  <input type=button onclick='return delDw(this,<?{$smarty.foreach.delimiter_dw.total+1}?>)' value='删除'><br />
+			<span>前部截取位<?{$smarty.foreach.delimiter_dw.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][1]" /><br />
+			<span>尾部截取位<?{$smarty.foreach.delimiter_dw.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][2]" /><br />
+			<span>内容替换<?{$smarty.foreach.delimiter_dw.total+1}?>：</span>把<input size=50 type=text value="" name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][3]" /> 换成<input size=50 type=text value="" name="delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][4]" /><br />
+			<label><input type="radio" checked value=0 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][5]>原码（图远程）<?{$smarty.foreach.delimiter_dw.total+1}?></label> 
+			<label><input type="radio" value=1 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][5]>纯文字(无l格式）<?{$smarty.foreach.delimiter_dw.total+1}?></label> 
+			<label><input id=imglink1  type="radio" value=2 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][5]>去图（留格式）<?{$smarty.foreach.delimiter_dw.total+1}?></label> 
+			<label><input type="radio" value=3 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][5]>图片下载（留格式不入库）<?{$smarty.foreach.delimiter_dw.total+1}?></label>
+			<label><input type="radio" value=4 name=delimiter_dw[<?{$smarty.foreach.delimiter_dw.total+1}?>][5]>图片下载（无格式入库）<?{$smarty.foreach.delimiter_dw.total+1}?></label>
+			</td>
+			</tr>
+			</table>
+			<a href="#" onclick="return addDw()">添加一个详细页字段截取位</a>&nbsp;&nbsp;(<font color=red>尽可能贴近采集内容，并具有特殊标识的。</font> )
+			<input type="hidden" name="dwCnt" value="<?{$smarty.foreach.delimiter_dw.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>采集信息存入栏目：</td>
+		<td align='left'>
+		<select size="1" name="module_id">
+		<option value="0">请选择栏目</option>
+		<?{foreach from=$arrModule key=key item=item}?>
+			<option value="<?{$key}?>" <?{if $key == $arrData.module_id}?>selected=selected<?{/if}?>><?{$item}?>(<?{$key}?>)</option>    	
+		<?{/foreach}?>
+    	</select>&nbsp;&nbsp;栏目分类ID:<input value="<?{$arrData.type_id}?>" name="type_id" size="20"/>
+		</td>
+	</tr>
+	<tr>
+		<td>存入栏目补充字段：</td>
+		<td align='left'>
+		<table id="tb9" border=0 cellspacing=0 cellpadding=3 >
+			<?{foreach from=$arrData.delimiter_df key=key item=item name=delimiter_df}?>
+			<?{if !empty($item)}?>
+			<tr>
+			<td>
+			<span>补充字段<?{$smarty.foreach.delimiter_df.index+1}?>：</span><input size=50 type=text value="<?{$item.0|escape:'html'}?>" name="delimiter_df[<?{$smarty.foreach.delimiter_df.index}?>][0]" />  值<input size=50 type=text value="<?{$item.1|escape:'html'}?>" name="delimiter_df[<?{$smarty.foreach.delimiter_df.index}?>][1]" /><input type=button onclick='return delDf(this,<?{$smarty.foreach.delimiter_df.index}?>)' value='删除'><br />
+			</td>
+			</tr>
+			<?{/if}?>
+			<?{/foreach}?>
+			<tr>
+			<td>
+			<span>补充字段<?{$smarty.foreach.delimiter_df.total+1}?>：</span><input size=50 type=text value=""  name="delimiter_df[<?{$smarty.foreach.delimiter_df.total+1}?>][0]" /> 值<input size=50 type=text value=""  name="delimiter_df[<?{$smarty.foreach.delimiter_df.total+1}?>][1]" /><input type=button onclick='return delDf(this,<?{$smarty.foreach.delimiter_df.total+1}?>)' value='删除'><br/>
+			</td>
+			</tr>
+		</table>
+		<a href="#" onclick="return addDf()">添加一个补充字段</a>&nbsp;&nbsp;(<font color=red>补充字段直接入库不抓取。</font> )
+		<input type="hidden" name="dfCnt" value="<?{$smarty.foreach.delimiter_df.total+1}?>" />
+		</td>
+	</tr>
+	<tr>
+		<td align='middle' colspan='3'><input type='submit' id="okgo" name="okgo" value='确　定'/> <input type='reset' value="重 置"/></td>
+	</tr>
+	<input type='hidden' name='id' value="<?{$smarty.get.id}?>"/>
+</table>
+</div>
+</form>
+<script language="javascript">
+	function check(){
+	if(this.form1.title.value==""){
+	     alert("关键字名称不能为空！");
+		 return false;
+	 }
+	 this.form1.okgo.disabled=true;
+	 return true;
+	}
+	function ListUrl(){
+		if (document.form1.wholelink.checked == true){
+			list_url.style.display = '';
+		}
+		else{
+			list_url.style.display = 'none';
+		}
+	}
+	function onlyText(){
+		if (document.form1.onlytext.checked == true){
+			imglink.style.display = 'none';
+			downimg.style.display = 'none';
+		}
+		else{
+			imglink.style.display = '';
+		}
+	}
+	function imgUrl(){
+		if (document.form1.imglink1.checked == true){
+			downimg.style.display = '';
+		}
+		else{
+			downimg.style.display = 'none';
+		}
+	}
+</script> 
+<script language="javascript">
+	//列表页屏蔽码
+	function addLs(){
+	  var oTb = document.getElementById("tb7");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.lsCnt.value)+1;
+	  var no = parseInt(document.form1.lsCnt.value);
+	  document.form1.lsCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>屏蔽码"+num+"：</span><input name='delimiter_ls[]' type=text  size='50' /> <input type=button onclick='return delLs(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delLs(obj,No){
+		var num = parseInt(document.form1.lsCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.lsCnt.value=num-1;
+		}
+		return false;
+	}
+	//列表页前部截取位
+	function addLt(){
+	  var oTb = document.getElementById("tb1");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.ltCnt.value)+1;
+	  var no = parseInt(document.form1.ltCnt.value);
+	  document.form1.ltCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>截取位"+num+"：</span><input name='delimiter_lt[]' type=text  size='50' /> <input type=button onclick='return delLt(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delLt(obj,No){
+		var num = parseInt(document.form1.ltCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.ltCnt.value=num-1;
+		}
+		return false;
+	}
+
+	//列表页尾部截取位
+	function addLb(){
+	  var oTb = document.getElementById("tb2");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.lbCnt.value)+1;
+	  var no = parseInt(document.form1.lbCnt.value);
+	  document.form1.lbCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>截取位"+num+"：</span><input name='delimiter_lb[]' type=text  size='50' /> <input type=button onclick='return delLb(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delLb(obj,No){
+		var num = parseInt(document.form1.lbCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.lbCnt.value=num-1;
+		}
+		return false;
+	}
+
+	//详细页链接分隔符
+	function addLm(){
+	  var oTb = document.getElementById("tb3");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.lmCnt.value)+1;
+	  var no = parseInt(document.form1.lmCnt.value);
+	  document.form1.lmCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>分隔符"+num+"：</span><input name='delimiter_lm["+num+"][0]' type=text  size='50' /> <input type=button onclick='return delLm(this,"+num+")' value='删除'><br /><span>链接取第几位"+num+"：</span><input size=20 type=text value='' name='delimiter_lm["+num+"][1]' /><br /><span>链接替换"+num+"：</span>把<input size=50 type=text value='' name='delimiter_lm["+num+"][2]' />换成<input size=50 type=text value='' name='delimiter_lm["+num+"][3]' />";
+	  return false;
+	}
+	function delLm(obj,No){
+		var num = parseInt(document.form1.lmCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.lmCnt.value=num-1;
+		}
+		return false;
+	}
+
+	//详细页屏蔽码
+	function addDs(){
+	  var oTb = document.getElementById("tb6");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.dsCnt.value)+1;
+	  var no = parseInt(document.form1.dsCnt.value);
+	  document.form1.dsCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>屏蔽码"+num+"：</span><input name='delimiter_ds[]' type=text  size='50' /> <input type=button onclick='return delDs(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delDs(obj,No){
+		var num = parseInt(document.form1.dsCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.dsCnt.value=num-1;
+		}
+		return false;
+	}
+
+	//详细页前部截取位
+	function addDt(){
+	  var oTb = document.getElementById("tb4");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.dtCnt.value)+1;
+	  var no = parseInt(document.form1.dtCnt.value);
+	  document.form1.dtCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>截取位"+num+"：</span><input name='delimiter_dt[]' type=text  size='50' /> <input type=button onclick='return delDt(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delDt(obj,No){
+		var num = parseInt(document.form1.dtCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.dtCnt.value=num-1;
+		}
+		return false;
+	}
+
+	//详细页尾部截取位
+	function addDb(){
+	  var oTb = document.getElementById("tb5");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.dbCnt.value)+1;
+	  var no = parseInt(document.form1.dbCnt.value);
+	  document.form1.dbCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>截取位"+num+"：</span><input name='delimiter_db[]' type=text  size='50' /> <input type=button onclick='return delDb(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delDb(obj,No){
+		var num = parseInt(document.form1.dbCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.dbCnt.value=num-1;
+		}
+		return false;
+	}
+	//详细页字段截取位
+	function addDw(){
+	  var oTb = document.getElementById("tb8");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.dwCnt.value)+1;
+	  var no = parseInt(document.form1.dwCnt.value);
+	  document.form1.dwCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>入库字段名"+num+"：</span><input size=50 type=text name='delimiter_dw["+num+"][0]' />  <input type=button onclick='return delDw(this,"+num+")' value='删除'><br /><span>前部截取位"+num+"：</span><input size=50 type=text   name='delimiter_dw["+num+"][1]' /><br /><span>尾部截取位"+num+"：</span><input size=50 type=text  name='delimiter_dw["+num+"][2]' /><br /><span>内容替换<?{$smarty.foreach.delimiter_dw.total+1}?>：</span>把<input size=50 type=text name='delimiter_dw["+num+"][3]' /> 换成<input size=50 type=text name='delimiter_dw["+num+"][4]' /><br /><label><input type='radio' checked value=0 name=delimiter_dw["+num+"][5]>原码（图远程）"+num+"</label> 	<label><input type='radio' value=1 name=delimiter_dw["+num+"][5]>纯文字(无l格式）"+num+"</label> <label><input id=imglink1  type='radio' value=2 name=delimiter_dw["+num+"][5]>去图（留格式）"+num+"</label> <label><input type='radio' value=3 name=delimiter_dw["+num+"][5]>图片下载（留格式不入库）"+num+"</label> <label><input type='radio' value=4 name=delimiter_dw["+num+"][5]>图片下载（无格式入库）"+num+"</label>";
+	  return false;
+	}
+	function delDw(obj,No){
+		var num = parseInt(document.form1.dwCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.dwCnt.value=num-1;
+		}
+		return false;
+	}
+
+	//补充字段
+	function addDf(){
+	  var oTb = document.getElementById("tb9");
+	  var oTr = oTb.insertRow(-1);
+	  var num = parseInt(document.form1.dfCnt.value)+1;
+	  var no = parseInt(document.form1.dfCnt.value);
+	  document.form1.dfCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>补充字段"+num+"：</span><input name='delimiter_df["+num+"][0]' type=text  size='50' /> 值<input name='delimiter_df["+num+"][1]' type=text  size='50' /> <input type=button onclick='return delDf(this,"+num+")' value='删除'><br />";
+	  return false;
+	}
+	function delDf(obj,No){
+		var num = parseInt(document.form1.dfCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.dfCnt.value=num-1;
+		}
+		return false;
+	}
+</script>

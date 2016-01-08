@@ -1,0 +1,79 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <!--主体左侧开始-->
+    <div class="main">
+        <div class="main_left"> 
+			<div class="common_bt"> 
+				<span class="title"><?{$arrInfo.module_name}?></span> 	
+				</div>
+			<div class="common_list f14">
+				<ul>
+					<li><a href="<?{url url="/archives/detail.php?name=company"}?>">公司介绍</a></li>
+					<li><a href="<?{url url="/archives/detail.php?name=jobs"}?>">人才招聘</a></li>
+					<li><a href="<?{url url="/archives/detail.php?name=contact"}?>">联系我们</a></li>
+					<li><a href="<?{url url="/message/"}?>">留言反馈</a></li>
+				</ul>
+			</div>
+        </div>
+        <!--主体左侧结束--> 
+        <!--主体右侧开始-->
+        <div class="main_right"> 
+            <div class="common_bt">
+				<span class="title">
+					用户注册
+				</span>
+				<span class="path">当前位置：<a href="<?{url url = '/'}?>">首页</a> >> 用户注册</span>
+			</div>
+
+			<div class="common_content plr20">			
+				
+				<div id="regtext">          
+				  <div id="register_form">
+					<form method="post" action="">
+					  <div class="userreg_t"> <h2>用户注册</h2></div>
+					  <div class="ipt_info"> <span>电子邮箱：</span>
+						<input class="text r3" type="text" value="" name="email" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>登陆账号：</span>
+						<input class="text r3" type="text" value="" name="user_name" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>真实姓名：</span>
+						<input class="text r3" type="text" value="" name="real_name" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>公司名称：</span>
+						<input class="text r3" type="text" value="" name="corp_name" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>联系电话：</span>
+						<input class="text r3" type="text" value="" name="mobile" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>联系地址：</span>
+						<input class="text r3" type="text" value="" name="contact_address" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>联系邮编：</span>
+						<input class="text r3" type="text" value="" name="postcode" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>登录密码：</span>
+						<input class="text r3" type="password" value="" name="password" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>确认密码：</span>
+						<input class="text r3" type="password" value="" name="password_c" maxlength="36">
+					  </div>
+					  <div class="ipt_info pt20"> <span>验&nbsp;证&nbsp;码：</span>
+						<input class="text authCode r3" type="text" value="" name="authCode" maxlength="36" style="border-color: rgb(207, 207, 207);">
+						<img src="<?{$arrGWeb.WEB_ROOT_pre}?>/plug-in/captcha/captcha.php" align="top" alt="看不清？点击更换" name="imgVerify" id="imgVerify" onClick="this.src=this.src+'?'+Math.random()" /> </div>
+					  <div class="ipt_sub">
+						<input class="sub" type="submit" value="确定注册">
+					  </div>
+					</form>
+				  </div>
+				  <div class="clr"></div>
+				</div>
+			</div>
+        </div>
+        <!--主体右侧结束-->
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束-->

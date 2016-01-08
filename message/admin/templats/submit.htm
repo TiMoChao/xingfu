@@ -1,0 +1,68 @@
+<script src="../../plug-in/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="../../plug-in/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script> KindEditor.ready(function(K) { K.create('textarea[name="intro"]'); }); </script>
+
+<div class="ccc2">
+	<ul>
+		<li>
+			<span class="right"><input type="button" onClick="javascript:history.back();" value="返回留言列表" class="gray mini"></span>
+			当前位置：<?{$arrGWeb.module_name}?>管理
+	 </li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkform()" action="?<?{$smarty.server.QUERY_STRING}?>" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table class="biweb" align="center" cellspacing="0">
+	<tr class="firstr">
+		<td colspan="3">编辑<?{$arrGWeb.module_name}?>：</td> 
+	</tr>	
+  	<td>留言标题：</td>
+    <td>
+	<input maxLength=210 size=55 id=title name=title value="<?{$arrData.title}?>" onblur="dodivde();"></td>
+    <td><span class=gray>标题，最大70个中文</span></td></tr>
+  <tr>
+    <td>公司名称：</td>
+    <td><input maxLength='50' size='50' name='company' value="<?{$arrData.company}?>"></td>
+    <td><span class=gray>公司名称</span></td>
+  </tr>  
+  <tr>
+    <td>留言者：</td>
+    <td><input maxLength='50' size='50' name='contact' value="<?{$arrData.contact}?>"></td>
+    <td><span class=gray>留言的作者</span></td>
+  </tr>
+  <tr>
+    <td>联系电话：</td>
+    <td><input maxLength='50' size='50' name='tel' value="<?{$arrData.tel}?>"></td>
+    <td><span class=gray>联系电话</span></td>
+  </tr>
+  <tr>
+    <td>电子邮箱：</td>
+    <td><input maxLength='50' size='50' name='email' value="<?{$arrData.email}?>"></td>
+    <td><span class=gray>电子邮箱</span></td>
+  </tr>  
+  <tr>
+    <td>是否处理：</td>
+    <td>
+		<select name='state' size='1'>
+			<option value="1" <?{if $arrData.state == 1}?>selected<?{/if}?>><?{$arrGState[1]}?></option>
+			<option value="2" <?{if $arrData.state == 2}?>selected<?{/if}?>><?{$arrGState[2]}?></option>
+			<option value="3" <?{if $arrData.state == 3}?>selected<?{/if}?>><?{$arrGState[3]}?></option>
+			<option value="4" <?{if $arrData.state == 4}?>selected<?{/if}?>><?{$arrGState[4]}?></option>
+		</select>	
+	</td>
+    <td><span class=gray>留言处理信息</span></td>
+  </tr>    
+  <tr id=ArticleContent <?{if $arrData.linkurl!=''}?>style='display:none'<?{/if}?>>
+    <td>资料内容：</td>
+    <td><textarea id="intro" name="intro" style="width:680px;height:280px;visibility:hidden;"><?{$arrData.intro}?></textarea></td>
+    <td><span class=gray>必填项</span></td>
+  </tr>   
+	<tr>
+      <td>&nbsp;</td>
+      <td align=middle colspan=3><input type=submit id="okgo" name="okgo" value=确　定> <input type=reset value="重 置"></td>
+    </tr>
+	<input type=hidden name=savephoto value="<?{$arrData.photo}?>">
+    <input type=hidden name=id value="<?{$arrData.id}?>">
+</table>
+</div>
+</form>

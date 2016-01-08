@@ -1,0 +1,23 @@
+ <div class="common_bt"> <span class="title">下载分类</span> 				<span class="more"><a href="<?{url url='/download/'}?>"></a></span> 
+			</div>
+
+<div class="type_style_n_list">
+	<ul>
+		<?{foreach from=$arr|api:'download':'getTypeList':"null^null^null^type_parentid,type_id,type_titlea" item=arrType}?>
+			<?{if $arrType.type_parentid == 0}?>
+				<ol>
+					<a onClick="smenuClick_download(<?{$arrType.type_id}?>);"><img id="typejt_download_<?{$arrType.type_id}?>" src="<?{$arrGWeb.templats_root}?>/images/contraction.jpg"></a><a href="<?{url url="/download/index.php?type_id=`$arrType.type_id`"}?>"><?{$arrType.type_title}?></a>
+				</ol>
+				<div class="shadow_border" id="p_download_<?{$arrType.type_id}?>">
+					<ul>
+						<?{foreach from=$arr|api:'download':'getTypeList':"null^null^null^type_parentid,type_id,type_titlea" item=arrType1}?>
+						   <?{if $arrType1.type_parentid eq $arrType.type_id}?>
+						   <li><a href="<?{url url="/download/index.php?type_id=`$arrType1.type_id`"}?>" id="<?{$arrType1.type_id}?>"><?{$arrType1.type_title}?></a></li>
+						   <?{/if}?>
+					   <?{/foreach}?>
+					</ul>
+				</div>
+			<?{/if}?>
+		<?{/foreach}?>
+	</ul>
+</div>

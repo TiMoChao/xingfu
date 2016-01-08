@@ -1,0 +1,37 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <!--主体左侧开始-->
+    <div class="main">
+        <div class="main_left"> 
+			<div class="common_bt"> 
+				<span class="title"><?{$arrInfo.module_name}?></span> 	
+				</div>
+			<div class="common_list f14">
+				<ul>
+					<li><a href="<?{url url="/archives/detail.php?name=company"}?>">公司介绍</a></li>
+					<li><a href="<?{url url="/archives/detail.php?name=jobs"}?>">人才招聘</a></li>
+					<li><a href="<?{url url="/archives/detail.php?name=contact"}?>">联系我们</a></li>
+					<li><a href="<?{url url="/message/"}?>">留言反馈</a></li>
+				</ul>
+			</div>
+        </div>
+        <!--主体左侧结束--> 
+        <!--主体右侧开始-->
+        <div class="main_right"> 
+            <div class="common_bt">
+				<span class="title">
+					<?{$arrInfo.module_name}?>
+				</span>
+				<span class="path">当前位置：<a href="<?{url url = '/'}?>">首页</a> >> <?{$arrInfo.module_name}?></span>
+			</div>
+			<div class="common_content plr20">
+				<?{if !empty($arrInfo.source)}?><?{include file = "`$arrInfo.source`"}?><?{else}?><?{$arrInfo.intro|stripslashes}?><?{/if}?>
+			</div>
+        </div>
+        <!--主体右侧结束-->
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束-->

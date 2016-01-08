@@ -1,0 +1,78 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+
+    <div class="main">  
+		<!--主体左侧开始-->
+        <div class="main_left"> 
+				<?{include file="product/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束-->
+		<!--主体右侧开始-->
+		<div class="main_right">
+            <div class="common_bt">
+				<span class="title">产品信息</span>
+				<span class="path">当前位置：<a href="<?{$arrGWeb.WEB_ROOT_pre}?>/">首页</a> >> <a href="<?{url url='/product/'}?>">产品展示</a> >> 产品信息</span>
+			</div>
+			<div class="pageContent_view">
+				<div class="ptb10">
+					<div class="fl plr20">
+						<div class="comm_detail_pic vpic">
+								<span>
+								<img src="<?{if empty($product_info.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'product'}?>m/<?{$product_info.thumbnail}?><?{/if}?>" /></span>
+						</div>
+					</div>
+					<div class="itemName">
+						<ul id="product_info_list">
+							<li class="product_detail_t"><?{$product_info.title}?>【<a href="javascript:window.print();">打印</a> <a href='<?{url url = "/`$arrGWeb.module_id`/detail.php?id=`$arrData.id`" cache = "3"}?>'>DOC</a>】</li>
+							<li><div class="bshare-custom">分 享 到：<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a><a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a><a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+							</li>
+						</ul>
+					</div>
+					<div class="clr"></div>
+				</div>
+				<div class="itemParticular">
+					<?{if !empty($product_info.video)}?>
+					<?{foreach from=$product_info.video item=arrData}?>
+						<?{if $arrData.video_link != null}?>
+						<div class="video1">
+							<div class="video2">
+								<?{$arrData.video_title}?>
+							</div>
+							<embed src="<?{$arrData.video_link}?>" quality="high" width="500" height="300" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+						</div>
+						<?{/if}?>
+						
+						<?{if $arrData.video != null}?>
+						<div class="video1">
+							<div class="video2">
+								<?{$arrData.video_title}?>
+							</div>
+						<embed height="300" width="500" flashvars="file=<?{$FileCallPath|imgurl:'product'}?><?{$arrData.video}?>&image=<?{$FileCallPath|imgurl:'product'}?>b/<?{$arrData.videopic}?>" allowscriptaccess="true" allowfullscreen="true" quality="high" name="player" id="player" style="" src="../../plug-in/flvplayer/flvplayer.swf" type="application/x-shockwave-flash">
+					    </div>
+						<?{/if}?>
+					<?{/foreach}?>	
+					<?{/if}?>
+					
+					<!-- 产品图片 -->
+					<div class="common_content">
+						<?{foreach from=$product_info.photo key=key item=Pic_arrData}?>
+							<center>
+								<img alt="<?{$Pic_arrData.title}?>" title="<?{$Pic_arrData.title}?>" src="<?{$FileCallPath|imgurl:'product'}?>b/<?{$Pic_arrData.photo}?>"><br>
+								<?{$Pic_arrData.photo_narrate}?>
+							</center><br>
+						<?{/foreach}?>
+						<div class="clr"></div>
+					</div>		
+					<div class="tindex2"><?{$product_info.intro}?></div>
+					<div class="goback"><a href="javascript:history.go(-1)">返回上一页</a></div>
+				</div>
+			</div>
+		</div>
+ <!--主体右侧结束-->
+ 
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束--> 

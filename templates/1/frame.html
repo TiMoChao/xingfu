@@ -1,0 +1,23 @@
+<?{strip}?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="zh" xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+    <?{if $requesttype!=1}?>
+<?{include file = "theme/title.html"}?>
+    <?{/if}?>
+</head>
+<body>
+<div id="container">
+    <?{if $requesttype!=1}?>
+<?{include file = "theme/head.html"}?>
+    <?{/if}?>
+<?{include file =$MAIN}?>
+    <?{if $requesttype!=1}?>
+<?{include file = "theme/foot.html"}?>
+    <?{/if}?>
+</div>
+</body>
+</html>
+<?{/strip}?>
+
+

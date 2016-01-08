@@ -1,0 +1,89 @@
+
+<div class="n-back">
+    <div class="content_box clb">
+        <div><img style="width:100%;" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/news-img.jpg" /></div>
+        <div class="n-c-b clb">
+            <div class="n-c-lb">
+                <span class="n-c-ts"></span>
+                <ul class="n-c-cul">
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_news/'}?>">
+                        <p>School News<br/>园所新闻</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_class/'}?>">
+                        <p>Class Info<br/>班级信息</p>
+                    </a></li>
+                    <li class="down-back culli"><a href="<?{url url = '/xingfu_school_Basic_courses/'}?>">
+                        <p>Basic_courses<br/>园本课程</p>
+                    </a>
+                    </li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_Notice/'}?>">
+                        <p>School Notice<br/>通知公告</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_show/'}?>">
+                        <p>School Notice<br/>园所展区</p>
+                    </a></li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_moment/'}?>">
+                        <p>Moment<br/>精彩瞬间</p>
+                    </a>
+                    </li>
+                    <li class="culli"><a href="<?{url url = '/xingfu_school_teacher/'}?>">
+                        <p>Teacher<br/>园丁风采</p>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="n-c-rb">
+                <div style="width:100%; background:#FF5953; height:30px;"></div>
+                <div class="n-c-rt"><span class="n-c-rtib"><p class="rtib-po">兴甫幼儿园</p></span><span class="n-c-rtwzb">您现在所在的位置： <a href="<?{url url='/'}?>">首页</a> > <a href='<?{url url="/xingfu_school_Basic_courses/"}?>'>基本课程</a></span></div>
+
+
+                <div class="n-c-rib">
+                    <div class="n-c-riul" style="display:block;">
+
+                        <!--<div class="yey-top-ribj clb">-->
+                        <!--<ul>-->
+                        <!--<?{foreach from=$arr|api:'xingfu_school_class':'getInfoList':"where pass=1^ ORDER BY topflag DESC,submit_date DESC^0^9^id,title,summary,thumbnail,bedeck^^0" item=arrdata name=arrdata}?>-->
+                        <!--&lt;!&ndash;<li>小一班</li>&ndash;&gt;-->
+                        <!--<?{if $smarty.foreach.arrdata.index == 0}?>-->
+
+                        <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                        <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">-->
+                        <!--<li> <?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>-->
+
+                        <!--<?{elseif $smarty.foreach.arrdata.index == 3}?>-->
+
+                        <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                        <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">-->
+                        <!--<li><?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>-->
+
+                        <!--<?{elseif $smarty.foreach.arrdata.index == 6}?>-->
+
+                        <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                        <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">-->
+                        <!--<li> <?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>-->
+
+
+                        <!--<?{else}?>-->
+                        <!--<a href="<?{if $arrData.linkurl!=''}?>-->
+                        <!--<?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_class/detail.php?id=`$arrdata.id`"}?><?{/if}?>" title="<?{$arrdata.summary|htmlspecialchars}?>">-->
+                        <!--<li class="ribj-left"><?{$arrdata.title|csubstr:0:3|bedeck:$arrdata.bedeck}?></li>-->
+                        <!--<?{/if}?>-->
+
+                        <!--<?{/foreach}?>-->
+                        <!--</ul>-->
+                        <!--</div>-->
+
+                        <ul class="riul-ulb">
+
+                            <?{foreach from=$arrInfoList item=arrNews}?>
+                            <li class="riul-li clb"><a href="<?{if $arrData.linkurl!=''}?>
+                            <?{$arrData.linkurl}?><?{else}?><?{url url="/xingfu_school_Basic_courses/detail.php?id=`$arrNews.id`"}?><?{/if}?>" title="<?{$arrNews.summary|htmlspecialchars}?>"><?{$arrNews.title|csubstr:0:24|bedeck:$arrNews.bedeck}?></a><span><?{$arrNews.submit_date|date_format:"%Y-%m-%d"}?></span></li>
+                            <?{/foreach}?>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/js/main.js"></script>

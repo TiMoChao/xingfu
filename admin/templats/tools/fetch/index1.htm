@@ -1,0 +1,53 @@
+<div class="ccc2">
+	<ul>
+		<li><span class="right"><input type="button" onClick="location.href='addinfo1.php'" value="新增采集器" class="gray mini"/></span>
+数据采集器功能可根据您设定进行他站信息采集，可快速填充本站数据；
+		</li>
+	</ul>
+</div>
+<div id="biweb">
+<form name="delform" id="form1" action='?action=' method="post">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr" align='center'>
+    <td width='10%'>ID</td>
+    <td align='left' width='25%'>采集器名称</td>
+	<td width='25%'>操作</td>
+	<td width='10%'>审核</td>
+	<td width='10%'><input type='checkbox' name='chkSelectAll' onclick="doCheckAll(this)"/></td>
+	</tr>
+<?{foreach name=keyad key=key item=arrData from=$arrInfo}?>
+    <tr align='center'>
+		<td>&nbsp;<?{$smarty.foreach.keyad.iteration}?></td>
+		<td align='left'>&nbsp;<a href='modifyinfo1.php?id=<?{$key}?>&page=<?{$smarty.get.page}?>'><?{$key}?></a></td>
+		<td align='left'>&nbsp;<a href="fecth1.php?id=<?{$key}?>&action=listtest">列表页测试</a>&nbsp;&nbsp;<a href="fecth1.php?id=<?{$key}?>&action=detailtest">详细页测试</a>&nbsp;&nbsp;<a href="fecth1.php?id=<?{$key}?>&action=fetchlist">单条采集</a>&nbsp;&nbsp;<a href="fecth1.php?id=<?{$key}?>&action=fetchall">全部采集</a>&nbsp;&nbsp;<a href="modifyinfo1.php?id=<?{$key}?>&modify=+">列表加1</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="modifyinfo1.php?id=<?{$key}?>&modify=-">列表减1</a>&nbsp;&nbsp;</td>
+		<td>&nbsp;<?{if $arrData.pass == 1}?>√<?{/if}?><?{if $arrData.pass != 1}?><font color=red>&nbsp;×&nbsp;</font><?{/if}?></td>
+		<td>&nbsp;<input type='checkbox' name='select[]' value="<?{$key}?>"/></td>
+	</tr>
+<?{/foreach}?>
+</table>
+</form>
+<table border='0' cellpadding='1' cellspacing='3' width='100%' align='center'>
+	<tr>
+		<td>
+		<table border='0' cellpadding='0' cellspacing='0'>
+			<tr valign='middle'>
+				<td>
+					<?{$strPage}?>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<form name='actionform' method='post'>
+		<td align='right'> 
+		操作：<select size='1' name='selection'>
+		<option value='del'>删除</option>
+		<option value='check'>通过审核</option>
+		<option value='uncheck'>取消通过</option>
+		</select> 
+		<input type='button' value='执行' onclick="checkAction(document.actionform.selection.options[document.actionform.selection.selectedIndex].value)"/>
+		</td>
+		</form>
+	</tr>
+</table>
+</div>
+

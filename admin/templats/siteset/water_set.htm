@@ -1,0 +1,119 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle"> 本功能只能在上传的图片上加上水印，但是不能给编辑器上传的图片加水印。开源包考虑容量大小，未在包中附带字库文件。<br />需要使用本功能的请到<a href="http://www.biweb.cn/html/download-1/29.html" target="_blank">http://www.biweb.cn/html/download-1/29.html</a>下载字库后，上传到web_common5.8目录下，即可正常使用。
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" onsubmit="return checkForm()" action="" method="post" enctype="multipart/form-data">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2"><?{$strNav|default:"`$arrGWeb.module_name`管理"}?></td>
+    </tr>
+    <tr>
+      <td width="15%">水印功能：</td>
+      <td>
+			<select name="waterMark" id='waterMark' onchange='waterMarkChange();'>	
+				<option value="1" <?{if $arrGWeb.waterMark == 1}?>selected=selected class="selected"<?{/if}?>>图片水印</option>
+				<!--option value="2" <?{if $arrGWeb.waterMark == 2}?>selected=selected class="selected"<?{/if}?>>文字水印</option -->
+				<option value="0" <?{if $arrGWeb.waterMark == 0}?>selected=selected class="selected"<?{/if}?>>关闭</option>
+			</select>
+	  </td>
+    </tr>
+    <tr>
+    	<td colspan="2">
+    		<div id='waterTextDiv' style='<?{if $arrGWeb.waterMark == 2}?>display:block<?{else}?>display:none<?{/if}?>'>
+	    		<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+	    			<tr>
+				      <td width="14%">水印背景颜色：</td>
+				      <td><input value="<?{$arrGWeb.bgColor}?>" name="bgColor"><span style="color:#999;">水印背景颜色 RGB ，最后一个参数为透明度(0-127)</span></td>
+				    </tr>
+				    <tr>
+				      <td>水印字体颜色：</td>
+				      <td><input value="<?{$arrGWeb.fgColor}?>" name="fgColor"><span style="color:#999;">水印字体颜色 RGB</span></td>
+				    </tr>
+				    <tr>
+				      <td>导航块颜色：</td>
+				      <td><input value="<?{$arrGWeb.navColor}?>" name="navColor"><span style="color:#999;">导航块颜色 RGB</span></td>
+				    </tr>	
+				    <tr>
+				      <td>水印宽度：</td>
+				      <td><input value="<?{$arrGWeb.width}?>" name="width"><span style="color:#999;">水印宽度</span></td>
+				    </tr>	
+				    <tr>
+				      <td>水印高度：</td>
+				      <td><input value="<?{$arrGWeb.height}?>" name="height"><span style="color:#999;">水印高度</span></td>
+				    </tr>	
+				    <tr>
+				      <td>水印左上角X坐标：</td>
+				      <td><input value="<?{$arrGWeb.xPic}?>" name="xPic"><span style="color:#999;">水印左上角X坐标</span></td>
+				    </tr>	
+				    <tr>
+				      <td>水印左上角Y坐标：</td>
+				      <td><input value="<?{$arrGWeb.yPic}?>" name="yPic"><span style="color:#999;">水印左上角Y坐标</span></td>
+				    </tr>	
+				
+				    <tr>
+				      <td>水印内容：</td>
+				      <td><input value="<?{$arrGWeb.text0}?>" name="text0"><span style="color:#999;">水印内容</span></td>
+				    </tr>	
+				    <tr>
+				      <td>水印内容：</td>
+				      <td><input value="<?{$arrGWeb.text1}?>" name="text1"><span style="color:#999;">水印内容</span></td>
+				    </tr>
+	    		</table>
+    		</div>
+    		<div id='waterImageDiv' style='<?{if $arrGWeb.waterMark == 1}?>display:block<?{else}?>display:none<?{/if}?>'>
+	    		<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+	    			<tr>
+				      <td width="14%">水印图片：</td>
+				      <td><input name="waterImage"   type="file"><span style="color:#999;">暂只支持GIF,JPG,PNG格式</span>
+					  <div id="preview"><?{if !empty($arrGWeb.waterImage)}?><img src="../../data/<?{$arrGWeb.waterImage}?>"  ><?{/if}?></div>
+					  </td>
+				    </tr>
+				    <tr>
+				      <td>水印位置：</td>
+				      <td>
+				      	<select name="waterPos">	
+							<option value="3010" <?{if $arrGWeb.waterPos == '3010'}?>selected=selected class="selected"<?{/if}?>>平铺位置</option>
+							<option value="3001" <?{if $arrGWeb.waterPos == '3001'}?>selected=selected class="selected"<?{/if}?>>顶端居左</option>
+							<option value="3002" <?{if $arrGWeb.waterPos == '3002'}?>selected=selected class="selected"<?{/if}?>>顶端居中</option>
+							<option value="3003" <?{if $arrGWeb.waterPos == '3003'}?>selected=selected class="selected"<?{/if}?>>顶端居右</option>
+							<option value="3004" <?{if $arrGWeb.waterPos == '3004'}?>selected=selected class="selected"<?{/if}?>>中部居左</option>
+							<option value="3005" <?{if $arrGWeb.waterPos == '3005'}?>selected=selected class="selected"<?{/if}?>>中部居中</option>
+							<option value="3006" <?{if $arrGWeb.waterPos == '3006'}?>selected=selected class="selected"<?{/if}?>>中部居右</option>
+							<option value="3007" <?{if $arrGWeb.waterPos == '3007'}?>selected=selected class="selected"<?{/if}?>>底端居左</option>
+							<option value="3008" <?{if $arrGWeb.waterPos == '3008'}?>selected=selected class="selected"<?{/if}?>>底端居中</option>
+							<option value="3009" <?{if $arrGWeb.waterPos == '3009'}?>selected=selected class="selected"<?{/if}?>>底端居右</option>
+						</select>
+				      	<span style="color:#999;">水印位置</span>
+				      </td>
+				    </tr>
+				    
+	    		</table>
+    		</div>
+    	</td>
+    	
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提 交" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返 回" class="mini" /></td>
+    </tr>
+</table>
+</div>
+</form>
+<SCRIPT language="javascript">
+	function waterMarkChange(){
+		var waterMark = $("#waterMark").val();
+		if(waterMark==1){
+			document.getElementById("waterImageDiv").style.display="block";
+			document.getElementById("waterTextDiv").style.display="none";
+		}else if(waterMark==2){
+			document.getElementById("waterImageDiv").style.display="none";
+			document.getElementById("waterTextDiv").style.display="block";
+		}else{
+			document.getElementById("waterTextDiv").style.display="none";
+			document.getElementById("waterImageDiv").style.display="none";
+		}
+	}
+</SCRIPT>

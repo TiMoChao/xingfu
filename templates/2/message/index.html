@@ -1,0 +1,103 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+    <!--主体左侧开始-->
+    <div class="main">
+        <div class="main_left"> 
+			<div class="common_bt"> 
+				<span class="title">留言反馈</span> 				
+			</div>
+			<div class="common_list f14">
+				<ul>
+					<li><a href="<?{url url="/archives/detail.php?name=company"}?>">公司介绍</a></li>
+					<li><a href="<?{url url="/archives/detail.php?name=jobs"}?>">人才招聘</a></li>
+					<li><a href="<?{url url="/archives/detail.php?name=contact"}?>">联系我们</a></li>
+					<li><a href="<?{url url="/message/"}?>">留言反馈</a></li>
+				</ul>
+			</div>
+        </div>
+        <!--主体左侧结束--> 
+        <!--主体右侧开始-->
+        <div class="main_right">
+            <div class="common_bt"><span class="title">留言反馈</span><span class="path">当前位置：<a href="<?{$arrGWeb.WEB_ROOT_pre}?>/">首页</a> >> 留言反馈</span></div>
+			
+			<div class="common_content" style="min-height:0;">
+				<div class="news_list f12">
+					<table <?{if !empty($arrInfoList)}?>bgcolor='#F6F6F6'<?{/if}?> cellspacing="0" cellpadding="0" width="700" border="0" height="25" style="margin-botton:12px; table-layout:fixed;">
+					  <tbody>
+					  <?{foreach from=$arrInfoList item=arrMessage}?>
+						<tr style="color:#333; padding:10px; line-height:25px;">
+						  <td width="120" align="left"><strong>姓名：</strong><?{$arrMessage.contact}?></td>
+						  <td width="450" style="color:#000;"><strong>时间：</strong>[<?{$arrMessage.submit_date|date_format:"%Y-%m-%d"}?>]</td>
+						  <td width="100" align="right" style="color:#000;"><strong>IP：</strong><?{$arrMessage.user_ip}?></td>
+						</tr>
+						<tr>
+						  <td width="710" bgcolor="#FFFFFF" colspan="3" align="left" style="line-height:18px; padding:3px; word-break:break-all; word-wrap:break-word;"><strong>留言内容：</strong><br>
+						  <?{$arrMessage.intro}?></td>
+						</tr>
+						<?{foreachelse}?>
+						<tr>			  
+						  <td colspan="3" align="center" style="line-height:16px;"><strong>暂无留言！</strong></td>
+						</tr>
+					   <?{/foreach}?>
+					   </tbody>
+					</table>
+					<div class="showpage"><?{$strPage}?></div>
+					<div class="clr"></div>
+				</div>
+			</div>
+
+
+            <div class="common_content" style="border-top:1px solid #E0E0E0;">
+                <div class="news_list f12">
+				<form action="" method="post" name="messageform">
+					<table cellspacing="5" cellpadding="0" border="0" id="mess_table">
+						<tr>
+							<td colspan="2" align="right"><font color="red">*</font> 为必填项</td>
+						</tr>						
+						<tr>
+							<td width="10%">姓　　名：</td>
+							<td width="90%"><input type="text" size="40" name="contact" id="contact" value="<?{$smarty.session.real_name}?>" class="common_input_height"/><font color="red">*</font></td>
+						</tr>
+						<tr>
+							<td>联系电话：</td>
+							<td><input type="text" size="40" name="tel" id="tel" value="<?{$smarty.session.mobile}?>" class="common_input_height"/><font color="red">*</font></td>
+						</tr>
+						<tr>
+							<td>电子邮箱：</td>
+							<td><input type="text" size="40" name="email" id="email" value="<?{$smarty.session.email}?>" class="common_input_height"/><font color="red">*</font></td>
+						</tr>
+						<tr>
+							<td>标　　题：</td>
+							<td><input type="text" size="60" name="title" id="title" class="common_input_height"/><font color="red">*</font></td>
+						</tr>
+						<tr>
+							<td>公司名称：</td>
+							<td><input type="text" size="60" name="company" value="<?{$smarty.session.corp_name}?>" id="company" class="common_input_height"/></td>
+						</tr>
+						<tr>	
+							<td>留言内容：</td>
+							<td><textarea name="intro" cols="70" rows="10" id="intro"></textarea><font color="red">*</font></td>
+						<tr>
+						<tr>						
+							<td colspan="2" align="center"><input type="button" value="提交" onClick="<?{if $smarty.session.user_id}?>messageform.submit();<?{else}?>alert('请先登录！');<?{/if}?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="重置" /></td>
+						</tr>
+					</table>
+				</form>
+                </div>
+            </div>
+        </div>
+        <!--主体右侧结束-->
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束--> 
+
+<script language="javascript">
+	$(function(){
+		$(":input").keyup(function(){
+			<?{if empty($smarty.session.user_id)}?>alert('请先登录！');return false;<?{/if}?>
+		});
+	})
+</script>

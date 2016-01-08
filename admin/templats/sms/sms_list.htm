@@ -1,0 +1,56 @@
+<div class="ccc2">
+	<ul>
+		<li><img src="../images/warn.gif" align="absmiddle">
+		<font color="#ff6600">如果通道出现问题，请联系<a href='http://sh.bnet.cn/ContentManage/Home.aspx' color="#ff6600">商务领航公司</a></font>
+		</li>
+	</ul>
+</div>
+<form name="form1" id="form1" action="" method="post">
+<input type=hidden name=page value="<?{$smarty.post.page}?>">
+<div id="biweb">
+<table border="0" cellspacing="0" cellpadding="0" class="biweb">
+    <tr class="firstr">
+    <td colspan="2"><?{$strNav|default:"`$arrGWeb.module_name`管理"}?></td>
+    </tr>
+    <tr>
+      <td>企业编号：</td>
+      <td>
+			<input name="entCode" size="70" value="<?{$arrMBizParam.entCode}?>">
+			</td>
+    </tr>
+    <tr>
+      <td>用户名：</td>
+      <td>
+			<input name="username" size="70" value="<?{$arrMBizParam.username}?>">
+			</td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td>
+			<input name="password" type="password" size="72" value="<?{$arrMBizParam.password}?>">
+			</td>
+			
+    </tr>
+    <tr>
+      <td>接口地址：</td>
+      <td>
+			<input name="wsdlURL"  size="70" value="<?{$arrMBizParam.wsdlURL}?>">
+			</td>
+    </tr>
+    <tr>
+      <td width="15%">短信类型：</td>
+      <td>
+			<select size="1" name="contentType">
+				<option value="0" <?{if $arrMBizParam.contentType == 0}?>selected<?{/if}?>>营销类</option>
+				<option value="1" <?{if $arrMBizParam.contentType == 1}?>selected<?{/if}?>>应用类</option>
+			</select>
+			</td>
+    </tr>
+		
+		<tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" id="Submit" value="修 改" class="mini" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+</table>
+</div>
+</form>

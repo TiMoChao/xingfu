@@ -1,0 +1,75 @@
+<!--主体部分开始-->
+<div class="wrap_main">
+    <div class="main_top"></div>
+
+    <div class="main">  
+		<!--主体左侧开始-->
+        <div class="main_left"> 
+				<?{include file="download/block/_menu.html"}?>
+        </div>
+        <!--主体左侧结束--> 
+		
+		<!--主体右侧开始-->
+		<div class="main_right">
+            <div class="common_bt">
+				<span class="title">下载信息</span>
+				<span class="path">当前位置：<a href="<?{$arrGWeb.WEB_ROOT_pre}?>/">首页</a> >> <a href="<?{url url = '/download/'}?>">下载中心</a> >> 下载信息</span>
+			</div>
+			<div class="pageContent_view">
+				<div class="ptb10">
+					<div class="fl plr20">
+						<div class="comm_detail_pic vpic">
+								<span>
+								<a <?{if !empty($arrData.thumbnail)}?> href="<?{$FileCallPath|imgurl:'download'}?>b/<?{$arrData.thumbnail}?>" target="_blank"<?{/if}?>><img src="<?{if empty($arrData.thumbnail)}?><?{$arrGWeb.templats_root}?>/images/nopic.jpg<?{else}?><?{$FileCallPath|imgurl:'download'}?>m/<?{$arrData.thumbnail}?><?{/if}?>" /></a></span>
+						</div>
+					</div>
+
+					<div class="itemName">
+						<ul id="product_info_list">
+							<li class="product_detail_t"><?{$arrData.title}?></li>
+							<?{if !empty($arrData.file_type)}?>
+							<li>
+								资源类型：<?{$arrData.file_type}?>
+							</li>
+							<?{/if}?>
+							<?{if !empty($arrData.file_size)}?>
+							<li>
+								资源大小：<?{$arrData.file_size}?>KB
+							</li>
+							<?{/if}?>
+							<?{if !empty($arrData.author)}?>
+							<li>
+								发&nbsp;&nbsp;布&nbsp;&nbsp;人：<?{$arrData.author}?>
+							</li>
+							<?{/if}?>
+							<li>
+								发布日期：<?{$arrData.submit_date|date_format:"%Y-%m-%d"}?>
+							</li>
+							<li>
+								<div class="bshare-custom">分 享 到：<a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a><a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren" href="javascript:void(0);"></a><a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+							</li>
+							<li>下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载：<a target="_blank" href="<?{if $arrData.downurl!=''}?><?{$arrData.downurl}?><?{else}?><?{url url="/download/download.php?id=`$arrData.id`" cache='0'}?><?{/if}?>">【点击下载】</a>【<a href="javascript:window.print();">打印</a> <a href='<?{url url = "/`$arrGWeb.module_id`/detail.php?id=`$arrData.id`" cache = "3"}?>'>DOC</a>】</li>
+						</ul>
+					</div>
+					<div class="clr"></div>
+				</div>
+				<div class="itemParticular">
+					<?{if !empty($arrData.photo.1)}?>
+						<?{foreach from=$arrData.photo key=key item=photo}?>
+						<?{if $key != 0}?>
+						<?{if $photo.photo != ""}?><br><center style="font-size:12px;"><img src="<?{$FileCallPath|imgurl:'download'}?>b/<?{$photo.photo}?>" align="center" border="0" alt="<?{$photo.photo_narrate}?>"  onload='resizepic(this,600)' /><br><?{if $photo.photo_narrate}?><?{$photo.photo_narrate}?><?{/if}?></center><br><?{/if}?>
+						<?{/if}?>
+						<?{/foreach}?>
+					<br><?{/if}?>
+					<div class="tindex2"><?{$arrData.intro}?></div>
+					<div class="goback"><a href="javascript:history.go(-1)">返回上一页</a></div>
+				</div>
+			</div>
+		</div>
+ <!--主体右侧结束-->
+ 
+        <div class="clr"></div>
+    </div>
+    <div class="main_bottom"></div>
+</div>
+<!--主体部分结束--> 

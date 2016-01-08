@@ -1,0 +1,78 @@
+<style type="text/css">
+<!--
+.clear {
+	clear:both;
+	height:5px;
+	line-height:5px;
+	font-size:0px;
+}
+.RSS h3{font-size:14px;font-weight:bold;color:#3b3b3b;margin:0;}
+.RSS {
+	padding:0px;
+	width:100%;
+	margin:10px auto;
+	color:#000;
+}
+.RSS fieldset {
+	padding:5px;
+	-moz-border-radius:5px;
+	font-size:14px;
+	-moz-border-top-colors: #eee #fff;
+	-moz-border-left-colors: #eee #fff;
+	-moz-border-right-colors:#eee #fff;
+	-moz-border-bottom-colors:#eee #fff;
+}
+.RSS legend { color:#0000CC; }
+.RSS fieldset a:hover{
+	color:#FF6600;
+}
+/*文字类*/
+.RSS .links2 ul {
+	list-style:none;
+	padding:0px;
+	margin:0px;
+}
+.RSS .links2 ul li {
+	width:110px;
+	line-height:22px;
+	background:none;
+	border-bottom:none;
+	float:left;
+	margin:5px;
+}
+-->
+</style>
+<div class="clear"></div>
+<div style="margin:0px auto;width:984px;">
+	<div class="RSS">
+		<!--文字类开始-->
+		<h3>RSS订阅网站栏目：</h3>
+		<?{foreach from=$arrInfoList key=key item=arrData}?>
+		<fieldset>
+			<legend>
+				<a href="<?{url url = "/`$arrGWeb.module_id`/detail.php?mod=`$key`"}?>">
+					<b><?{$arrData.name}?></b>
+				</a>
+			</legend>
+			<div class="links2">
+				<ul>
+					<?{foreach from=$arrData.type item=arrType}?>
+					<li>
+						<a href="<?{url url = "/`$arrGWeb.module_id`/detail.php?mod=`$key`&type_id=`$arrType.type_id`"}?>">
+							<?{$arrType.name}?>
+						</a>
+					</li>
+					<?{/foreach}?>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</fieldset>
+		<div class="clear"></div>
+		<?{/foreach}?>
+		<!--文字类结束-->
+		<div class="hr clear"></div>
+	</div>
+	<div id="main">
+		<div class="hr clear"></div>
+	</div>
+</div>

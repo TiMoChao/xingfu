@@ -1,0 +1,68 @@
+
+<div class="header-box clb">
+    <div class="n-i-nb clb">
+        <div class="logo-i-b">
+            <a href="javascript:;"><img src="<?{$arrGWeb.WEB_ROOT_pre}?>/templates/1/xingfu_Extension/images/logo1.png" /></a>
+        </div>
+        <div class="nav-list-b clb">
+            <ul>
+<li>
+                    <?{$url=$smarty.server.REQUEST_URL}?>
+                    <?{$is_alpha = strpos($url, 'xingfu_')}?>
+                    <?{if $is_alpha == ''}?>
+                    <a class="" href="<?{url url = '/'}?>">首页</a>
+                    <?{else}?>
+                    <a class="nav-a" href="<?{url url = '/'}?>"><?{$is_alpha}?></a>
+                    <?{/if}?>
+                </li>
+                <li>
+                    <?{$url=$smarty.server.REQUEST_URI}?>
+                    <?{$is_alpha = strpos($url, 'xingfu_news')}?>
+                      <?{if $is_alpha != ''}?>
+                      <a class="nav-a"  href="<?{url url = '/xingfu_news/'}?>">兴甫新闻</a>
+                      <?{else}?>
+                    <a href="<?{url url = '/xingfu_news/'}?>">兴甫新闻</a>
+                    <?{/if}?>
+                </li>
+                <li>
+                    <?{$url=$smarty.server.REQUEST_URI}?>
+                    <?{$is_alpha = strpos($url, 'xingfu_school')}?>
+                    <?{if $is_alpha != ''}?>
+                    <a  class="nav-a" href="<?{url url = '/xingfu_school/'}?>">星甫幼儿园</a>
+                    <?{else}?>
+                    <a href="<?{url url = '/xingfu_school/'}?>">星甫幼儿园</a>
+                    <?{/if}?>
+                </li>
+                <li>
+                    <?{$url=$smarty.server.REQUEST_URI}?>
+                    <?{$is_alpha = strpos($url, 'xingfu_ImgShow')}?>
+                    <?{if $is_alpha != ''}?>
+                    <a  class="nav-a" href="<?{url url = '/xingfu_ImgShow/'}?>">兴甫风采</a>
+                    <?{else}?>
+                    <a href="<?{url url = '/xingfu_ImgShow/'}?>">兴甫风采</a>
+                    <?{/if}?>
+                </li>
+                <li>
+
+                    <?{$url=$smarty.server.REQUEST_URI}?>
+                    <?{$is_alpha = strpos($url, 'xingfu_teaching')}?>
+                    <?{if $is_alpha != ''}?>
+                    <a  class="nav-a" href="<?{url url = '/xingfu_teaching/'}?>">武术教学</a>
+                    <?{else}?>
+                    <a href="<?{url url = '/xingfu_teaching/'}?>">武术教学</a>
+                    <?{/if}?>
+                </li>
+                <li>
+
+                    <?{$url=$smarty.server.REQUEST_URI}?>
+                    <?{$is_alpha = strpos($url, 'xingfu_coach')}?>
+                    <?{if $is_alpha != ''}?>
+                    <a  class="nav-a" href="<?{url url = '/xingfu_coach/'}?>">名师风采</a>
+                    <?{else}?>
+                    <a href="<?{url url = '/xingfu_coach/'}?>">名师风采</a>
+                    <?{/if}?>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
