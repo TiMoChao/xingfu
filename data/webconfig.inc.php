@@ -1,6 +1,6 @@
 <?php
 $arrGWeb = array (
-  'db_host' => '127.0.0.1',
+  'db_host' => 'localhost',
   'db_port' => '3306',
   'db_user' => 'root',
   'db_password' => 'lcaimama',
@@ -9,7 +9,7 @@ $arrGWeb = array (
   'mc_type' => '0',
   'user_pass_type' => '1',
   'jamstr' => 'xingfu',
-  'm_db_host' => '127.0.0.1',
+  'm_db_host' => 'localhost',
   'm_db_port' => '3306',
   'm_db_user' => 'root',
   'm_db_password' => 'lcaimama',
