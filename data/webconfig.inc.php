@@ -1,6 +1,6 @@
 <?php
 $arrGWeb = array (
-  'db_host' => '121.40.103.91',
+  'db_host' => '127.0.0.1',
   'db_port' => '3306',
   'db_user' => 'root',
   'db_password' => 'lcaimama',
